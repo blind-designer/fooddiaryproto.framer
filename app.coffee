@@ -254,7 +254,7 @@ shButtonsIn = () ->
 			button.shown = false
 
 
-addButton.on Events.Click, ->
+addButton.on Events.TouchEnd, ->
 	addButton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
@@ -310,8 +310,6 @@ sk.profile.states.add
 sk.mainscreen.states.add
 	hidden: {x:-Screen.width}
 
-sk.mainscreen.states.animationOptions = 
-	time: 0.5
 
 sk.profileicon.on Events.Click, ->
 	sk.mainscreen.states.switch("hidden")
