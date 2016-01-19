@@ -298,7 +298,16 @@ switchCal = () ->
 	sk.calicon.states.next()
 	sk.closecalendar.states.next()
 
-sk.calicon.on Events.Click, ->
+calDumbShit = new Layer
+	width: 88
+	height: 88
+	x: Screen.width - 88
+	y: 40
+	superLayer: sk.mainscreen
+	backgroundColor: noColor
+
+
+calDumbShit.on Events.Click, ->
 	switchCal()
 	
 calbgr.on Events.Click, ->
@@ -321,8 +330,15 @@ sk.profileicon.on Events.Click, ->
 	sk.mainscreen.states.switch("hidden")
 	sk.profile.states.switch("shown")
 	navWrapper.states.switch("hidden")
-	
-sk.profileback.on Events.Click, ->
+
+profileDumbShit = new Layer
+	y: 40
+	width: 88
+	height: 88
+	superLayer: sk.profile
+	backgroundColor: noColor
+
+profileDumbShit.on Events.Click, ->
 	sk.mainscreen.states.switch("default")
 	sk.profile.states.switch("default")
 	navWrapper.states.switch("default")
