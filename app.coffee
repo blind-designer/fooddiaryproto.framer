@@ -254,8 +254,10 @@ shButtonsIn = () ->
 				curve: "spring(300,20,0)"
 			button.shown = false
 
-
-sk.bigplusbutton.on Events.Click, ->
+dumbShit = new Layer
+	frame: sk.bigplusbutton.frame
+	
+dumbShit.on Events.Click, ->
 	#print "click"
 	sk.bigplusbutton.states.next()
 	sk.tabNav.states.next()
