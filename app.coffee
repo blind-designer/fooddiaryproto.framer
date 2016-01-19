@@ -215,7 +215,7 @@ hidebar = () ->
 
 # ADD SCREEN ANIMATION
 
-sk.bigplusbutton.superLayer = navWrapper
+sk.bigplusbutton.superLayer = null
 sk.bigplusbutton.center()
 sk.bigplusbutton.bringToFront()
 sk.bigplusbutton.states.add
@@ -256,7 +256,7 @@ shButtonsIn = () ->
 
 
 sk.bigplusbutton.on Events.Click, ->
-	print "click"
+	#print "click"
 	sk.bigplusbutton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
