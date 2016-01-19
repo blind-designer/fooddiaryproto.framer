@@ -257,6 +257,7 @@ shButtonsIn = () ->
 
 
 addButton.on Events.Click, ->
+	print "click"
 	addButton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
