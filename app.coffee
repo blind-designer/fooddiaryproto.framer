@@ -30,7 +30,7 @@ sk.tabNav.states.add
 
 scroller = new ScrollComponent
 	width: Screen.width
-	height: Screen.height - 300
+	height: Screen.height #- 300
 scroller.scrollHorizontal = false
 sk.mainContent.superLayer = scroller.content
 scroller.contentInset = {
@@ -215,13 +215,12 @@ hidebar = () ->
 
 # ADD SCREEN ANIMATION
 
-addButton = sk.bigplusbutton
-addButton.superLayer = navWrapper
-addButton.center()
-addButton.bringToFront()
-addButton.states.add
+sk.bigplusbutton.superLayer = navWrapper
+sk.bigplusbutton.center()
+sk.bigplusbutton.bringToFront()
+sk.bigplusbutton.states.add
 	close: {rotation: 45}
-addButton.states.animationOptions = 
+sk.bigplusbutton.states.animationOptions = 
 	curve: "spring(600,30,0)"
 
 sk.shortcuts.visible = true
@@ -256,9 +255,9 @@ shButtonsIn = () ->
 			button.shown = false
 
 
-addButton.on Events.Click, ->
+sk.bigplusbutton.on Events.Click, ->
 	print "click"
-	addButton.states.next()
+	sk.bigplusbutton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
 	shButtonsIn()
