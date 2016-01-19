@@ -30,7 +30,7 @@ sk.tabNav.states.add
 
 scroller = new ScrollComponent
 	width: Screen.width
-	height: Screen.height
+	height: Screen.height - 300
 scroller.scrollHorizontal = false
 sk.mainContent.superLayer = scroller.content
 scroller.contentInset = {
@@ -243,6 +243,7 @@ shButtonsIn = () ->
 				properties: 
 					y: button.originalFrame.y
 					opacity: 1
+				curve: "spring(300,20,0)"
 				delay: i * 0.05
 			button.shown = true
 		else
@@ -251,10 +252,11 @@ shButtonsIn = () ->
 					y: button.originalFrame.y + 80
 					opacity: 0
 				delay: i * 0.05
+				curve: "spring(300,20,0)"
 			button.shown = false
 
 
-addButton.on Events.TouchEnd, ->
+addButton.on Events.Click, ->
 	addButton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
