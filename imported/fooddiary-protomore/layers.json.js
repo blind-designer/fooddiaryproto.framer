@@ -1004,5 +1004,156 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "height" : 1848
     },
     "name" : "profile"
+  },
+  {
+    "maskFrame" : null,
+    "id" : "AAA90947-7491-4A02-BA24-2AB7783D8CF9",
+    "visible" : false,
+    "children" : [
+      {
+        "maskFrame" : null,
+        "id" : "29578A95-9569-45AD-B73C-F3E49EA2F9A7",
+        "visible" : true,
+        "children" : [
+          {
+            "maskFrame" : null,
+            "id" : "E0AEF456-19B6-4F90-8046-D855D706E309",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-shaddmeal-E0AEF456-19B6-4F90-8046-D855D706E309.png",
+              "frame" : {
+                "y" : 726,
+                "x" : 78,
+                "width" : 595,
+                "height" : 116
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 726,
+              "x" : 78,
+              "width" : 595,
+              "height" : 116
+            },
+            "name" : "shaddmeal"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "FA13ED70-E5E9-4FC1-9616-6544A9818B88",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-shaddactivity-FA13ED70-E5E9-4FC1-9616-6544A9818B88.png",
+              "frame" : {
+                "y" : 846,
+                "x" : 78,
+                "width" : 595,
+                "height" : 116
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 846,
+              "x" : 78,
+              "width" : 595,
+              "height" : 116
+            },
+            "name" : "shaddactivity"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "8AE6A8F9-4863-448C-92C5-5BC71D75C4E4",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-shaddweight-8AE6A8F9-4863-448C-92C5-5BC71D75C4E4.png",
+              "frame" : {
+                "y" : 966,
+                "x" : 79,
+                "width" : 594,
+                "height" : 116
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 966,
+              "x" : 79,
+              "width" : 594,
+              "height" : 116
+            },
+            "name" : "shaddweight"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "30B2015F-A284-450F-A588-474BD4912432",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-shaddwater-30B2015F-A284-450F-A588-474BD4912432.png",
+              "frame" : {
+                "y" : 1086,
+                "x" : 79,
+                "width" : 594,
+                "height" : 116
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 1086,
+              "x" : 79,
+              "width" : 594,
+              "height" : 116
+            },
+            "name" : "shaddwater"
+          }
+        ],
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 726,
+          "x" : 78,
+          "width" : 595,
+          "height" : 476
+        },
+        "name" : "shbuttons"
+      }
+    ],
+    "image" : {
+      "path" : "images\/Layer-shortcuts-AAA90947-7491-4A02-BA24-2AB7783D8CF9.png",
+      "frame" : {
+        "y" : -192,
+        "x" : 2171,
+        "width" : 750,
+        "height" : 1334
+      }
+    },
+    "imageType" : "png",
+    "kind" : "artboard",
+    "metadata" : {
+
+    },
+    "layerFrame" : {
+      "y" : -192,
+      "x" : 2171,
+      "width" : 750,
+      "height" : 1334
+    },
+    "name" : "shortcuts"
   }
 ]

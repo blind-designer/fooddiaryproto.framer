@@ -1,9 +1,15 @@
 # This imports all the layers for "fooddiary-protomore" into fooddiaryProtomoreLayers5
 sk = Framer.Importer.load "imported/fooddiary-protomore"
 noColor = "rgba(0,0,0,0)"
+Framer.Defaults.Animation =
+	curve:"ease-in-out"
+	time:0.4
 
 nav = sk.tabNav
 nav.y = Screen.height - nav.height
+nav.superLayer = null
+nav.bringToFront()
+
 
 scroller = new ScrollComponent
 	width: Screen.width
@@ -23,9 +29,7 @@ scroller.sendToBack()
 bgr = new BackgroundLayer
 	backgroundColor: "F0F0F0"
 
-Framer.Defaults.Animation =
-	curve:"ease-in-out"
-	time:0.4
+
 
 sk.weight.x += Screen.width
 
@@ -177,6 +181,17 @@ hidebar = () ->
 		achievementsBar.states.switch("ach")
 	
 
+# ADD SCREEN ANIMATION
 
+addButton = sk.bigplusbutton
+addButton.superLayer = null
+addButton.y = Screen.height - 115
+addButton.states.add
+	close: {rotation: 45}
+addButton.states.animationOptions = 
+	curve: "spring(600,30,0)"
 
+addButton.on Events.Click, ->
+	addButton.states.next()
+	
 	
