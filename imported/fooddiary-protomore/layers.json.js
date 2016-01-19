@@ -450,17 +450,65 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
         "id" : "E4F9C148-B714-4445-B92F-57ADCE46F48D",
         "visible" : true,
         "children" : [
+          {
+            "maskFrame" : null,
+            "id" : "9B4A70CD-1133-4095-887A-CE82947D6E96",
+            "visible" : true,
+            "children" : [
 
-        ],
-        "image" : {
-          "path" : "images\/Layer-pagecontrol-E4F9C148-B714-4445-B92F-57ADCE46F48D.png",
-          "frame" : {
-            "y" : 684,
-            "x" : 354,
-            "width" : 42,
-            "height" : 12
+            ],
+            "image" : {
+              "path" : "images\/Layer-pgone-9B4A70CD-1133-4095-887A-CE82947D6E96.png",
+              "frame" : {
+                "y" : 684,
+                "x" : 354,
+                "width" : 12,
+                "height" : 12
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 684,
+              "x" : 354,
+              "width" : 12,
+              "height" : 12
+            },
+            "name" : "pgone"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "193557D5-C9D0-4E5B-B4E5-2016B2A28810",
+            "visible" : true,
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/Layer-pgtwo-193557D5-C9D0-4E5B-B4E5-2016B2A28810.png",
+              "frame" : {
+                "y" : 684,
+                "x" : 384,
+                "width" : 12,
+                "height" : 12
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 684,
+              "x" : 384,
+              "width" : 12,
+              "height" : 12
+            },
+            "name" : "pgtwo"
           }
-        },
+        ],
         "imageType" : "png",
         "kind" : "group",
         "metadata" : {
@@ -646,169 +694,6 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
         "maskFrame" : null,
         "id" : "0F18012E-05AC-4454-9AF1-0E9A6EEF6C37",
         "visible" : true,
-        "children" : [
-          {
-            "maskFrame" : {
-              "y" : 1516,
-              "x" : 2,
-              "width" : 748,
-              "height" : 492
-            },
-            "id" : "5A5F1E0F-246B-474D-B066-1485DFECE712",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-izmereniya-5A5F1E0F-246B-474D-B066-1485DFECE712.png",
-              "frame" : {
-                "y" : 1516,
-                "x" : 2,
-                "width" : 750,
-                "height" : 492
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 1516,
-              "x" : 2,
-              "width" : 750,
-              "height" : 492
-            },
-            "name" : "izmereniya"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "353CDDA4-F0A9-46C3-8D64-56F03694FB17",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-mainwater-353CDDA4-F0A9-46C3-8D64-56F03694FB17.png",
-              "frame" : {
-                "y" : 2049,
-                "x" : 36,
-                "width" : 675,
-                "height" : 213
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 2049,
-              "x" : 36,
-              "width" : 675,
-              "height" : 213
-            },
-            "name" : "mainwater"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "6B32500D-2179-4394-97EA-E747EED0A664",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-moreratio-6B32500D-2179-4394-97EA-E747EED0A664.png",
-              "frame" : {
-                "y" : 786,
-                "x" : 665,
-                "width" : 47,
-                "height" : 10
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 786,
-              "x" : 665,
-              "width" : 47,
-              "height" : 10
-            },
-            "name" : "moreratio"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "D35167DC-B75C-4615-A15E-43CB95028056",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-mainratio-D35167DC-B75C-4615-A15E-43CB95028056.png",
-              "frame" : {
-                "y" : 758,
-                "x" : 41,
-                "width" : 223,
-                "height" : 70
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 758,
-              "x" : 41,
-              "width" : 223,
-              "height" : 70
-            },
-            "name" : "mainratio"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "B2B65665-BEEF-4991-9F06-54922B1CC42B",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-activitycell-B2B65665-BEEF-4991-9F06-54922B1CC42B.png",
-              "frame" : {
-                "y" : 1162,
-                "x" : 0,
-                "width" : 750,
-                "height" : 328
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 1162,
-              "x" : 0,
-              "width" : 750,
-              "height" : 328
-            },
-            "name" : "activitycell"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "05CE96E7-9AB8-4489-8675-3FD1155B7480",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-mealcell-05CE96E7-9AB8-4489-8675-3FD1155B7480.png",
-              "frame" : {
-                "y" : 866,
-                "x" : 0,
-                "width" : 750,
-                "height" : 270
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 866,
-              "x" : 0,
-              "width" : 750,
-              "height" : 270
-            },
-            "name" : "mealcell"
-          }
-        ],
         "image" : {
           "path" : "images\/Layer-mainContent-0F18012E-05AC-4454-9AF1-0E9A6EEF6C37.png",
           "frame" : {
@@ -852,9 +737,74 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
     "children" : [
       {
         "maskFrame" : null,
+        "id" : "5FF212EA-686A-4393-BB81-A9387CD93E4E",
+        "visible" : true,
+        "children" : [
+
+        ],
+        "image" : {
+          "path" : "images\/Layer-profileback-5FF212EA-686A-4393-BB81-A9387CD93E4E.png",
+          "frame" : {
+            "y" : 62,
+            "x" : 20,
+            "width" : 25,
+            "height" : 42
+          }
+        },
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 62,
+          "x" : 20,
+          "width" : 25,
+          "height" : 42
+        },
+        "name" : "profileback"
+      },
+      {
+        "maskFrame" : null,
         "id" : "47C6709B-A96B-4F8A-90B6-1BB28E314615",
         "visible" : true,
         "children" : [
+          {
+            "maskFrame" : null,
+            "id" : "D733A1FD-B8DE-4869-8D25-E5810605EC59",
+            "visible" : true,
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/Layer-profiletitle-D733A1FD-B8DE-4869-8D25-E5810605EC59.png",
+              "frame" : {
+                "y" : 71,
+                "x" : 301,
+                "width" : 149,
+                "height" : 31
+              }
+            },
+            "imageType" : "png",
+            "kind" : "text",
+            "metadata" : {
+              "css" : [
+                "\/* profile-title: *\/",
+                "font-family: SFUIText-Semibold;",
+                "font-size: 34px;",
+                "color: #FFFFFF;",
+                "line-height: 40px;"
+              ],
+              "string" : "Профиль"
+            },
+            "layerFrame" : {
+              "y" : 71,
+              "x" : 301,
+              "width" : 149,
+              "height" : 31
+            },
+            "name" : "profiletitle"
+          },
           {
             "maskFrame" : null,
             "id" : "4D44A1B3-4CF4-4B02-9C08-98A1F7077EE7",
@@ -888,10 +838,10 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
             "image" : {
               "path" : "images\/Layer-namePhoto-5BA2AFAE-05A9-453F-9B99-6F1E89F18CA7.png",
               "frame" : {
-                "y" : 375,
+                "y" : 142,
                 "x" : 240,
                 "width" : 277,
-                "height" : 84
+                "height" : 333
               }
             },
             "imageType" : "png",
@@ -900,10 +850,10 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
               "opacity" : 1
             },
             "layerFrame" : {
-              "y" : 375,
+              "y" : 142,
               "x" : 240,
               "width" : 277,
-              "height" : 84
+              "height" : 333
             },
             "name" : "namePhoto"
           },
@@ -934,15 +884,6 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
             "name" : "profiletopbarbgr"
           }
         ],
-        "image" : {
-          "path" : "images\/Layer-profiletop-47C6709B-A96B-4F8A-90B6-1BB28E314615.png",
-          "frame" : {
-            "y" : 0,
-            "x" : 0,
-            "width" : 750,
-            "height" : 716
-          }
-        },
         "imageType" : "png",
         "kind" : "group",
         "metadata" : {
@@ -983,15 +924,6 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
         "name" : "profilecontent"
       }
     ],
-    "image" : {
-      "path" : "images\/Layer-profile-3DDCCAE0-BB6A-409B-AEEA-5450E27A7930.png",
-      "frame" : {
-        "y" : -327,
-        "x" : 1180,
-        "width" : 750,
-        "height" : 1848
-      }
-    },
     "imageType" : "png",
     "kind" : "artboard",
     "metadata" : {
