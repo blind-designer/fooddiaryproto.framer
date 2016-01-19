@@ -215,7 +215,7 @@ hidebar = () ->
 
 # ADD SCREEN ANIMATION
 
-sk.bigplusbutton.superLayer = null
+sk.bigplusbutton.superLayer = navWrapper
 sk.bigplusbutton.center()
 sk.bigplusbutton.bringToFront()
 sk.bigplusbutton.states.add
@@ -255,7 +255,9 @@ shButtonsIn = () ->
 			button.shown = false
 
 dumbShit = new Layer
+	superLayer: navWrapper
 	frame: sk.bigplusbutton.frame
+	backgroundColor: noColor
 	
 dumbShit.on Events.Click, ->
 	#print "click"
