@@ -1134,15 +1134,15 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
     "children" : [
       {
         "maskFrame" : null,
-        "id" : "E49712F7-44B2-428A-BADE-26E6FA1300E2",
+        "id" : "2522FD5F-6A4E-463A-9BBC-DCA7D460C3E9",
         "visible" : true,
         "image" : {
-          "path" : "images\/Layer-recipesblank-E49712F7-44B2-428A-BADE-26E6FA1300E2.png",
+          "path" : "images\/Layer-recnav-2522FD5F-6A4E-463A-9BBC-DCA7D460C3E9.png",
           "frame" : {
             "y" : 0,
-            "x" : 1,
-            "width" : 749,
-            "height" : 1334
+            "x" : 0,
+            "width" : 750,
+            "height" : 128
           }
         },
         "imageType" : "png",
@@ -1152,11 +1152,82 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
         },
         "layerFrame" : {
           "y" : 0,
-          "x" : 1,
-          "width" : 749,
-          "height" : 1334
+          "x" : 0,
+          "width" : 750,
+          "height" : 128
         },
-        "name" : "recipesblank"
+        "name" : "recnav"
+      },
+      {
+        "maskFrame" : null,
+        "id" : "DCB17998-D852-4D52-878B-099353BAAB02",
+        "visible" : true,
+        "children" : [
+          {
+            "maskFrame" : null,
+            "id" : "28A9E62F-E025-41EF-91E0-A6E2AB11D61F",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-recpager-28A9E62F-E025-41EF-91E0-A6E2AB11D61F.png",
+              "frame" : {
+                "y" : 274,
+                "x" : 36,
+                "width" : 464,
+                "height" : 380
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 274,
+              "x" : 36,
+              "width" : 464,
+              "height" : 380
+            },
+            "name" : "recpager"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "FED41292-5149-4871-892E-0BD26103EE55",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-recipesflatcontent-FED41292-5149-4871-892E-0BD26103EE55.png",
+              "frame" : {
+                "y" : 0,
+                "x" : 0,
+                "width" : 750,
+                "height" : 1922
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 0,
+              "x" : 0,
+              "width" : 750,
+              "height" : 1922
+            },
+            "name" : "recipesflatcontent"
+          }
+        ],
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 0,
+          "x" : 0,
+          "width" : 750,
+          "height" : 1922
+        },
+        "name" : "recscroll"
       }
     ],
     "imageType" : "png",
@@ -1168,7 +1239,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "y" : -192,
       "x" : 3287,
       "width" : 750,
-      "height" : 1334
+      "height" : 1922
     },
     "name" : "recipes"
   },
@@ -1211,7 +1282,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
     },
     "layerFrame" : {
       "y" : -192,
-      "x" : 4292,
+      "x" : 4810,
       "width" : 750,
       "height" : 1334
     },
@@ -1256,7 +1327,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
     },
     "layerFrame" : {
       "y" : -192,
-      "x" : 5170,
+      "x" : 5706,
       "width" : 750,
       "height" : 1334
     },

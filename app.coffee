@@ -455,3 +455,36 @@ sk.navinfo.on Events.Click, ->
 	activeNav.states.switch("fourth")
 	switchscreen(sk.infoscreen)
 	
+# RECIPES SCREEN
+
+recipesScroller = new ScrollComponent
+	width: Screen.width
+	height: Screen.height
+	superLayer: sk.recipes
+	scrollHorizontal: false
+
+recipesScroller.content.backgroundColor = noColor
+recipesScroller.sendToBack()
+sk.recscroll.superLayer = recipesScroller.content
+
+recipesPager = new PageComponent
+	y: 270
+	height: 385
+	width: Screen.width
+	superLayer: recipesScroller.content
+	scrollVertical: false
+	contentInset:
+		right: 90
+#recipesPager.content.backgroundColor = noColor
+#sk.recpager.superLayer = recipesPager.content
+recipesPager.addPage(sk.recpager)
+sk.recpager.y = 0
+sk.recpagertwo = sk.recpager.copy()
+#sk.recpagertwo.superLayer = recipesPager.content
+recipesPager.addPage(sk.recpagertwo)
+sk.recpagertwo.x = sk.recpagertwo.width + 80
+
+sk.recpagerthree = sk.recpager.copy()
+#sk.recpagerthree.superLayer = recipesPager.content
+recipesPager.addPage(sk.recpagerthree)
+sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
