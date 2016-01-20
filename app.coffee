@@ -93,18 +93,22 @@ topPager.content.on "change:x", ->
 datePager = new PageComponent
 	y: 137
 	width: Screen.width
+	contentInset:
+		right: 520
 	
 datePager.content.backgroundColor = noColor
 datePager.scrollVertical = false
-datePagerDummy = new Layer
-	width: Screen.width * 3
-	backgroundColor: noColor
-	superLayer: datePager.content
+# datePagerDummy = new Layer
+# 	width: Screen.width * 3
+# 	backgroundColor: noColor
+# 	superLayer: datePager.content
 datePager.originalFrame = datePager.frame
 sk.datatoday.superLayer = datePager.content
 sk.datatoday.y = 18
+#datePager.addPage(sk.datatoday)
 sk.datayesterday.superLayer = datePager.content
 sk.datayesterday.y = 18
+#datePager.addPage(sk.datayesterday)
 sk.datanext.superLayer = datePager.content
 sk.datanext.y = 18
 
@@ -119,6 +123,39 @@ mainscreenCompact = false
 topPager.superLayer = sk.topbarbgr
 sk.pagecontrol.superLayer = sk.topbarbgr
 sk.topbarbgr.clip = true
+
+datePager.on "change:currentPage", ->
+	topPager.opacity = 0.1
+	scroller.opacity = 0.1
+	scroller.animate
+		properties:
+			opacity:1
+		delay: 0.15
+	topPager.animate
+		properties:
+			opacity:1
+
+datePagerNext = new Layer
+	x: Screen.width - 88
+	y: 142
+	width: 88
+	height: 88
+	backgroundColor: noColor
+	superLayer: sk.mainscreen
+
+datePagerPrev = new Layer
+	x: 0
+	y: 142
+	width: 88
+	height: 88
+	backgroundColor: noColor
+	superLayer: sk.mainscreen
+
+datePagerNext.on Events.Click, ->
+	datePager.snapToNextPage()
+
+datePagerPrev.on Events.Click, ->
+	datePager.snapToPreviousPage()
 
 sk.topbarbgr.on "change:y", ->
 	#print @.y
@@ -488,3 +525,5 @@ sk.recpagerthree = sk.recpager.copy()
 #sk.recpagerthree.superLayer = recipesPager.content
 recipesPager.addPage(sk.recpagerthree)
 sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
+
+
