@@ -187,43 +187,114 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           },
           {
             "maskFrame" : null,
-            "id" : "33CDCDC4-2C58-4812-9A1C-2C027E6A4C61",
+            "id" : "2F72C847-426E-4612-90A5-0F3B0F07ADFB",
             "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-navinfo-33CDCDC4-2C58-4812-9A1C-2C027E6A4C61.png",
-              "frame" : {
-                "y" : 2374,
-                "x" : 652,
-                "width" : 48,
-                "height" : 48
+            "children" : [
+              {
+                "maskFrame" : null,
+                "id" : "33CDCDC4-2C58-4812-9A1C-2C027E6A4C61",
+                "visible" : true,
+                "image" : {
+                  "path" : "images\/Layer-navinfo-33CDCDC4-2C58-4812-9A1C-2C027E6A4C61.png",
+                  "frame" : {
+                    "y" : 2374,
+                    "x" : 652,
+                    "width" : 48,
+                    "height" : 48
+                  }
+                },
+                "imageType" : "png",
+                "kind" : "group",
+                "metadata" : {
+                  "opacity" : 1
+                },
+                "layerFrame" : {
+                  "y" : 2374,
+                  "x" : 652,
+                  "width" : 48,
+                  "height" : 48
+                },
+                "name" : "navinfo"
+              },
+              {
+                "maskFrame" : null,
+                "id" : "56F88DAD-E400-4C01-A7F4-E10C3580CB04",
+                "visible" : true,
+                "image" : {
+                  "path" : "images\/Layer-navnotebook-56F88DAD-E400-4C01-A7F4-E10C3580CB04.png",
+                  "frame" : {
+                    "y" : 2370,
+                    "x" : 516,
+                    "width" : 36,
+                    "height" : 52
+                  }
+                },
+                "imageType" : "png",
+                "kind" : "group",
+                "metadata" : {
+                  "opacity" : 1
+                },
+                "layerFrame" : {
+                  "y" : 2370,
+                  "x" : 516,
+                  "width" : 36,
+                  "height" : 52
+                },
+                "name" : "navnotebook"
+              },
+              {
+                "maskFrame" : null,
+                "id" : "5240108F-C5A3-48C8-9AE9-87F9AD1489CC",
+                "visible" : true,
+                "image" : {
+                  "path" : "images\/Layer-navfood-5240108F-C5A3-48C8-9AE9-87F9AD1489CC.png",
+                  "frame" : {
+                    "y" : 2370,
+                    "x" : 182,
+                    "width" : 52,
+                    "height" : 52
+                  }
+                },
+                "imageType" : "png",
+                "kind" : "group",
+                "metadata" : {
+                  "opacity" : 1
+                },
+                "layerFrame" : {
+                  "y" : 2370,
+                  "x" : 182,
+                  "width" : 52,
+                  "height" : 52
+                },
+                "name" : "navfood"
+              },
+              {
+                "maskFrame" : null,
+                "id" : "54AD0BDC-91CE-433B-AD4C-7F9C540E8E78",
+                "visible" : true,
+                "image" : {
+                  "path" : "images\/Layer-homeicon-54AD0BDC-91CE-433B-AD4C-7F9C540E8E78.png",
+                  "frame" : {
+                    "y" : 2374,
+                    "x" : 54,
+                    "width" : 48,
+                    "height" : 46
+                  }
+                },
+                "imageType" : "png",
+                "kind" : "group",
+                "metadata" : {
+                  "opacity" : 1
+                },
+                "layerFrame" : {
+                  "y" : 2374,
+                  "x" : 54,
+                  "width" : 48,
+                  "height" : 46
+                },
+                "name" : "homeicon"
               }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 2374,
-              "x" : 652,
-              "width" : 48,
-              "height" : 48
-            },
-            "name" : "navinfo"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "56F88DAD-E400-4C01-A7F4-E10C3580CB04",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-navnotebook-56F88DAD-E400-4C01-A7F4-E10C3580CB04.png",
-              "frame" : {
-                "y" : 2370,
-                "x" : 516,
-                "width" : 36,
-                "height" : 52
-              }
-            },
+            ],
             "imageType" : "png",
             "kind" : "group",
             "metadata" : {
@@ -231,74 +302,42 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
             },
             "layerFrame" : {
               "y" : 2370,
-              "x" : 516,
-              "width" : 36,
-              "height" : 52
-            },
-            "name" : "navnotebook"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "5240108F-C5A3-48C8-9AE9-87F9AD1489CC",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-navfood-5240108F-C5A3-48C8-9AE9-87F9AD1489CC.png",
-              "frame" : {
-                "y" : 2370,
-                "x" : 182,
-                "width" : 52,
-                "height" : 52
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 2370,
-              "x" : 182,
-              "width" : 52,
-              "height" : 52
-            },
-            "name" : "navfood"
-          },
-          {
-            "maskFrame" : null,
-            "id" : "54AD0BDC-91CE-433B-AD4C-7F9C540E8E78",
-            "visible" : true,
-            "image" : {
-              "path" : "images\/Layer-homeicon-54AD0BDC-91CE-433B-AD4C-7F9C540E8E78.png",
-              "frame" : {
-                "y" : 2374,
-                "x" : 54,
-                "width" : 48,
-                "height" : 46
-              }
-            },
-            "imageType" : "png",
-            "kind" : "group",
-            "metadata" : {
-              "opacity" : 1
-            },
-            "layerFrame" : {
-              "y" : 2374,
               "x" : 54,
-              "width" : 48,
-              "height" : 46
+              "width" : 646,
+              "height" : 52
             },
-            "name" : "homeicon"
+            "name" : "allnavicons"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "51DE6F43-F3C6-4AA0-B41C-CEA87EF60152",
+            "visible" : true,
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/Layer-tabNavBgr-51DE6F43-F3C6-4AA0-B41C-CEA87EF60152.png",
+              "frame" : {
+                "y" : 2348,
+                "x" : 0,
+                "width" : 750,
+                "height" : 98
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 2348,
+              "x" : 0,
+              "width" : 750,
+              "height" : 98
+            },
+            "name" : "tabNavBgr"
           }
         ],
-        "image" : {
-          "path" : "images\/Layer-tabNav-DD7301C7-FD58-48EC-89F7-35F3D1D86E89.png",
-          "frame" : {
-            "y" : 2334,
-            "x" : 0,
-            "width" : 750,
-            "height" : 112
-          }
-        },
         "imageType" : "png",
         "kind" : "group",
         "metadata" : {
@@ -939,20 +978,20 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
   },
   {
     "maskFrame" : null,
-    "id" : "AAA90947-7491-4A02-BA24-2AB7783D8CF9",
+    "id" : "91B5DBB1-FF0E-4989-88E6-31792ECB4742",
     "visible" : false,
     "children" : [
       {
         "maskFrame" : null,
-        "id" : "29578A95-9569-45AD-B73C-F3E49EA2F9A7",
+        "id" : "FAE45F54-95A4-496B-81B0-E730441E9D3B",
         "visible" : true,
         "children" : [
           {
             "maskFrame" : null,
-            "id" : "E0AEF456-19B6-4F90-8046-D855D706E309",
+            "id" : "5918D6D5-427C-415D-A358-18B0ADB97FFB",
             "visible" : true,
             "image" : {
-              "path" : "images\/Layer-shaddmeal-E0AEF456-19B6-4F90-8046-D855D706E309.png",
+              "path" : "images\/Layer-shaddmeal-5918D6D5-427C-415D-A358-18B0ADB97FFB.png",
               "frame" : {
                 "y" : 726,
                 "x" : 78,
@@ -975,10 +1014,10 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           },
           {
             "maskFrame" : null,
-            "id" : "FA13ED70-E5E9-4FC1-9616-6544A9818B88",
+            "id" : "49B1BD83-EE65-4051-B51F-E8A73CF690F4",
             "visible" : true,
             "image" : {
-              "path" : "images\/Layer-shaddactivity-FA13ED70-E5E9-4FC1-9616-6544A9818B88.png",
+              "path" : "images\/Layer-shaddactivity-49B1BD83-EE65-4051-B51F-E8A73CF690F4.png",
               "frame" : {
                 "y" : 846,
                 "x" : 78,
@@ -1001,10 +1040,10 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           },
           {
             "maskFrame" : null,
-            "id" : "8AE6A8F9-4863-448C-92C5-5BC71D75C4E4",
+            "id" : "3D3AAA84-9E3F-4C8B-9B56-49903FC1648E",
             "visible" : true,
             "image" : {
-              "path" : "images\/Layer-shaddweight-8AE6A8F9-4863-448C-92C5-5BC71D75C4E4.png",
+              "path" : "images\/Layer-shaddweight-3D3AAA84-9E3F-4C8B-9B56-49903FC1648E.png",
               "frame" : {
                 "y" : 966,
                 "x" : 79,
@@ -1027,10 +1066,10 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           },
           {
             "maskFrame" : null,
-            "id" : "30B2015F-A284-450F-A588-474BD4912432",
+            "id" : "CBBAE80B-7BD9-44F4-AF64-EA9A3D908F77",
             "visible" : true,
             "image" : {
-              "path" : "images\/Layer-shaddwater-30B2015F-A284-450F-A588-474BD4912432.png",
+              "path" : "images\/Layer-shaddwater-CBBAE80B-7BD9-44F4-AF64-EA9A3D908F77.png",
               "frame" : {
                 "y" : 1086,
                 "x" : 79,
@@ -1067,7 +1106,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       }
     ],
     "image" : {
-      "path" : "images\/Layer-shortcuts-AAA90947-7491-4A02-BA24-2AB7783D8CF9.png",
+      "path" : "images\/Layer-shortcuts-91B5DBB1-FF0E-4989-88E6-31792ECB4742.png",
       "frame" : {
         "y" : -192,
         "x" : 2171,
@@ -1087,5 +1126,140 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "height" : 1334
     },
     "name" : "shortcuts"
+  },
+  {
+    "maskFrame" : null,
+    "id" : "C03D42F6-D1AC-47EA-AC91-14A66BBA41FD",
+    "visible" : false,
+    "children" : [
+      {
+        "maskFrame" : null,
+        "id" : "E49712F7-44B2-428A-BADE-26E6FA1300E2",
+        "visible" : true,
+        "image" : {
+          "path" : "images\/Layer-recipesblank-E49712F7-44B2-428A-BADE-26E6FA1300E2.png",
+          "frame" : {
+            "y" : 0,
+            "x" : 1,
+            "width" : 749,
+            "height" : 1334
+          }
+        },
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 0,
+          "x" : 1,
+          "width" : 749,
+          "height" : 1334
+        },
+        "name" : "recipesblank"
+      }
+    ],
+    "imageType" : "png",
+    "kind" : "artboard",
+    "metadata" : {
+
+    },
+    "layerFrame" : {
+      "y" : -192,
+      "x" : 3287,
+      "width" : 750,
+      "height" : 1334
+    },
+    "name" : "recipes"
+  },
+  {
+    "maskFrame" : null,
+    "id" : "6CC94B40-866E-4FBE-8586-C22851AC37D0",
+    "visible" : false,
+    "children" : [
+      {
+        "maskFrame" : null,
+        "id" : "F37DDE79-F627-485E-85CA-906A00455E43",
+        "visible" : true,
+        "image" : {
+          "path" : "images\/Layer-rationblank-F37DDE79-F627-485E-85CA-906A00455E43.png",
+          "frame" : {
+            "y" : 0,
+            "x" : 1,
+            "width" : 749,
+            "height" : 1334
+          }
+        },
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 0,
+          "x" : 1,
+          "width" : 749,
+          "height" : 1334
+        },
+        "name" : "rationblank"
+      }
+    ],
+    "imageType" : "png",
+    "kind" : "artboard",
+    "metadata" : {
+
+    },
+    "layerFrame" : {
+      "y" : -192,
+      "x" : 4292,
+      "width" : 750,
+      "height" : 1334
+    },
+    "name" : "ration"
+  },
+  {
+    "maskFrame" : null,
+    "id" : "AAA90947-7491-4A02-BA24-2AB7783D8CF9",
+    "visible" : false,
+    "children" : [
+      {
+        "maskFrame" : null,
+        "id" : "84DFBB26-38DE-4346-A02F-3EB422F19CED",
+        "visible" : true,
+        "image" : {
+          "path" : "images\/Layer-infoblank-84DFBB26-38DE-4346-A02F-3EB422F19CED.png",
+          "frame" : {
+            "y" : 0,
+            "x" : 0,
+            "width" : 750,
+            "height" : 1334
+          }
+        },
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 0,
+          "x" : 0,
+          "width" : 750,
+          "height" : 1334
+        },
+        "name" : "infoblank"
+      }
+    ],
+    "imageType" : "png",
+    "kind" : "artboard",
+    "metadata" : {
+
+    },
+    "layerFrame" : {
+      "y" : -192,
+      "x" : 5170,
+      "width" : 750,
+      "height" : 1334
+    },
+    "name" : "infoscreen"
   }
 ]

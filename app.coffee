@@ -407,6 +407,51 @@ profileScroll.on Events.ScrollEnd, ->
 				y: 0
 		
 
-#BIATCH
+# MAIN NAVIGATION
+currentScreen = sk.mainscreen
 
+activeNav = new Layer
+	superLayer: sk.tabNav
+	backgroundColor: "rgba(255,255,255,0.1)"
+	x: 25
+	y: sk.tabNav.height - 98
+	height: 98
 
+activeNav.states.add
+	second: {x: 157}
+	third: {x:483}
+	fourth: {x:625}
+
+activeNav.states.animationOptions = 
+	curve: "spring(450,28,0)"
+
+switchscreen = (screen) ->
+	screen.visible = true
+	screen.x = 0
+	screen.y = 0
+	screen.opacity = 0
+	screen.placeBehind(sk.shortcuts)
+	screen.animate
+		properties:
+			opacity: 1
+		time: 0.2
+	Utils.delay 0.2, ->
+		currentScreen.visible = false
+		currentScreen = screen
+
+sk.homeicon.on Events.Click, ->
+	activeNav.states.switch("default")
+	switchscreen(sk.mainscreen)
+
+sk.navfood.on Events.Click, ->
+	activeNav.states.switch("second")
+	switchscreen(sk.recipes)
+
+sk.navnotebook.on Events.Click, ->
+	activeNav.states.switch("third")
+	switchscreen(sk.ration)
+	
+sk.navinfo.on Events.Click, ->
+	activeNav.states.switch("fourth")
+	switchscreen(sk.infoscreen)
+	
