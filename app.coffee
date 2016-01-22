@@ -403,12 +403,13 @@ sk.photos.originalFrame = sk.photos.frame
 sk.namePhoto.originalFrame = sk.namePhoto.frame
 
 sk.profiletop.clip = true
-
+sk.profiletitle.opacity = 0
 sk.profiletop.on "change:y", ->
-	#print @.y
+	#print ((@.y + 576) / 576)
 	sk.photos.opacity = (300 + @.y) / 300
 	sk.photos.y = sk.photos.originalFrame.y - @.y / 2
 	sk.namePhoto.opacity = (300 + @.y) / 300
+	sk.profiletitle.opacity = 1 - ((@.y + 576) / 576)
 	sk.namePhoto.y = sk.namePhoto.originalFrame.y - @.y / 1.5
 
 
@@ -505,8 +506,8 @@ recipesScroller.sendToBack()
 sk.recscroll.superLayer = recipesScroller.content
 
 recipesPager = new PageComponent
-	y: 270
-	height: 385
+	y: 280
+	height: 445
 	width: Screen.width
 	superLayer: recipesScroller.content
 	scrollVertical: false
@@ -516,14 +517,39 @@ recipesPager = new PageComponent
 #sk.recpager.superLayer = recipesPager.content
 recipesPager.addPage(sk.recpager)
 sk.recpager.y = 0
-sk.recpagertwo = sk.recpager.copy()
+#sk.recpagertwo = sk.recpager.copy()
 #sk.recpagertwo.superLayer = recipesPager.content
 recipesPager.addPage(sk.recpagertwo)
 sk.recpagertwo.x = sk.recpagertwo.width + 80
+sk.recpagertwo.y = sk.recpager.y
 
 sk.recpagerthree = sk.recpager.copy()
 #sk.recpagerthree.superLayer = recipesPager.content
 recipesPager.addPage(sk.recpagerthree)
 sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
 
+# RATION SCREEN
 
+rationScroller = new ScrollComponent
+	width: Screen.width
+	height: Screen.height
+	superLayer: sk.ration
+	scrollHorizontal: false
+
+rationScroller.content.backgroundColor = noColor
+rationScroller.sendToBack()
+
+sk.ratscroll.superLayer = rationScroller.content
+
+# INFO SCREEN
+
+infoScroller = new ScrollComponent
+	width: Screen.width
+	height: Screen.height
+	superLayer: sk.infoscreen
+	scrollHorizontal: false
+
+infoScroller.content.backgroundColor = noColor
+infoScroller.sendToBack()
+
+sk.infoscroll.superLayer = infoScroller.content
