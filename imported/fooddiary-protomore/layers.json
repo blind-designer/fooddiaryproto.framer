@@ -1297,7 +1297,7 @@
             "y" : 0,
             "x" : 0,
             "width" : 750,
-            "height" : 1795
+            "height" : 1477
           }
         },
         "imageType" : "png",
@@ -1309,7 +1309,7 @@
           "y" : 0,
           "x" : 0,
           "width" : 750,
-          "height" : 1795
+          "height" : 1477
         },
         "name" : "ratscroll"
       }
@@ -1323,7 +1323,7 @@
       "y" : -192,
       "x" : 4965,
       "width" : 750,
-      "height" : 1795
+      "height" : 1477
     },
     "name" : "ration"
   },

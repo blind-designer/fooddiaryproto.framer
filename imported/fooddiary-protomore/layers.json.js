@@ -1298,7 +1298,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
             "y" : 0,
             "x" : 0,
             "width" : 750,
-            "height" : 1795
+            "height" : 1477
           }
         },
         "imageType" : "png",
@@ -1310,7 +1310,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           "y" : 0,
           "x" : 0,
           "width" : 750,
-          "height" : 1795
+          "height" : 1477
         },
         "name" : "ratscroll"
       }
@@ -1324,7 +1324,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "y" : -192,
       "x" : 4965,
       "width" : 750,
-      "height" : 1795
+      "height" : 1477
     },
     "name" : "ration"
   },

@@ -509,10 +509,15 @@ recipesPager = new PageComponent
 	y: 280
 	height: 545
 	width: Screen.width
-	superLayer: recipesScroller.content
+	superLayer: sk.recipes
 	scrollVertical: false
 	contentInset:
 		right: 300
+recipesPager.originalFrame = recipesPager.frame
+recipesPager.placeBehind(sk.recnav)
+
+recipesScroller.content.on "change:y", ->
+	recipesPager.y = recipesPager.originalFrame.y + @.y
 #recipesPager.content.backgroundColor = noColor
 #sk.recpager.superLayer = recipesPager.content
 sk.recpager.y = 0

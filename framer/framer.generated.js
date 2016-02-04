@@ -3906,7 +3906,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
             "y" : 0,
             "x" : 0,
             "width" : 750,
-            "height" : 1795
+            "height" : 1477
           }
         },
         "imageType" : "png",
@@ -3918,7 +3918,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
           "y" : 0,
           "x" : 0,
           "width" : 750,
-          "height" : 1795
+          "height" : 1477
         },
         "name" : "ratscroll"
       }
@@ -3932,7 +3932,7 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "y" : -192,
       "x" : 4965,
       "width" : 750,
-      "height" : 1795
+      "height" : 1477
     },
     "name" : "ration"
   },
@@ -4966,9 +4966,9 @@ window.__imported__["fooddiary-proto-cut/layers.json.js"] = [
   }
 ]
 if (typeof(DeviceComponent) !== "undefined") {DeviceComponent.Devices["iphone-6-silver"].deviceImageJP2 = false};
-window.Framer.Defaults.DeviceView = {"deviceScale":-1,"deviceType":"iphone-6-spacegray-hand","contentScale":1,"orientation":0};
+window.Framer.Defaults.DeviceView = {"deviceScale":0.5,"deviceType":"iphone-6-spacegray-hand","contentScale":1,"orientation":0};
 
-window.Framer.Defaults.DeviceComponent = {"deviceScale":-1,"deviceType":"iphone-6-spacegray-hand","contentScale":1,"orientation":0};
+window.Framer.Defaults.DeviceComponent = {"deviceScale":0.5,"deviceType":"iphone-6-spacegray-hand","contentScale":1,"orientation":0};
 
 window.FramerStudioInfo = {"deviceImagesUrl":"\/_server\/resources\/DeviceImages","documentTitle":"fooddiaryproto.framer"};
 
