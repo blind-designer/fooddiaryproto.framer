@@ -48,10 +48,6 @@
 	
 	_ = __webpack_require__(1)._;
 	
-	if (window.ontouchstart === void 0) {
-	  window.ontouchstart = null;
-	}
-	
 	Framer = {};
 	
 	Framer._ = _;
@@ -62,31 +58,31 @@
 	
 	Framer.Layer = (__webpack_require__(13)).Layer;
 	
-	Framer.BackgroundLayer = (__webpack_require__(35)).BackgroundLayer;
+	Framer.BackgroundLayer = (__webpack_require__(36)).BackgroundLayer;
 	
-	Framer.VideoLayer = (__webpack_require__(36)).VideoLayer;
+	Framer.VideoLayer = (__webpack_require__(37)).VideoLayer;
 	
 	Framer.Events = (__webpack_require__(15)).Events;
 	
-	Framer.Gestures = (__webpack_require__(16)).Gestures;
+	Framer.Gestures = (__webpack_require__(33)).Gestures;
 	
-	Framer.Animation = (__webpack_require__(18)).Animation;
+	Framer.Animation = (__webpack_require__(17)).Animation;
 	
-	Framer.AnimationGroup = (__webpack_require__(37)).AnimationGroup;
+	Framer.AnimationGroup = (__webpack_require__(38)).AnimationGroup;
 	
 	Framer.Screen = (__webpack_require__(5)).Screen;
 	
-	Framer.Canvas = (__webpack_require__(38)).Canvas;
+	Framer.Canvas = (__webpack_require__(39)).Canvas;
 	
-	Framer.print = (__webpack_require__(39)).print;
+	Framer.print = (__webpack_require__(40)).print;
 	
-	Framer.ScrollComponent = (__webpack_require__(42)).ScrollComponent;
+	Framer.ScrollComponent = (__webpack_require__(43)).ScrollComponent;
 	
-	Framer.PageComponent = (__webpack_require__(43)).PageComponent;
+	Framer.PageComponent = (__webpack_require__(44)).PageComponent;
 	
-	Framer.SliderComponent = (__webpack_require__(44)).SliderComponent;
+	Framer.SliderComponent = (__webpack_require__(45)).SliderComponent;
 	
-	Framer.DeviceComponent = (__webpack_require__(45)).DeviceComponent;
+	Framer.DeviceComponent = (__webpack_require__(46)).DeviceComponent;
 	
 	Framer.DeviceView = Framer.DeviceComponent;
 	
@@ -94,7 +90,7 @@
 	  _.extend(window, Framer);
 	}
 	
-	Framer.Context = (__webpack_require__(40)).Context;
+	Framer.Context = (__webpack_require__(41)).Context;
 	
 	Framer.Config = (__webpack_require__(14)).Config;
 	
@@ -102,25 +98,25 @@
 	
 	Framer.BaseClass = (__webpack_require__(6)).BaseClass;
 	
-	Framer.LayerStyle = (__webpack_require__(25)).LayerStyle;
+	Framer.LayerStyle = (__webpack_require__(24)).LayerStyle;
 	
-	Framer.AnimationLoop = (__webpack_require__(46)).AnimationLoop;
+	Framer.AnimationLoop = (__webpack_require__(47)).AnimationLoop;
 	
-	Framer.LinearAnimator = (__webpack_require__(19)).LinearAnimator;
+	Framer.LinearAnimator = (__webpack_require__(18)).LinearAnimator;
 	
-	Framer.BezierCurveAnimator = (__webpack_require__(21)).BezierCurveAnimator;
+	Framer.BezierCurveAnimator = (__webpack_require__(20)).BezierCurveAnimator;
 	
-	Framer.SpringDHOAnimator = (__webpack_require__(24)).SpringDHOAnimator;
+	Framer.SpringDHOAnimator = (__webpack_require__(23)).SpringDHOAnimator;
 	
-	Framer.SpringRK4Animator = (__webpack_require__(22)).SpringRK4Animator;
+	Framer.SpringRK4Animator = (__webpack_require__(21)).SpringRK4Animator;
 	
-	Framer.LayerDraggable = (__webpack_require__(27)).LayerDraggable;
+	Framer.LayerDraggable = (__webpack_require__(26)).LayerDraggable;
 	
-	Framer.Importer = (__webpack_require__(47)).Importer;
+	Framer.Importer = (__webpack_require__(48)).Importer;
 	
-	Framer.Extras = __webpack_require__(48);
+	Framer.Debug = (__webpack_require__(49)).Debug;
 	
-	Framer.GestureInputRecognizer = new (__webpack_require__(52)).GestureInputRecognizer;
+	Framer.Extras = __webpack_require__(50);
 	
 	Framer.Version = __webpack_require__(53);
 	
@@ -132,7 +128,7 @@
 	  window.Framer = Framer;
 	}
 	
-	Defaults = (__webpack_require__(17)).Defaults;
+	Defaults = (__webpack_require__(16)).Defaults;
 	
 	Defaults.setup();
 	
@@ -146,10 +142,6 @@
 	
 	if (Utils.isMobile()) {
 	  Framer.Extras.MobileScrollFix.enable();
-	}
-	
-	if (!Utils.isTouch()) {
-	  Framer.Extras.TouchEmulator.enable();
 	}
 
 
@@ -12637,13 +12629,6 @@
 	  }
 	};
 	
-	Utils.nearestIncrement = function(x, increment) {
-	  if (!increment) {
-	    return x;
-	  }
-	  return Math.round(x * (1 / increment)) / (1 / increment);
-	};
-	
 	if (window.requestAnimationFrame == null) {
 	  window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	}
@@ -12976,7 +12961,7 @@
 	};
 	
 	Utils.isTouch = function() {
-	  return window.ontouchstart === null && window.ontouchmove === null && window.ontouchend === null;
+	  return window.ontouchstart === null;
 	};
 	
 	Utils.isDesktop = function() {
@@ -13163,9 +13148,6 @@
 	  if (!eventName) {
 	    return;
 	  }
-	  if (eventName === "touchstart" || eventName === "touchmove" || eventName === "touchend") {
-	    return true;
-	  }
 	  return typeof element["on" + (eventName.toLowerCase())] !== "undefined";
 	};
 	
@@ -13258,29 +13240,6 @@
 	  return element.src = url;
 	};
 	
-	Utils.pointDivide = function(point, fraction) {
-	  return point = {
-	    x: point.x / fraction,
-	    y: point.y / fraction
-	  };
-	};
-	
-	Utils.pointAdd = function(pointA, pointB) {
-	  var point;
-	  return point = {
-	    x: pointA.x + pointB.x,
-	    y: pointA.y + pointB.y
-	  };
-	};
-	
-	Utils.pointSubtract = function(pointA, pointB) {
-	  var point;
-	  return point = {
-	    x: pointA.x - pointB.x,
-	    y: pointA.y - pointB.y
-	  };
-	};
-	
 	Utils.pointZero = function(args) {
 	  if (args == null) {
 	    args = {};
@@ -13317,19 +13276,12 @@
 	  };
 	};
 	
-	Utils.pointDelta = function(pointA, pointB) {
-	  var delta;
-	  return delta = {
-	    x: pointB.x - pointA.x,
-	    y: pointB.y - pointA.y
-	  };
-	};
-	
 	Utils.pointDistance = function(pointA, pointB) {
-	  var a, b;
-	  a = pointA.x - pointB.x;
-	  b = pointA.y - pointB.y;
-	  return Math.sqrt((a * a) + (b * b));
+	  var distance;
+	  return distance = {
+	    x: Math.abs(pointB.x - pointA.x),
+	    y: Math.abs(pointB.y - pointA.y)
+	  };
 	};
 	
 	Utils.pointInvert = function(point) {
@@ -13358,18 +13310,6 @@
 	    return false;
 	  }
 	  return true;
-	};
-	
-	Utils.pointCenter = function(pointA, pointB) {
-	  var point;
-	  return point = {
-	    x: (pointA.x + pointB.x) / 2,
-	    y: (pointA.y + pointB.y) / 2
-	  };
-	};
-	
-	Utils.pointAngle = function(pointA, pointB) {
-	  return Math.atan2(pointB.y - pointA.y, pointB.x - pointA.x) * 180 / Math.PI;
 	};
 	
 	Utils.sizeZero = function(args) {
@@ -13649,7 +13589,7 @@
 	  }
 	  distance = function(frame) {
 	    var result;
-	    result = Utils.pointDelta(point, Utils.framePointForOrigin(frame, originX, originY));
+	    result = Utils.pointDistance(point, Utils.framePointForOrigin(frame, originX, originY));
 	    result = Utils.pointAbs(result);
 	    result = Utils.pointTotal(result);
 	    return result;
@@ -13680,12 +13620,8 @@
 	  return inside;
 	};
 	
-	Utils.frameCenterPoint = function(frame) {
-	  var point;
-	  return point = {
-	    x: Utils.frameGetMidX(frame),
-	    y: Utils.frameGetMidY(frame)
-	  };
+	Utils.pointAngle = function(p1, p2) {
+	  return Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
 	};
 	
 	Utils.convertPointToContext = function(point, layer, rootContext, includeLayer) {
@@ -13955,19 +13891,21 @@
 	
 	  ScreenClass.define("size", {
 	    get: function() {
-	      return Framer.CurrentContext.size;
+	      return {
+	        width: this.width,
+	        height: this.height
+	      };
 	    }
 	  });
 	
 	  ScreenClass.define("frame", {
 	    get: function() {
-	      return Framer.CurrentContext.frame;
-	    }
-	  });
-	
-	  ScreenClass.define("canvasFrame", {
-	    get: function() {
-	      return Framer.CurrentContext.canvasFrame;
+	      return {
+	        x: 0,
+	        y: 0,
+	        width: this.width,
+	        height: this.height
+	      };
 	    }
 	  });
 	
@@ -14024,66 +13962,6 @@
 	      return Utils.round(value, 1);
 	    };
 	    return "<Screen " + (round(this.width)) + "x" + (round(this.height)) + ">";
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipe = function(cb) {
-	    return this.on(Events.EdgeSwipe, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeStart = function(cb) {
-	    return this.on(Events.EdgeSwipeStart, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeEnd = function(cb) {
-	    return this.on(Events.EdgeSwipeEnd, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeTop = function(cb) {
-	    return this.on(Events.EdgeSwipeTop, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeTopStart = function(cb) {
-	    return this.on(Events.EdgeSwipeTopStart, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeTopEnd = function(cb) {
-	    return this.on(Events.EdgeSwipeTopEnd, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeRight = function(cb) {
-	    return this.on(Events.EdgeSwipeRight, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeRightStart = function(cb) {
-	    return this.on(Events.EdgeSwipeRightStart, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeRightEnd = function(cb) {
-	    return this.on(Events.EdgeSwipeRightEnd, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeBottom = function(cb) {
-	    return this.on(Events.EdgeSwipeBottom, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeBottomStart = function(cb) {
-	    return this.on(Events.EdgeSwipeBottomStart, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeBottomEnd = function(cb) {
-	    return this.on(Events.EdgeSwipeBottomEnd, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeLeft = function(cb) {
-	    return this.on(Events.EdgeSwipeLeft, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeLeftStart = function(cb) {
-	    return this.on(Events.EdgeSwipeLeftStart, cb);
-	  };
-	
-	  ScreenClass.prototype.onEdgeSwipeLeftEnd = function(cb) {
-	    return this.on(Events.EdgeSwipeLeftEnd, cb);
 	  };
 	
 	  return ScreenClass;
@@ -16002,7 +15880,7 @@
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Animation, BaseClass, Color, Config, Defaults, EventEmitter, Events, Gestures, LayerDraggable, LayerPinchable, LayerStates, LayerStyle, Matrix, NoCacheDateKey, Utils, _, layerProperty, layerValueTypeError,
+	var Animation, BaseClass, Color, Config, Defaults, EventEmitter, Events, GestureManager, LayerDraggable, LayerStates, LayerStyle, Matrix, NoCacheDateKey, Utils, _, layerProperty, layerValueTypeError,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
@@ -16017,7 +15895,7 @@
 	
 	Events = __webpack_require__(15).Events;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	BaseClass = __webpack_require__(6).BaseClass;
 	
@@ -16025,19 +15903,17 @@
 	
 	Color = __webpack_require__(10).Color;
 	
+	Animation = __webpack_require__(17).Animation;
+	
+	LayerStyle = __webpack_require__(24).LayerStyle;
+	
+	LayerStates = __webpack_require__(25).LayerStates;
+	
+	LayerDraggable = __webpack_require__(26).LayerDraggable;
+	
 	Matrix = __webpack_require__(9).Matrix;
 	
-	Animation = __webpack_require__(18).Animation;
-	
-	LayerStyle = __webpack_require__(25).LayerStyle;
-	
-	LayerStates = __webpack_require__(26).LayerStates;
-	
-	LayerDraggable = __webpack_require__(27).LayerDraggable;
-	
-	LayerPinchable = __webpack_require__(34).LayerPinchable;
-	
-	Gestures = __webpack_require__(16).Gestures;
+	GestureManager = __webpack_require__(34).GestureManager;
 	
 	NoCacheDateKey = Date.now();
 	
@@ -16108,6 +15984,7 @@
 	    this._prefer2d = false;
 	    this._alwaysUseImageCache = false;
 	    this._cancelClickEventInDragSession = true;
+	    this._cancelClickEventInDragSessionTolerance = 4;
 	    this._createElement();
 	    if (options.hasOwnProperty("frame")) {
 	      options = _.extend(options, options.frame);
@@ -16153,7 +16030,7 @@
 	    exportable: false
 	  }));
 	
-	  Layer.define("clip", layerProperty(Layer, "clip", "overflow", false, _.isBoolean));
+	  Layer.define("clip", layerProperty(Layer, "clip", "overflow", true, _.isBoolean));
 	
 	  Layer.define("scrollHorizontal", layerProperty(Layer, "scrollHorizontal", "overflowX", false, _.isBoolean, null, {}, function(layer, value) {
 	    if (value === true) {
@@ -16343,12 +16220,6 @@
 	      if (!point) {
 	        return;
 	      }
-	      if (_.isNumber(point)) {
-	        point = {
-	          x: point,
-	          y: point
-	        };
-	      }
 	      ref = ["x", "y"];
 	      results = [];
 	      for (i = 0, len = ref.length; i < len; i++) {
@@ -16371,12 +16242,6 @@
 	      var i, k, len, ref, results;
 	      if (!size) {
 	        return;
-	      }
-	      if (_.isNumber(size)) {
-	        size = {
-	          width: size,
-	          height: size
-	        };
 	      }
 	      ref = ["width", "height"];
 	      results = [];
@@ -16724,6 +16589,7 @@
 	      ref.removeChild(this._element);
 	    }
 	    this.removeAllListeners();
+	    this.gestures.removeAllListeners();
 	    this._context.removeLayer(this);
 	    return this._context.emit("layer:destroy", this);
 	  };
@@ -17194,19 +17060,6 @@
 	    }
 	  });
 	
-	  Layer.define("pinchable", {
-	    importable: false,
-	    exportable: false,
-	    get: function() {
-	      return this._pinchable != null ? this._pinchable : this._pinchable = new LayerPinchable(this);
-	    },
-	    set: function(value) {
-	      if (_.isBoolean(value)) {
-	        return this.pinchable.enabled = value;
-	      }
-	    }
-	  });
-	
 	  Layer.define("scrollFrame", {
 	    importable: false,
 	    get: function() {
@@ -17255,12 +17108,19 @@
 	  });
 	
 	  Layer.prototype.emit = function() {
-	    var args, eventName, ref;
+	    var args, eventName, offset, parentDraggableLayer;
 	    eventName = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
 	    if (this._cancelClickEventInDragSession) {
-	      if (eventName === Events.Click || eventName === Events.Tap || eventName === Events.TapStart || eventName === Events.TapEnd || eventName === Events.LongPress || eventName === Events.LongPressStart || eventName === Events.LongPressEnd) {
-	        if ((ref = this._parentDraggableLayer()) != null ? ref.draggable.isMoving : void 0) {
-	          return;
+	      if (eventName === Events.Click) {
+	        parentDraggableLayer = this._parentDraggableLayer();
+	        if (parentDraggableLayer) {
+	          offset = parentDraggableLayer.draggable.offset;
+	          if (Math.abs(0 - offset.x) > this._cancelClickEventInDragSessionTolerance) {
+	            return;
+	          }
+	          if (Math.abs(0 - offset.y) > this._cancelClickEventInDragSessionTolerance) {
+	            return;
+	          }
 	        }
 	      }
 	    }
@@ -17273,36 +17133,27 @@
 	  };
 	
 	  Layer.prototype.addListener = function(eventName, listener) {
-	    if (!eventName) {
-	      throw Error("Layer.on needs a valid event name");
-	    }
-	    if (!listener) {
-	      throw Error("Layer.on needs an event listener");
-	    }
 	    Layer.__super__.addListener.call(this, eventName, listener);
 	    return this._addListener(eventName, listener);
 	  };
 	
 	  Layer.prototype.removeListener = function(eventName, listener) {
-	    if (!eventName) {
-	      throw Error("Layer.off needs a valid event name");
-	    }
 	    Layer.__super__.removeListener.call(this, eventName, listener);
 	    return this._removeListener(eventName, listener);
 	  };
 	
 	  Layer.prototype._addListener = function(eventName, listener) {
-	    if (!_.startsWith(eventName, "change:")) {
-	      this.ignoreEvents = false;
-	    }
-	    if (Utils.domValidEvent(this._element, eventName) || indexOf.call(_.values(Gestures), eventName) >= 0) {
+	    if (Utils.domValidEvent(this._element, eventName)) {
 	      if (!this._domEventManager.listeners(eventName).length) {
-	        return this._domEventManager.addEventListener(eventName, (function(_this) {
+	        this._domEventManager.addEventListener(eventName, (function(_this) {
 	          return function(event) {
 	            return _this.emit(eventName, event);
 	          };
 	        })(this));
 	      }
+	    }
+	    if (!_.startsWith(eventName, "change:")) {
+	      return this.ignoreEvents = false;
 	    }
 	  };
 	
@@ -17314,7 +17165,7 @@
 	
 	  Layer.prototype._parentDraggableLayer = function() {
 	    var i, layer, len, ref, ref1;
-	    ref = this.ancestors();
+	    ref = this.ancestors().concat(this);
 	    for (i = 0, len = ref.length; i < len; i++) {
 	      layer = ref[i];
 	      if ((ref1 = layer._draggable) != null ? ref1.enabled : void 0) {
@@ -17327,6 +17178,15 @@
 	  Layer.prototype.on = Layer.prototype.addListener;
 	
 	  Layer.prototype.off = Layer.prototype.removeListener;
+	
+	  Layer.define("gestures", {
+	    get: function() {
+	      if (this._gestures == null) {
+	        this._gestures = new GestureManager(this);
+	      }
+	      return this._gestures;
+	    }
+	  });
 	
 	  Layer.prototype.onClick = function(cb) {
 	    return this.on(Events.Click, cb);
@@ -17436,184 +17296,16 @@
 	    return this.on(Events.DragEnd, cb);
 	  };
 	
-	  Layer.prototype.onDragAnimationStart = function(cb) {
-	    return this.on(Events.DragAnimationStart, cb);
+	  Layer.prototype.onDragAnimationDidStart = function(cb) {
+	    return this.on(Events.DragAnimationDidStart, cb);
 	  };
 	
-	  Layer.prototype.onDragAnimationEnd = function(cb) {
-	    return this.on(Events.DragAnimationEnd, cb);
+	  Layer.prototype.onDragAnimationDidEnd = function(cb) {
+	    return this.on(Events.DragAnimationDidEnd, cb);
 	  };
 	
-	  Layer.prototype.onDirectionLockStart = function(cb) {
-	    return this.on(Events.DirectionLockStart, cb);
-	  };
-	
-	  Layer.prototype.onTap = function(cb) {
-	    return this.on(Events.Tap, cb);
-	  };
-	
-	  Layer.prototype.onTapStart = function(cb) {
-	    return this.on(Events.TapStart, cb);
-	  };
-	
-	  Layer.prototype.onTapEnd = function(cb) {
-	    return this.on(Events.TapEnd, cb);
-	  };
-	
-	  Layer.prototype.onDoubleTap = function(cb) {
-	    return this.on(Events.DoubleTap, cb);
-	  };
-	
-	  Layer.prototype.onForceTap = function(cb) {
-	    return this.on(Events.ForceTap, cb);
-	  };
-	
-	  Layer.prototype.onForceTapChange = function(cb) {
-	    return this.on(Events.ForceTapChange, cb);
-	  };
-	
-	  Layer.prototype.onForceTapStart = function(cb) {
-	    return this.on(Events.ForceTapStart, cb);
-	  };
-	
-	  Layer.prototype.onForceTapEnd = function(cb) {
-	    return this.on(Events.ForceTapEnd, cb);
-	  };
-	
-	  Layer.prototype.onLongPress = function(cb) {
-	    return this.on(Events.LongPress, cb);
-	  };
-	
-	  Layer.prototype.onLongPressStart = function(cb) {
-	    return this.on(Events.LongPressStart, cb);
-	  };
-	
-	  Layer.prototype.onLongPressEnd = function(cb) {
-	    return this.on(Events.LongPressEnd, cb);
-	  };
-	
-	  Layer.prototype.onSwipe = function(cb) {
-	    return this.on(Events.Swipe, cb);
-	  };
-	
-	  Layer.prototype.onSwipeStart = function(cb) {
-	    return this.on(Events.SwipeStart, cb);
-	  };
-	
-	  Layer.prototype.onSwipeEnd = function(cb) {
-	    return this.on(Events.SwipeEnd, cb);
-	  };
-	
-	  Layer.prototype.onSwipeUp = function(cb) {
-	    return this.on(Events.SwipeUp, cb);
-	  };
-	
-	  Layer.prototype.onSwipeUpStart = function(cb) {
-	    return this.on(Events.SwipeUpStart, cb);
-	  };
-	
-	  Layer.prototype.onSwipeUpEnd = function(cb) {
-	    return this.on(Events.SwipeUpEnd, cb);
-	  };
-	
-	  Layer.prototype.onSwipeDown = function(cb) {
-	    return this.on(Events.SwipeDown, cb);
-	  };
-	
-	  Layer.prototype.onSwipeDownStart = function(cb) {
-	    return this.on(Events.SwipeDownStart, cb);
-	  };
-	
-	  Layer.prototype.onSwipeDownEnd = function(cb) {
-	    return this.on(Events.SwipeDownEnd, cb);
-	  };
-	
-	  Layer.prototype.onSwipeLeft = function(cb) {
-	    return this.on(Events.SwipeLeft, cb);
-	  };
-	
-	  Layer.prototype.onSwipeLeftStart = function(cb) {
-	    return this.on(Events.SwipeLeftStart, cb);
-	  };
-	
-	  Layer.prototype.onSwipeLeftEnd = function(cb) {
-	    return this.on(Events.SwipeLeftEnd, cb);
-	  };
-	
-	  Layer.prototype.onSwipeRight = function(cb) {
-	    return this.on(Events.SwipeRight, cb);
-	  };
-	
-	  Layer.prototype.onSwipeRightStart = function(cb) {
-	    return this.on(Events.SwipeRightStart, cb);
-	  };
-	
-	  Layer.prototype.onSwipeRightEnd = function(cb) {
-	    return this.on(Events.SwipeRightEnd, cb);
-	  };
-	
-	  Layer.prototype.onPan = function(cb) {
-	    return this.on(Events.Pan, cb);
-	  };
-	
-	  Layer.prototype.onPanStart = function(cb) {
-	    return this.on(Events.PanStart, cb);
-	  };
-	
-	  Layer.prototype.onPanEnd = function(cb) {
-	    return this.on(Events.PanEnd, cb);
-	  };
-	
-	  Layer.prototype.onPanLeft = function(cb) {
-	    return this.on(Events.PanLeft, cb);
-	  };
-	
-	  Layer.prototype.onPanRight = function(cb) {
-	    return this.on(Events.PanRight, cb);
-	  };
-	
-	  Layer.prototype.onPanUp = function(cb) {
-	    return this.on(Events.PanUp, cb);
-	  };
-	
-	  Layer.prototype.onPanDown = function(cb) {
-	    return this.on(Events.PanDown, cb);
-	  };
-	
-	  Layer.prototype.onPinch = function(cb) {
-	    return this.on(Events.Pinch, cb);
-	  };
-	
-	  Layer.prototype.onPinchStart = function(cb) {
-	    return this.on(Events.PinchStart, cb);
-	  };
-	
-	  Layer.prototype.onPinchEnd = function(cb) {
-	    return this.on(Events.PinchEnd, cb);
-	  };
-	
-	  Layer.prototype.onScale = function(cb) {
-	    return this.on(Events.Scale, cb);
-	  };
-	
-	  Layer.prototype.onScaleStart = function(cb) {
-	    return this.on(Events.ScaleStart, cb);
-	  };
-	
-	  Layer.prototype.onScaleEnd = function(cb) {
-	    return this.on(Events.ScaleEnd, cb);
-	  };
-	
-	  Layer.prototype.onRotate = function(cb) {
-	    return this.on(Events.Rotate, cb);
-	  };
-	
-	  Layer.prototype.onRotateStart = function(cb) {
-	    return this.on(Events.RotateStart, cb);
-	  };
-	
-	  Layer.prototype.onRotateEnd = function(cb) {
-	    return this.on(Events.RotateEnd, cb);
+	  Layer.prototype.onDirectionLockDidStart = function(cb) {
+	    return this.on(Events.DirectionLockDidStart, cb);
 	  };
 	
 	  Layer.prototype.toInspect = function() {
@@ -17654,14 +17346,11 @@
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Events, Gestures, Utils, _,
-	  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-	
-	Utils = __webpack_require__(4);
+	var Events, Utils, _;
 	
 	_ = __webpack_require__(1)._;
 	
-	Gestures = __webpack_require__(16).Gestures;
+	Utils = __webpack_require__(4);
 	
 	Events = {};
 	
@@ -17713,8 +17402,6 @@
 	
 	Events.ImageLoadError = "error";
 	
-	_.extend(Events, Gestures);
-	
 	Events.touchEvent = function(event) {
 	  var ref, ref1, touchEvent;
 	  touchEvent = (ref = event.touches) != null ? ref[0] : void 0;
@@ -17731,140 +17418,11 @@
 	  return Framer.CurrentContext.domEventManager.wrap(element);
 	};
 	
-	Events.isGesture = function(eventName) {
-	  return indexOf.call(Gestures, eventName) >= 0;
-	};
-	
 	exports.Events = Events;
 
 
 /***/ },
 /* 16 */
-/***/ function(module, exports) {
-
-	var Gestures;
-	
-	Gestures = {};
-	
-	Gestures.Tap = "tap";
-	
-	Gestures.TapStart = "tapstart";
-	
-	Gestures.TapEnd = "tapend";
-	
-	Gestures.DoubleTap = "doubletap";
-	
-	Gestures.ForceTap = "forcetap";
-	
-	Gestures.ForceTapChange = "forcetapchange";
-	
-	Gestures.ForceTapStart = "forcetapstart";
-	
-	Gestures.ForceTapEnd = "forcetapend";
-	
-	Gestures.LongPress = "longpress";
-	
-	Gestures.LongPressStart = "longpressstart";
-	
-	Gestures.LongPressEnd = "longpressend";
-	
-	Gestures.Swipe = "swipe";
-	
-	Gestures.SwipeStart = "swipestart";
-	
-	Gestures.SwipeEnd = "swipeend";
-	
-	Gestures.SwipeUp = "swipeup";
-	
-	Gestures.SwipeUpStart = "swipeupstart";
-	
-	Gestures.SwipeUpEnd = "swipeupend";
-	
-	Gestures.SwipeDown = "swipedown";
-	
-	Gestures.SwipeDownStart = "swipedownstart";
-	
-	Gestures.SwipeDownEnd = "swipedownend";
-	
-	Gestures.SwipeLeft = "swipeleft";
-	
-	Gestures.SwipeLeftStart = "swipeleftstart";
-	
-	Gestures.SwipeLeftEnd = "swipeleftend";
-	
-	Gestures.SwipeRight = "swiperight";
-	
-	Gestures.SwipeRightStart = "swiperightstart";
-	
-	Gestures.SwipeRightEnd = "swiperightend";
-	
-	Gestures.EdgeSwipe = "edgeswipe";
-	
-	Gestures.EdgeSwipeStart = "edgeswipestart";
-	
-	Gestures.EdgeSwipeEnd = "edgeswipeend";
-	
-	Gestures.EdgeSwipeTop = "edgeswipetop";
-	
-	Gestures.EdgeSwipeTopStart = "edgeswipetopstart";
-	
-	Gestures.EdgeSwipeTopEnd = "edgeswipetopend";
-	
-	Gestures.EdgeSwipeRight = "edgeswiperight";
-	
-	Gestures.EdgeSwipeRightStart = "edgeswiperightstart";
-	
-	Gestures.EdgeSwipeRightEnd = "edgeswiperightend";
-	
-	Gestures.EdgeSwipeBottom = "edgeswipebottom";
-	
-	Gestures.EdgeSwipeBottomStart = "edgeswipebottomstart";
-	
-	Gestures.EdgeSwipeBottomEnd = "edgeswipebottomend";
-	
-	Gestures.EdgeSwipeLeft = "edgeswipeleft";
-	
-	Gestures.EdgeSwipeLeftStart = "edgeswipeleftstart";
-	
-	Gestures.EdgeSwipeLeftEnd = "edgeswipeleftend";
-	
-	Gestures.Pan = "pan";
-	
-	Gestures.PanStart = "panstart";
-	
-	Gestures.PanEnd = "panend";
-	
-	Gestures.PanLeft = "panleft";
-	
-	Gestures.PanRight = "panright";
-	
-	Gestures.PanUp = "panup";
-	
-	Gestures.PanDown = "pandown";
-	
-	Gestures.Pinch = "pinch";
-	
-	Gestures.PinchStart = "pinchstart";
-	
-	Gestures.PinchEnd = "pinchend";
-	
-	Gestures.Scale = "scale";
-	
-	Gestures.ScaleStart = "scalestart";
-	
-	Gestures.ScaleEnd = "scaleend";
-	
-	Gestures.Rotate = "rotate";
-	
-	Gestures.RotateStart = "rotatestart";
-	
-	Gestures.RotateEnd = "rotateend";
-	
-	exports.Gestures = Gestures;
-
-
-/***/ },
-/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Originals, Utils, _;
@@ -17993,7 +17551,7 @@
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var AnimatorClassBezierPresets, AnimatorClasses, BezierCurveAnimator, Config, Defaults, EventEmitter, LinearAnimator, SpringDHOAnimator, SpringRK4Animator, Utils, _, evaluateRelativeProperty, isRelativeProperty, numberRE, relativePropertyRE,
@@ -18009,17 +17567,17 @@
 	
 	Config = __webpack_require__(14).Config;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	EventEmitter = __webpack_require__(7).EventEmitter;
 	
-	LinearAnimator = __webpack_require__(19).LinearAnimator;
+	LinearAnimator = __webpack_require__(18).LinearAnimator;
 	
-	BezierCurveAnimator = __webpack_require__(21).BezierCurveAnimator;
+	BezierCurveAnimator = __webpack_require__(20).BezierCurveAnimator;
 	
-	SpringRK4Animator = __webpack_require__(22).SpringRK4Animator;
+	SpringRK4Animator = __webpack_require__(21).SpringRK4Animator;
 	
-	SpringDHOAnimator = __webpack_require__(24).SpringDHOAnimator;
+	SpringDHOAnimator = __webpack_require__(23).SpringDHOAnimator;
 	
 	AnimatorClasses = {
 	  "linear": LinearAnimator,
@@ -18352,7 +17910,7 @@
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Animator, Utils,
@@ -18361,7 +17919,7 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Animator = __webpack_require__(20).Animator;
+	Animator = __webpack_require__(19).Animator;
 	
 	exports.LinearAnimator = (function(superClass) {
 	  extend(LinearAnimator, superClass);
@@ -18396,7 +17954,7 @@
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Config, Utils;
@@ -18432,7 +17990,7 @@
 
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Animator, BezierCurveDefaults, UnitBezier, Utils, _,
@@ -18443,7 +18001,7 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Animator = __webpack_require__(20).Animator;
+	Animator = __webpack_require__(19).Animator;
 	
 	BezierCurveDefaults = {
 	  "linear": [0, 0, 1, 1],
@@ -18575,7 +18133,7 @@
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Animator, Integrator, Utils,
@@ -18585,9 +18143,9 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Animator = __webpack_require__(20).Animator;
+	Animator = __webpack_require__(19).Animator;
 	
-	Integrator = __webpack_require__(23).Integrator;
+	Integrator = __webpack_require__(22).Integrator;
 	
 	exports.SpringRK4Animator = (function(superClass) {
 	  extend(SpringRK4Animator, superClass);
@@ -18648,7 +18206,7 @@
 
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Config, Utils;
@@ -18707,7 +18265,7 @@
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Animator, Utils,
@@ -18717,7 +18275,7 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Animator = __webpack_require__(20).Animator;
+	Animator = __webpack_require__(19).Animator;
 	
 	exports.SpringDHOAnimator = (function(superClass) {
 	  extend(SpringDHOAnimator, superClass);
@@ -18767,7 +18325,7 @@
 
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports) {
 
 	var _Force2DProperties, _WebkitProperties, filterFormat;
@@ -18926,7 +18484,7 @@
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Defaults, Events, LayerStatesIgnoredKeys, _,
@@ -18941,7 +18499,7 @@
 	
 	BaseClass = __webpack_require__(6).BaseClass;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	LayerStatesIgnoredKeys = ["ignoreEvents"];
 	
@@ -19144,7 +18702,7 @@
 
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Defaults, EventBuffer, Events, Gestures, Simulation, Utils, _,
@@ -19160,13 +18718,13 @@
 	
 	Events = __webpack_require__(15).Events;
 	
-	Simulation = __webpack_require__(28).Simulation;
+	Simulation = __webpack_require__(27).Simulation;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
-	EventBuffer = __webpack_require__(33).EventBuffer;
+	EventBuffer = __webpack_require__(32).EventBuffer;
 	
-	Gestures = __webpack_require__(16).Gestures;
+	Gestures = __webpack_require__(33).Gestures;
 	
 	Events.Move = "move";
 	
@@ -19182,11 +18740,15 @@
 	
 	Events.DragEnd = "dragend";
 	
-	Events.DragAnimationStart = "draganimationstart";
+	Events.DragAnimationDidStart = "draganimationdidstart";
 	
-	Events.DragAnimationEnd = "draganimationend";
+	Events.DragAnimationDidEnd = "draganimationdidend";
 	
-	Events.DirectionLockStart = "directionlockstart";
+	Events.DirectionLockDidStart = "directionlockdidstart";
+	
+	Events.Pinch = Gestures.Pinch;
+	
+	Events.Rotate = Gestures.Rotate;
 	
 	"         \n┌──────┐                   │         \n│      │                             \n│      │  ───────────────▶ │ ◀────▶  \n│      │                             \n└──────┘                   │         \n                                     \n════════  ═════════════════ ═══════  \n                                     \n  Drag         Momentum      Bounce  \n                                         ";
 	
@@ -19200,6 +18762,10 @@
 	  LayerDraggable.define("horizontal", LayerDraggable.simpleProperty("horizontal", true));
 	
 	  LayerDraggable.define("vertical", LayerDraggable.simpleProperty("vertical", true));
+	
+	  LayerDraggable.define("pinchable", LayerDraggable.simpleProperty("pinchable", false));
+	
+	  LayerDraggable.define("rotatable", LayerDraggable.simpleProperty("rotatable", false));
 	
 	  LayerDraggable.define("momentumVelocityMultiplier", LayerDraggable.simpleProperty("momentumVelocityMultiplier", 800));
 	
@@ -19302,10 +18868,11 @@
 	    this._stopSimulation = bind(this._stopSimulation, this);
 	    this._onSimulationStop = bind(this._onSimulationStop, this);
 	    this._onSimulationStep = bind(this._onSimulationStep, this);
+	    this._rotate = bind(this._rotate, this);
+	    this._pinch = bind(this._pinch, this);
 	    this._touchEnd = bind(this._touchEnd, this);
 	    this._touchMove = bind(this._touchMove, this);
 	    this._touchStart = bind(this._touchStart, this);
-	    this._updateLayerPosition = bind(this._updateLayerPosition, this);
 	    this.touchStart = bind(this.touchStart, this);
 	    options = Defaults.getDefaults("LayerDraggable", {});
 	    LayerDraggable.__super__.constructor.call(this, options);
@@ -19313,22 +18880,15 @@
 	    this.enabled = true;
 	    this._eventBuffer = new EventBuffer;
 	    this._constraints = null;
-	    this._ignoreUpdateLayerPosition = true;
 	    this.attach();
 	  }
 	
 	  LayerDraggable.prototype.attach = function() {
-	    this.layer.on(Gestures.TapStart, this.touchStart);
-	    this.layer.on(Gestures.Pan, this._touchMove);
-	    this.layer.on(Gestures.TapEnd, this._touchEnd);
-	    this.layer.on("change:x", this._updateLayerPosition);
-	    return this.layer.on("change:y", this._updateLayerPosition);
+	    return this.layer.on(Events.TouchStart, this._touchStart);
 	  };
 	
 	  LayerDraggable.prototype.remove = function() {
-	    this.layer.off(Gestures.PanStart, this.touchStart);
-	    this.layer.off(Gestures.Pan, this._touchMove);
-	    return this.layer.off(Gestures.PanEnd, this._touchEnd);
+	    return this.layer.off(Events.TouchStart, this._touchStart);
 	  };
 	
 	  LayerDraggable.prototype.updatePosition = function(point) {
@@ -19339,13 +18899,6 @@
 	    return this._touchStart(event);
 	  };
 	
-	  LayerDraggable.prototype._updateLayerPosition = function() {
-	    if (this._ignoreUpdateLayerPosition === true) {
-	      return;
-	    }
-	    return this._point = this.layer.point;
-	  };
-	
 	  LayerDraggable.prototype._touchStart = function(event) {
 	    var touchEvent;
 	    this._isMoving = this.isAnimating;
@@ -19353,7 +18906,7 @@
 	    this._stopSimulation();
 	    this._resetdirectionLock();
 	    event.preventDefault();
-	    if (this.propagateEvents === false) {
+	    if (!this.propagateEvents) {
 	      event.stopPropagation();
 	    }
 	    touchEvent = Events.touchEvent(event);
@@ -19375,19 +18928,27 @@
 	      x: touchEvent.clientX - this._correctedLayerStartPoint.x,
 	      y: touchEvent.clientY - this._correctedLayerStartPoint.y
 	    };
-	    this._point = this._correctedLayerStartPoint;
-	    this._ignoreUpdateLayerPosition = false;
+	    this.layer._context.domEventManager.wrap(document).addEventListener(Events.TouchMove, this._touchMove);
+	    this.layer._context.domEventManager.wrap(document).addEventListener(Events.TouchEnd, this._touchEnd);
+	    if (this.pinchable) {
+	      this._scaleStart = null;
+	      this.layer.gestures.on(Gestures.Pinch, this._pinch);
+	    }
+	    if (this.rotatable) {
+	      this._rotationStart = null;
+	      this._rotationOffset = null;
+	      this.layer.gestures.on(Gestures.Rotate, this._rotate);
+	    }
 	    return this.emit(Events.DragStart, event);
 	  };
 	
 	  LayerDraggable.prototype._touchMove = function(event) {
-	    var frame, point, scaleX, scaleY, touchEvent;
+	    var offset, point, touchEvent;
 	    if (!this.enabled) {
 	      return;
 	    }
-	    this._lastEvent = event;
 	    event.preventDefault();
-	    if (this.propagateEvents === false) {
+	    if (!this.propagateEvents) {
 	      event.stopPropagation();
 	    }
 	    touchEvent = Events.touchEvent(event);
@@ -19396,31 +18957,19 @@
 	      y: touchEvent.clientY,
 	      t: Date.now()
 	    });
-	    if (this.overdrag === false) {
-	      frame = Utils.convertFrameToContext(this.constraints, this.layer, true, false);
-	      if (event.point.x < Utils.frameGetMinX(frame)) {
-	        return;
-	      }
-	      if (event.point.x > Utils.frameGetMaxX(frame)) {
-	        return;
-	      }
-	      if (event.point.y < Utils.frameGetMinY(frame)) {
-	        return;
-	      }
-	      if (event.point.y > Utils.frameGetMaxY(frame)) {
-	        return;
-	      }
-	    }
-	    point = _.clone(this._point);
-	    scaleX = 1 / this.layer.canvasScaleX() * this.layer.scale * this.layer.scaleX;
-	    scaleY = 1 / this.layer.canvasScaleY() * this.layer.scale * this.layer.scaleY;
+	    offset = {
+	      x: touchEvent.clientX - this._correctedLayerStartPoint.x - this._layerCursorOffset.x,
+	      y: touchEvent.clientY - this._correctedLayerStartPoint.y - this._layerCursorOffset.y
+	    };
+	    offset.x = offset.x * this.speedX * (1 / this.layer.canvasScaleX()) * this.layer.scaleX * this.layer.scale;
+	    offset.y = offset.y * this.speedY * (1 / this.layer.canvasScaleY()) * this.layer.scaleY * this.layer.scale;
+	    point = this.layer.point;
 	    if (this.horizontal) {
-	      point.x = this._point.x + (event.delta.x * scaleX);
+	      point.x = this._correctedLayerStartPoint.x + offset.x;
 	    }
 	    if (this.vertical) {
-	      point.y = this._point.y + (event.delta.y * scaleY);
+	      point.y = this._correctedLayerStartPoint.y + offset.y;
 	    }
-	    this._point = _.clone(point);
 	    if (this._constraints) {
 	      point = this._constrainPosition(point, this._constraints, this.overdragScale);
 	    }
@@ -19437,6 +18986,10 @@
 	        }
 	      }
 	    }
+	    if (this.pixelAlign) {
+	      point.x = parseInt(point.x);
+	      point.y = parseInt(point.y);
+	    }
 	    if (point.x !== this._layerStartPoint.x || point.y !== this._layerStartPoint.y) {
 	      this._isDragging = true;
 	      this._isMoving = true;
@@ -19444,17 +18997,7 @@
 	    if (this.isDragging) {
 	      this.emit(Events.DragWillMove, event);
 	    }
-	    if (this.pixelAlign) {
-	      if (this.horizontal) {
-	        point.x = parseInt(point.x);
-	      }
-	      if (this.vertical) {
-	        point.y = parseInt(point.y);
-	      }
-	    }
-	    this._ignoreUpdateLayerPosition = true;
 	    this.layer.point = this.updatePosition(point);
-	    this._ignoreUpdateLayerPosition = false;
 	    if (this.isDragging) {
 	      this.emit(Events.Move, this.layer.point);
 	      return this.emit(Events.DragDidMove, event);
@@ -19462,13 +19005,39 @@
 	  };
 	
 	  LayerDraggable.prototype._touchEnd = function(event) {
-	    if (this.propagateEvents === false) {
+	    if (!this.propagateEvents) {
 	      event.stopPropagation();
 	    }
+	    this.layer._context.domEventManager.wrap(document).removeEventListener(Events.TouchMove, this._touchMove);
+	    this.layer._context.domEventManager.wrap(document).removeEventListener(Events.TouchEnd, this._touchEnd);
 	    this._startSimulation();
 	    this.emit(Events.DragEnd, event);
-	    this._isDragging = false;
-	    return this._ignoreUpdateLayerPosition = true;
+	    return this._isDragging = false;
+	  };
+	
+	  LayerDraggable.prototype._pinch = function(event) {
+	    if (!this.pinchable) {
+	      return;
+	    }
+	    if (this._scaleStart == null) {
+	      this._scaleStart = this.layer.scale;
+	    }
+	    this.layer.scale = event.scale * this._scaleStart;
+	    return this.emit(Events.Pinch, event);
+	  };
+	
+	  LayerDraggable.prototype._rotate = function(event) {
+	    if (!this.rotatable) {
+	      return;
+	    }
+	    if (this._rotationStart == null) {
+	      this._rotationStart = this.layer.rotation;
+	    }
+	    if (this._rotationOffset == null) {
+	      this._rotationOffset = event.rotation;
+	    }
+	    this.layer.rotation = event.rotation - this._rotationOffset + this._rotationStart;
+	    return this.emit(Events.Rotate, event);
 	  };
 	
 	  LayerDraggable.define("constraintsOffset", {
@@ -19629,7 +19198,7 @@
 	    this._directionLockEnabledX = Math.abs(correctedDelta.y) > this.directionLockThreshold.y;
 	    this._directionLockEnabledY = Math.abs(correctedDelta.x) > this.directionLockThreshold.x;
 	    if (this._directionLockEnabledX || this._directionLockEnabledY) {
-	      return this.emit(Events.DirectionLockStart, {
+	      return this.emit(Events.DirectionLockDidStart, {
 	        x: this._directionLockEnabledX,
 	        y: this._directionLockEnabledY
 	      });
@@ -19741,12 +19310,6 @@
 	  };
 	
 	  LayerDraggable.prototype._onSimulationStop = function(axis, state) {
-	    if (axis === "x" && this.horizontal === false) {
-	      return;
-	    }
-	    if (axis === "y" && this.vertical === false) {
-	      return;
-	    }
 	    if (!this._simulation) {
 	      return;
 	    }
@@ -19795,7 +19358,7 @@
 	    if (startSimulationY) {
 	      this._simulation.y.start();
 	    }
-	    return this.emit(Events.DragAnimationStart);
+	    return this.emit(Events.DragAnimationDidStart);
 	  };
 	
 	  LayerDraggable.prototype._stopSimulation = function() {
@@ -19812,7 +19375,7 @@
 	    }
 	    this._simulation = null;
 	    this.emit(Events.Move, this.layer.point);
-	    return this.emit(Events.DragAnimationEnd);
+	    return this.emit(Events.DragAnimationDidEnd);
 	  };
 	
 	  LayerDraggable.prototype.animateStop = function() {
@@ -19847,16 +19410,24 @@
 	    return this.on(Events.DragEnd, cb);
 	  };
 	
-	  LayerDraggable.prototype.onDragAnimationStart = function(cb) {
-	    return this.on(Events.DragAnimationStart, cb);
+	  LayerDraggable.prototype.onDragAnimationDidStart = function(cb) {
+	    return this.on(Events.DragAnimationDidStart, cb);
 	  };
 	
-	  LayerDraggable.prototype.onDragAnimationEnd = function(cb) {
-	    return this.on(Events.DragAnimationEnd, cb);
+	  LayerDraggable.prototype.onDragAnimationDidEnd = function(cb) {
+	    return this.on(Events.DragAnimationDidEnd, cb);
 	  };
 	
-	  LayerDraggable.prototype.onDirectionLockStart = function(cb) {
-	    return this.on(Events.DirectionLockStart, cb);
+	  LayerDraggable.prototype.onDirectionLockDidStart = function(cb) {
+	    return this.on(Events.DirectionLockDidStart, cb);
+	  };
+	
+	  LayerDraggable.prototype.onPinch = function() {
+	    return this.on(Events.Pinch, cb);
+	  };
+	
+	  LayerDraggable.prototype.onRotate = function() {
+	    return this.on(Events.Rotate, cb);
 	  };
 	
 	  return LayerDraggable;
@@ -19865,7 +19436,7 @@
 
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Config, Defaults, Events, FrictionSimulator, MomentumBounceSimulator, SimulatorClasses, SpringSimulator, Utils, _,
@@ -19880,17 +19451,17 @@
 	
 	Config = __webpack_require__(14).Config;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	BaseClass = __webpack_require__(6).BaseClass;
 	
 	Events = __webpack_require__(15).Events;
 	
-	SpringSimulator = __webpack_require__(29).SpringSimulator;
+	SpringSimulator = __webpack_require__(28).SpringSimulator;
 	
-	FrictionSimulator = __webpack_require__(31).FrictionSimulator;
+	FrictionSimulator = __webpack_require__(30).FrictionSimulator;
 	
-	MomentumBounceSimulator = __webpack_require__(32).MomentumBounceSimulator;
+	MomentumBounceSimulator = __webpack_require__(31).MomentumBounceSimulator;
 	
 	Events.SimulationStart = 'simulationStart';
 	
@@ -20015,7 +19586,7 @@
 
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Defaults, Integrator, Simulator, Utils,
@@ -20025,11 +19596,11 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
-	Simulator = __webpack_require__(30).Simulator;
+	Simulator = __webpack_require__(29).Simulator;
 	
-	Integrator = __webpack_require__(23).Integrator;
+	Integrator = __webpack_require__(22).Integrator;
 	
 	exports.SpringSimulator = (function(superClass) {
 	  extend(SpringSimulator, superClass);
@@ -20090,7 +19661,7 @@
 
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Config, Utils, _,
@@ -20148,7 +19719,7 @@
 
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Defaults, Integrator, Simulator, Utils,
@@ -20158,11 +19729,11 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
-	Simulator = __webpack_require__(30).Simulator;
+	Simulator = __webpack_require__(29).Simulator;
 	
-	Integrator = __webpack_require__(23).Integrator;
+	Integrator = __webpack_require__(22).Integrator;
 	
 	exports.FrictionSimulator = (function(superClass) {
 	  extend(FrictionSimulator, superClass);
@@ -20204,7 +19775,7 @@
 
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Defaults, FrictionSimulator, Simulator, SpringSimulator, Utils,
@@ -20214,13 +19785,13 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
-	Simulator = __webpack_require__(30).Simulator;
+	Simulator = __webpack_require__(29).Simulator;
 	
-	SpringSimulator = __webpack_require__(29).SpringSimulator;
+	SpringSimulator = __webpack_require__(28).SpringSimulator;
 	
-	FrictionSimulator = __webpack_require__(31).FrictionSimulator;
+	FrictionSimulator = __webpack_require__(30).FrictionSimulator;
 	
 	exports.MomentumBounceSimulator = (function(superClass) {
 	  extend(MomentumBounceSimulator, superClass);
@@ -20344,7 +19915,7 @@
 
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Events, Utils, _,
@@ -20474,183 +20045,3029 @@
 
 
 /***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+	var Gestures;
+	
+	Gestures = {};
+	
+	Gestures.Pan = "pan";
+	
+	Gestures.PanStart = "panstart";
+	
+	Gestures.PanMove = "panmove";
+	
+	Gestures.PanEnd = "panend";
+	
+	Gestures.PanCancel = "pancancel";
+	
+	Gestures.PanLeft = "panleft";
+	
+	Gestures.PanRight = "panright";
+	
+	Gestures.PanUp = "panup";
+	
+	Gestures.PanDown = "pandown";
+	
+	Gestures.Pinch = "pinch";
+	
+	Gestures.PinchStart = "pinchstart";
+	
+	Gestures.PinchMove = "pinchmove";
+	
+	Gestures.PinchEnd = "pinchend";
+	
+	Gestures.PinchCancel = "pinchcancel";
+	
+	Gestures.PinchIn = "pinchin";
+	
+	Gestures.PinchOut = "pinchout";
+	
+	Gestures.Press = "press";
+	
+	Gestures.PressUp = "pressup";
+	
+	Gestures.Rotate = "rotate";
+	
+	Gestures.RotateStart = "rotatestart";
+	
+	Gestures.RotateMove = "rotatemove";
+	
+	Gestures.RotateEnd = "rotateend";
+	
+	Gestures.RotateCancel = "rotatecancel";
+	
+	Gestures.Swipe = "swipe";
+	
+	Gestures.SwipeLeft = "swipeleft";
+	
+	Gestures.SwipeRight = "swiperight";
+	
+	Gestures.SwipeUp = "swipeup";
+	
+	Gestures.SwipeDown = "swipedown";
+	
+	Gestures.Tap = "tap";
+	
+	Gestures.SingleTap = "singletap";
+	
+	Gestures.DoubleTap = "doubletap";
+	
+	exports.Gestures = Gestures;
+
+
+/***/ },
 /* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var BaseClass, Events, Gestures, Utils,
+	var EventEmitter, Gestures, Hammer, Utils, _, addEventListeners, getWindowForElement, removeEventListeners, splitStr,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty;
 	
+	_ = __webpack_require__(1)._;
+	
+	Hammer = __webpack_require__(35);
+	
 	Utils = __webpack_require__(4);
 	
-	BaseClass = __webpack_require__(6).BaseClass;
+	EventEmitter = __webpack_require__(7).EventEmitter;
 	
-	Events = __webpack_require__(15).Events;
+	Gestures = __webpack_require__(33).Gestures;
 	
-	Gestures = __webpack_require__(16).Gestures;
+	exports.GestureManager = (function(superClass) {
+	  extend(GestureManager, superClass);
 	
-	Events.PinchStart = "pinchstart";
-	
-	Events.Pinch = "pinch";
-	
-	Events.PinchEnd = "pinchend";
-	
-	Events.RotateStart = "rotatestart";
-	
-	Events.Rotate = "rotate";
-	
-	Events.RotateEnd = "rotateend";
-	
-	Events.ScaleStart = "scalestart";
-	
-	Events.Scale = "scale";
-	
-	Events.ScaleEnd = "scaleend";
-	
-	exports.LayerPinchable = (function(superClass) {
-	  extend(LayerPinchable, superClass);
-	
-	  LayerPinchable.define("enabled", LayerPinchable.simpleProperty("enabled", true));
-	
-	  LayerPinchable.define("threshold", LayerPinchable.simpleProperty("threshold", 0));
-	
-	  LayerPinchable.define("centerOrigin", LayerPinchable.simpleProperty("centerOrigin", true));
-	
-	  LayerPinchable.define("scale", LayerPinchable.simpleProperty("scale", true));
-	
-	  LayerPinchable.define("scaleIncrements", LayerPinchable.simpleProperty("scaleIncrements", 0));
-	
-	  LayerPinchable.define("minScale", LayerPinchable.simpleProperty("minScale", 0));
-	
-	  LayerPinchable.define("maxScale", LayerPinchable.simpleProperty("maxScale", Number.MAX_VALUE));
-	
-	  LayerPinchable.define("scaleFactor", LayerPinchable.simpleProperty("scaleFactor", 1));
-	
-	  LayerPinchable.define("rotate", LayerPinchable.simpleProperty("rotate", true));
-	
-	  LayerPinchable.define("rotateIncrements", LayerPinchable.simpleProperty("rotateIncrements", 0));
-	
-	  LayerPinchable.define("rotateMin", LayerPinchable.simpleProperty("rotateMin", 0));
-	
-	  LayerPinchable.define("rotateMax", LayerPinchable.simpleProperty("rotateMax", 0));
-	
-	  LayerPinchable.define("rotateFactor", LayerPinchable.simpleProperty("rotateFactor", 1));
-	
-	  function LayerPinchable(layer) {
+	  function GestureManager(layer) {
 	    this.layer = layer;
-	    this._pinchEnd = bind(this._pinchEnd, this);
-	    this._pinch = bind(this._pinch, this);
-	    this._pinchStart = bind(this._pinchStart, this);
-	    this._centerOrigin = bind(this._centerOrigin, this);
-	    LayerPinchable.__super__.constructor.apply(this, arguments);
-	    this._attach();
+	    this.addListener = bind(this.addListener, this);
+	    this.once = bind(this.once, this);
+	    this._manager = Hammer(this.layer._element);
 	  }
 	
-	  LayerPinchable.prototype._attach = function() {
-	    this.layer.on(Gestures.PinchStart, this._pinchStart);
-	    this.layer.on(Gestures.Pinch, this._pinch);
-	    this.layer.on(Gestures.PinchEnd, this._pinchEnd);
-	    return this.layer.on(Gestures.TapStart, this._tapStart);
+	  GestureManager.prototype.once = function(eventName, listener) {
+	    GestureManager.__super__.once.call(this, eventName, listener);
+	    return this._addListener(eventName, (function(_this) {
+	      return function(e) {
+	        _this.removeListener(eventName, listener);
+	        return listener.apply(_this.layer, [e, _this.layer]);
+	      };
+	    })(this));
 	  };
 	
-	  LayerPinchable.prototype._reset = function() {
-	    this._scaleStart = null;
-	    this._rotationStart = null;
-	    return this._rotationOffset = null;
+	  GestureManager.prototype.addListener = function(eventName, listener) {
+	    GestureManager.__super__.addListener.call(this, eventName, listener);
+	    return this._addListener(eventName, listener);
 	  };
 	
-	  LayerPinchable.prototype._tapStart = function(event) {};
-	
-	  LayerPinchable.prototype._centerOrigin = function(event) {
-	    var originDelta, pinchLocation, topInSuperAfter, topInSuperBefore;
-	    topInSuperBefore = Utils.convertPoint({}, this.layer, this.layer.superLayer);
-	    pinchLocation = Utils.convertPointFromContext(event.touchCenter, this.layer, true, true);
-	    this.layer.originX = pinchLocation.x / this.layer.width;
-	    this.layer.originY = pinchLocation.y / this.layer.height;
-	    topInSuperAfter = Utils.convertPoint({}, this.layer, this.layer.superLayer);
-	    originDelta = {
-	      x: topInSuperAfter.x - topInSuperBefore.x,
-	      y: topInSuperAfter.y - topInSuperBefore.y
-	    };
-	    this.layer.x -= originDelta.x;
-	    return this.layer.y -= originDelta.y;
+	  GestureManager.prototype.removeListener = function(eventName, listener) {
+	    GestureManager.__super__.removeListener.call(this, eventName, listener);
+	    return this._removeListener(eventName, listener);
 	  };
 	
-	  LayerPinchable.prototype._pinchStart = function(event) {
-	    this._reset();
-	    if (this.centerOrigin) {
-	      return this._centerOrigin(event);
+	  GestureManager.prototype._addListener = function(eventName, listener) {
+	    var eventFamily, existingRecognizers, recognizer;
+	    this.layer.ignoreEvents = false;
+	    eventFamily = this._getEventFamily(eventName);
+	    if (!eventName) {
+	      throw new Error("Cannot find gesture family for " + eventName);
+	    }
+	    recognizer = this._getRecognizer(eventFamily);
+	    if (!eventFamily) {
+	      throw new Error("Cannot find gesture recognizer for " + eventFamily);
+	    }
+	    existingRecognizers = this._getDependentRecognizersForEventFamily(eventFamily);
+	    if (existingRecognizers.length > 0) {
+	      this._manager.add(recognizer).recognizeWith(existingRecognizers);
+	    } else {
+	      this._manager.add(recognizer);
+	    }
+	    listener._actual = (function(_this) {
+	      return function(event) {
+	        return listener.apply(_this.layer, [event, _this.layer]);
+	      };
+	    })(this);
+	    return this._manager.on(eventName, listener._actual);
+	  };
+	
+	  GestureManager.prototype._removeListener = function(eventName, listener) {
+	    return this._manager.off(eventName, listener._actual);
+	  };
+	
+	  GestureManager.prototype.destroy = function() {
+	    this._manager.destroy();
+	    return this._manager = null;
+	  };
+	
+	  GestureManager.prototype.on = GestureManager.prototype.addListener;
+	
+	  GestureManager.prototype.off = GestureManager.prototype.removeListener;
+	
+	  GestureManager.prototype._getEventFamily = function(eventName) {
+	    switch (eventName) {
+	      case Gestures.Pan:
+	      case Gestures.PanStart:
+	      case Gestures.PanMove:
+	      case Gestures.PanEnd:
+	      case Gestures.PanCancel:
+	      case Gestures.PanLeft:
+	      case Gestures.PanRight:
+	      case Gestures.PanUp:
+	      case Gestures.PanDown:
+	        return Gestures.Pan;
+	      case Gestures.Pinch:
+	      case Gestures.PinchStart:
+	      case Gestures.PinchMove:
+	      case Gestures.PinchEnd:
+	      case Gestures.PinchCancel:
+	      case Gestures.PinchIn:
+	      case Gestures.PinchOut:
+	        return Gestures.Pinch;
+	      case Gestures.Press:
+	      case Gestures.PressUp:
+	        return Gestures.Press;
+	      case Gestures.Rotate:
+	      case Gestures.RotateStart:
+	      case Gestures.RotateMove:
+	      case Gestures.RotateEnd:
+	      case Gestures.RotateCancel:
+	        return Gestures.Rotate;
+	      case Gestures.Swipe:
+	      case Gestures.SwipeLeft:
+	      case Gestures.SwipeRight:
+	      case Gestures.SwipeUp:
+	      case Gestures.SwipeDown:
+	        return Gestures.Swipe;
+	      case Gestures.Tap:
+	      case Gestures.SingleTap:
+	        return Gestures.Tap;
+	      case Gestures.DoubleTap:
+	        return Gestures.DoubleTap;
 	    }
 	  };
 	
-	  LayerPinchable.prototype._pinch = function(event) {
-	    var pointA, pointB, rotation, scale;
-	    if (event.touches.length !== 2) {
-	      return;
+	  GestureManager.prototype._getRecognizer = function(eventFamily) {
+	    var ref;
+	    if ((ref = this._manager) != null ? ref.get(eventFamily) : void 0) {
+	      return this._manager.get(eventFamily);
 	    }
-	    if (!this.enabled) {
-	      return;
-	    }
-	    pointA = {
-	      x: event.touches[0].pageX,
-	      y: event.touches[0].pageY
-	    };
-	    pointB = {
-	      x: event.touches[1].pageX,
-	      y: event.touches[1].pageY
-	    };
-	    if (!(Utils.pointTotal(Utils.pointAbs(Utils.pointSubtract(pointA, pointB))) > this.threshold)) {
-	      return;
-	    }
-	    if (this.scale) {
-	      if (this._scaleStart == null) {
-	        this._scaleStart = this.layer.scale;
-	      }
-	      scale = (((event.scale - 1) * this.scaleFactor) + 1) * this._scaleStart;
-	      if (this.minScale && this.maxScale) {
-	        scale = Utils.clamp(scale, this.minScale, this.maxScale);
-	      } else if (this.minScale) {
-	        scale = Utils.clamp(scale, this.minScale, 1000000);
-	      } else if (this.maxScale) {
-	        scale = Utils.clamp(scale, 0.00001, this.maxScale);
-	      }
-	      if (this.scaleIncrements) {
-	        scale = Utils.nearestIncrement(scale, this.scaleIncrements);
-	      }
-	      this.layer.scale = scale;
-	      this.emit(Events.Scale, event);
-	    }
-	    if (this.rotate) {
-	      if (this._rotationStart == null) {
-	        this._rotationStart = this.layer.rotation;
-	      }
-	      if (this._rotationOffset == null) {
-	        this._rotationOffset = event.rotation;
-	      }
-	      rotation = event.rotation - this._rotationOffset + this._rotationStart;
-	      rotation = rotation * this.rotateFactor;
-	      if (this.rotateMin && this.rotateMax) {
-	        rotation = Utils.clamp(rotation, this.rotateMin, this.rotateMax);
-	      }
-	      if (this.rotateIncrements) {
-	        rotation = Utils.nearestIncrement(rotation, this.rotateIncrements);
-	      }
-	      return this.layer.rotation = rotation;
+	    switch (eventFamily) {
+	      case Gestures.Pan:
+	        return new Hammer.Pan({
+	          event: Gestures.Pan
+	        });
+	      case Gestures.Pinch:
+	        return new Hammer.Pinch({
+	          event: Gestures.Pinch
+	        });
+	      case Gestures.Press:
+	        return new Hammer.Press({
+	          event: Gestures.Press
+	        });
+	      case Gestures.Rotate:
+	        return new Hammer.Rotate({
+	          event: Gestures.Rotate
+	        });
+	      case Gestures.Swipe:
+	        return new Hammer.Swipe({
+	          event: Gestures.Swipe
+	        });
+	      case Gestures.Tap:
+	        return new Hammer.Tap({
+	          event: Gestures.Tap
+	        });
+	      case Gestures.DoubleTap:
+	        return new Hammer.Tap({
+	          event: Gestures.DoubleTap,
+	          taps: 2
+	        });
 	    }
 	  };
 	
-	  LayerPinchable.prototype._pinchEnd = function(event) {
-	    return this._reset();
+	  GestureManager.prototype._getDependentRecognizersForEventFamily = function(eventFamily) {
+	    var existingRecognizers, pan, pinch, rotate, swipe, tap;
+	    existingRecognizers = [];
+	    switch (eventFamily) {
+	      case Gestures.Pan:
+	        if (swipe = this._manager.get(Gestures.Swipe)) {
+	          existingRecognizers.push(swipe);
+	        }
+	        if (rotate = this._manager.get(Gestures.Rotate)) {
+	          existingRecognizers.push(rotate);
+	        }
+	        if (pinch = this._manager.get(Gestures.Pinch)) {
+	          existingRecognizers.push(pinch);
+	        }
+	        break;
+	      case Gestures.Swipe:
+	        if (pan = this._manager.get(Gestures.Pan)) {
+	          existingRecognizers.push(pan);
+	        }
+	        break;
+	      case Gestures.Rotate:
+	        if (pan = this._manager.get(Gestures.Pan)) {
+	          existingRecognizers.push(pan);
+	        }
+	        if (pinch = this._manager.get(Gestures.Pinch)) {
+	          existingRecognizers.push(pinch);
+	        }
+	        break;
+	      case Gestures.Pinch:
+	        if (pan = this._manager.get(Gestures.Pan)) {
+	          existingRecognizers.push(pan);
+	        }
+	        if (rotate = this._manager.get(Gestures.Pinch)) {
+	          existingRecognizers.push(rotate);
+	        }
+	        break;
+	      case Gestures.DoubleTap:
+	        if (tap = this._manager.get(Gestures.Tap)) {
+	          existingRecognizers.push(tap);
+	        }
+	    }
+	    return existingRecognizers;
 	  };
 	
-	  return LayerPinchable;
+	  GestureManager.prototype.onPan = function(cb) {
+	    return this.on(Gestures.Pan, cb);
+	  };
 	
-	})(BaseClass);
+	  GestureManager.prototype.onPanStart = function(cb) {
+	    return this.on(Gestures.PanStart, cb);
+	  };
+	
+	  GestureManager.prototype.onPanMove = function(cb) {
+	    return this.on(Gestures.PanMove, cb);
+	  };
+	
+	  GestureManager.prototype.onPanEnd = function(cb) {
+	    return this.on(Gestures.PanEnd, cb);
+	  };
+	
+	  GestureManager.prototype.onPanCancel = function(cb) {
+	    return this.on(Gestures.PanCancel, cb);
+	  };
+	
+	  GestureManager.prototype.onPanLeft = function(cb) {
+	    return this.on(Gestures.PanLeft, cb);
+	  };
+	
+	  GestureManager.prototype.onPanRight = function(cb) {
+	    return this.on(Gestures.PanRight, cb);
+	  };
+	
+	  GestureManager.prototype.onPanUp = function(cb) {
+	    return this.on(Gestures.PanUp, cb);
+	  };
+	
+	  GestureManager.prototype.onPanDown = function(cb) {
+	    return this.on(Gestures.PanDown, cb);
+	  };
+	
+	  GestureManager.prototype.onPinch = function(cb) {
+	    return this.on(Gestures.Pinch, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchStart = function(cb) {
+	    return this.on(Gestures.PinchStart, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchMove = function(cb) {
+	    return this.on(Gestures.PinchMove, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchEnd = function(cb) {
+	    return this.on(Gestures.PinchEnd, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchCancel = function(cb) {
+	    return this.on(Gestures.PinchCancel, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchIn = function(cb) {
+	    return this.on(Gestures.PinchIn, cb);
+	  };
+	
+	  GestureManager.prototype.onPinchOut = function(cb) {
+	    return this.on(Gestures.PinchOut, cb);
+	  };
+	
+	  GestureManager.prototype.onPress = function(cb) {
+	    return this.on(Gestures.Press, cb);
+	  };
+	
+	  GestureManager.prototype.onPressUp = function(cb) {
+	    return this.on(Gestures.PressUp, cb);
+	  };
+	
+	  GestureManager.prototype.onRotate = function(cb) {
+	    return this.on(Gestures.Rotate, cb);
+	  };
+	
+	  GestureManager.prototype.onRotateStart = function(cb) {
+	    return this.on(Gestures.RotateStart, cb);
+	  };
+	
+	  GestureManager.prototype.onRotateMove = function(cb) {
+	    return this.on(Gestures.RotateMove, cb);
+	  };
+	
+	  GestureManager.prototype.onRotateEnd = function(cb) {
+	    return this.on(Gestures.RotateEnd, cb);
+	  };
+	
+	  GestureManager.prototype.onRotateCancel = function(cb) {
+	    return this.on(Gestures.RotateCancel, cb);
+	  };
+	
+	  GestureManager.prototype.onSwipe = function(cb) {
+	    return this.on(Gestures.Swipe, cb);
+	  };
+	
+	  GestureManager.prototype.onSwipeLeft = function(cb) {
+	    return this.on(Gestures.SwipeLeft, cb);
+	  };
+	
+	  GestureManager.prototype.onSwipeRight = function(cb) {
+	    return this.on(Gestures.SwipeRight, cb);
+	  };
+	
+	  GestureManager.prototype.onSwipeUp = function(cb) {
+	    return this.on(Gestures.SwipeUp, cb);
+	  };
+	
+	  GestureManager.prototype.onSwipeDown = function(cb) {
+	    return this.on(Gestures.SwipeDown, cb);
+	  };
+	
+	  GestureManager.prototype.onTap = function(cb) {
+	    return this.on(Gestures.Tap, cb);
+	  };
+	
+	  GestureManager.prototype.onSingleTap = function(cb) {
+	    return this.on(Gestures.SingleTap, cb);
+	  };
+	
+	  GestureManager.prototype.onDoubleTap = function(cb) {
+	    return this.on(Gestures.DoubleTap, cb);
+	  };
+	
+	  return GestureManager;
+	
+	})(EventEmitter);
+	
+	getWindowForElement = function(element) {
+	  var doc;
+	  doc = element.ownerDocument || element;
+	  return doc.defaultView || doc.parentWindow || window;
+	};
+	
+	splitStr = function(str) {
+	  return str.trim().split(/\s+/g);
+	};
+	
+	addEventListeners = function(target, types, handler) {
+	  return splitStr(types).map(function(type) {
+	    return Framer.CurrentContext.domEventManager.wrap(target).addEventListener(type, handler, false);
+	  });
+	};
+	
+	removeEventListeners = function(target, types, handler) {
+	  return splitStr(types).map(function(type) {
+	    return Framer.CurrentContext.domEventManager.wrap(target).removeEventListener(type, handler, false);
+	  });
+	};
+	
+	Hammer.Input.prototype.init = function() {
+	  this.evEl && addEventListeners(this.element, this.evEl, this.domHandler);
+	  this.evTarget && addEventListeners(this.target, this.evTarget, this.domHandler);
+	  this.evWin && addEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	};
+	
+	Hammer.Input.prototype.destroy = function() {
+	  this.evEl && removeEventListeners(this.element, this.evEl, this.domHandler);
+	  this.evTarget && removeEventListeners(this.target, this.evTarget, this.domHandler);
+	  this.evWin && removeEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	};
 
 
 /***/ },
 /* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2015-12-23
+	 * http://hammerjs.github.io/
+	 *
+	 * Copyright (c) 2015 Jorik Tangelder;
+	 * Licensed under the  license */
+	(function(window, document, exportName, undefined) {
+	  'use strict';
+	
+	var VENDOR_PREFIXES = ['', 'webkit', 'Moz', 'MS', 'ms', 'o'];
+	var TEST_ELEMENT = document.createElement('div');
+	
+	var TYPE_FUNCTION = 'function';
+	
+	var round = Math.round;
+	var abs = Math.abs;
+	var now = Date.now;
+	
+	/**
+	 * set a timeout with a given scope
+	 * @param {Function} fn
+	 * @param {Number} timeout
+	 * @param {Object} context
+	 * @returns {number}
+	 */
+	function setTimeoutContext(fn, timeout, context) {
+	    return setTimeout(bindFn(fn, context), timeout);
+	}
+	
+	/**
+	 * if the argument is an array, we want to execute the fn on each entry
+	 * if it aint an array we don't want to do a thing.
+	 * this is used by all the methods that accept a single and array argument.
+	 * @param {*|Array} arg
+	 * @param {String} fn
+	 * @param {Object} [context]
+	 * @returns {Boolean}
+	 */
+	function invokeArrayArg(arg, fn, context) {
+	    if (Array.isArray(arg)) {
+	        each(arg, context[fn], context);
+	        return true;
+	    }
+	    return false;
+	}
+	
+	/**
+	 * walk objects and arrays
+	 * @param {Object} obj
+	 * @param {Function} iterator
+	 * @param {Object} context
+	 */
+	function each(obj, iterator, context) {
+	    var i;
+	
+	    if (!obj) {
+	        return;
+	    }
+	
+	    if (obj.forEach) {
+	        obj.forEach(iterator, context);
+	    } else if (obj.length !== undefined) {
+	        i = 0;
+	        while (i < obj.length) {
+	            iterator.call(context, obj[i], i, obj);
+	            i++;
+	        }
+	    } else {
+	        for (i in obj) {
+	            obj.hasOwnProperty(i) && iterator.call(context, obj[i], i, obj);
+	        }
+	    }
+	}
+	
+	/**
+	 * wrap a method with a deprecation warning and stack trace
+	 * @param {Function} method
+	 * @param {String} name
+	 * @param {String} message
+	 * @returns {Function} A new function wrapping the supplied method.
+	 */
+	function deprecate(method, name, message) {
+	    var deprecationMessage = 'DEPRECATED METHOD: ' + name + '\n' + message + ' AT \n';
+	    return function() {
+	        var e = new Error('get-stack-trace');
+	        var stack = e && e.stack ? e.stack.replace(/^[^\(]+?[\n$]/gm, '')
+	            .replace(/^\s+at\s+/gm, '')
+	            .replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@') : 'Unknown Stack Trace';
+	
+	        var log = window.console && (window.console.warn || window.console.log);
+	        if (log) {
+	            log.call(window.console, deprecationMessage, stack);
+	        }
+	        return method.apply(this, arguments);
+	    };
+	}
+	
+	/**
+	 * extend object.
+	 * means that properties in dest will be overwritten by the ones in src.
+	 * @param {Object} target
+	 * @param {...Object} objects_to_assign
+	 * @returns {Object} target
+	 */
+	var assign;
+	if (typeof Object.assign !== 'function') {
+	    assign = function assign(target) {
+	        if (target === undefined || target === null) {
+	            throw new TypeError('Cannot convert undefined or null to object');
+	        }
+	
+	        var output = Object(target);
+	        for (var index = 1; index < arguments.length; index++) {
+	            var source = arguments[index];
+	            if (source !== undefined && source !== null) {
+	                for (var nextKey in source) {
+	                    if (source.hasOwnProperty(nextKey)) {
+	                        output[nextKey] = source[nextKey];
+	                    }
+	                }
+	            }
+	        }
+	        return output;
+	    };
+	} else {
+	    assign = Object.assign;
+	}
+	
+	/**
+	 * extend object.
+	 * means that properties in dest will be overwritten by the ones in src.
+	 * @param {Object} dest
+	 * @param {Object} src
+	 * @param {Boolean=false} [merge]
+	 * @returns {Object} dest
+	 */
+	var extend = deprecate(function extend(dest, src, merge) {
+	    var keys = Object.keys(src);
+	    var i = 0;
+	    while (i < keys.length) {
+	        if (!merge || (merge && dest[keys[i]] === undefined)) {
+	            dest[keys[i]] = src[keys[i]];
+	        }
+	        i++;
+	    }
+	    return dest;
+	}, 'extend', 'Use `assign`.');
+	
+	/**
+	 * merge the values from src in the dest.
+	 * means that properties that exist in dest will not be overwritten by src
+	 * @param {Object} dest
+	 * @param {Object} src
+	 * @returns {Object} dest
+	 */
+	var merge = deprecate(function merge(dest, src) {
+	    return extend(dest, src, true);
+	}, 'merge', 'Use `assign`.');
+	
+	/**
+	 * simple class inheritance
+	 * @param {Function} child
+	 * @param {Function} base
+	 * @param {Object} [properties]
+	 */
+	function inherit(child, base, properties) {
+	    var baseP = base.prototype,
+	        childP;
+	
+	    childP = child.prototype = Object.create(baseP);
+	    childP.constructor = child;
+	    childP._super = baseP;
+	
+	    if (properties) {
+	        assign(childP, properties);
+	    }
+	}
+	
+	/**
+	 * simple function bind
+	 * @param {Function} fn
+	 * @param {Object} context
+	 * @returns {Function}
+	 */
+	function bindFn(fn, context) {
+	    return function boundFn() {
+	        return fn.apply(context, arguments);
+	    };
+	}
+	
+	/**
+	 * let a boolean value also be a function that must return a boolean
+	 * this first item in args will be used as the context
+	 * @param {Boolean|Function} val
+	 * @param {Array} [args]
+	 * @returns {Boolean}
+	 */
+	function boolOrFn(val, args) {
+	    if (typeof val == TYPE_FUNCTION) {
+	        return val.apply(args ? args[0] || undefined : undefined, args);
+	    }
+	    return val;
+	}
+	
+	/**
+	 * use the val2 when val1 is undefined
+	 * @param {*} val1
+	 * @param {*} val2
+	 * @returns {*}
+	 */
+	function ifUndefined(val1, val2) {
+	    return (val1 === undefined) ? val2 : val1;
+	}
+	
+	/**
+	 * addEventListener with multiple events at once
+	 * @param {EventTarget} target
+	 * @param {String} types
+	 * @param {Function} handler
+	 */
+	function addEventListeners(target, types, handler) {
+	    each(splitStr(types), function(type) {
+	        target.addEventListener(type, handler, false);
+	    });
+	}
+	
+	/**
+	 * removeEventListener with multiple events at once
+	 * @param {EventTarget} target
+	 * @param {String} types
+	 * @param {Function} handler
+	 */
+	function removeEventListeners(target, types, handler) {
+	    each(splitStr(types), function(type) {
+	        target.removeEventListener(type, handler, false);
+	    });
+	}
+	
+	/**
+	 * find if a node is in the given parent
+	 * @method hasParent
+	 * @param {HTMLElement} node
+	 * @param {HTMLElement} parent
+	 * @return {Boolean} found
+	 */
+	function hasParent(node, parent) {
+	    while (node) {
+	        if (node == parent) {
+	            return true;
+	        }
+	        node = node.parentNode;
+	    }
+	    return false;
+	}
+	
+	/**
+	 * small indexOf wrapper
+	 * @param {String} str
+	 * @param {String} find
+	 * @returns {Boolean} found
+	 */
+	function inStr(str, find) {
+	    return str.indexOf(find) > -1;
+	}
+	
+	/**
+	 * split string on whitespace
+	 * @param {String} str
+	 * @returns {Array} words
+	 */
+	function splitStr(str) {
+	    return str.trim().split(/\s+/g);
+	}
+	
+	/**
+	 * find if a array contains the object using indexOf or a simple polyFill
+	 * @param {Array} src
+	 * @param {String} find
+	 * @param {String} [findByKey]
+	 * @return {Boolean|Number} false when not found, or the index
+	 */
+	function inArray(src, find, findByKey) {
+	    if (src.indexOf && !findByKey) {
+	        return src.indexOf(find);
+	    } else {
+	        var i = 0;
+	        while (i < src.length) {
+	            if ((findByKey && src[i][findByKey] == find) || (!findByKey && src[i] === find)) {
+	                return i;
+	            }
+	            i++;
+	        }
+	        return -1;
+	    }
+	}
+	
+	/**
+	 * convert array-like objects to real arrays
+	 * @param {Object} obj
+	 * @returns {Array}
+	 */
+	function toArray(obj) {
+	    return Array.prototype.slice.call(obj, 0);
+	}
+	
+	/**
+	 * unique array with objects based on a key (like 'id') or just by the array's value
+	 * @param {Array} src [{id:1},{id:2},{id:1}]
+	 * @param {String} [key]
+	 * @param {Boolean} [sort=False]
+	 * @returns {Array} [{id:1},{id:2}]
+	 */
+	function uniqueArray(src, key, sort) {
+	    var results = [];
+	    var values = [];
+	    var i = 0;
+	
+	    while (i < src.length) {
+	        var val = key ? src[i][key] : src[i];
+	        if (inArray(values, val) < 0) {
+	            results.push(src[i]);
+	        }
+	        values[i] = val;
+	        i++;
+	    }
+	
+	    if (sort) {
+	        if (!key) {
+	            results = results.sort();
+	        } else {
+	            results = results.sort(function sortUniqueArray(a, b) {
+	                return a[key] > b[key];
+	            });
+	        }
+	    }
+	
+	    return results;
+	}
+	
+	/**
+	 * get the prefixed property
+	 * @param {Object} obj
+	 * @param {String} property
+	 * @returns {String|Undefined} prefixed
+	 */
+	function prefixed(obj, property) {
+	    var prefix, prop;
+	    var camelProp = property[0].toUpperCase() + property.slice(1);
+	
+	    var i = 0;
+	    while (i < VENDOR_PREFIXES.length) {
+	        prefix = VENDOR_PREFIXES[i];
+	        prop = (prefix) ? prefix + camelProp : property;
+	
+	        if (prop in obj) {
+	            return prop;
+	        }
+	        i++;
+	    }
+	    return undefined;
+	}
+	
+	/**
+	 * get a unique id
+	 * @returns {number} uniqueId
+	 */
+	var _uniqueId = 1;
+	function uniqueId() {
+	    return _uniqueId++;
+	}
+	
+	/**
+	 * get the window object of an element
+	 * @param {HTMLElement} element
+	 * @returns {DocumentView|Window}
+	 */
+	function getWindowForElement(element) {
+	    var doc = element.ownerDocument || element;
+	    return (doc.defaultView || doc.parentWindow || window);
+	}
+	
+	var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
+	
+	var SUPPORT_TOUCH = ('ontouchstart' in window);
+	var SUPPORT_POINTER_EVENTS = prefixed(window, 'PointerEvent') !== undefined;
+	var SUPPORT_ONLY_TOUCH = SUPPORT_TOUCH && MOBILE_REGEX.test(navigator.userAgent);
+	
+	var INPUT_TYPE_TOUCH = 'touch';
+	var INPUT_TYPE_PEN = 'pen';
+	var INPUT_TYPE_MOUSE = 'mouse';
+	var INPUT_TYPE_KINECT = 'kinect';
+	
+	var COMPUTE_INTERVAL = 25;
+	
+	var INPUT_START = 1;
+	var INPUT_MOVE = 2;
+	var INPUT_END = 4;
+	var INPUT_CANCEL = 8;
+	
+	var DIRECTION_NONE = 1;
+	var DIRECTION_LEFT = 2;
+	var DIRECTION_RIGHT = 4;
+	var DIRECTION_UP = 8;
+	var DIRECTION_DOWN = 16;
+	
+	var DIRECTION_HORIZONTAL = DIRECTION_LEFT | DIRECTION_RIGHT;
+	var DIRECTION_VERTICAL = DIRECTION_UP | DIRECTION_DOWN;
+	var DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
+	
+	var PROPS_XY = ['x', 'y'];
+	var PROPS_CLIENT_XY = ['clientX', 'clientY'];
+	
+	/**
+	 * create new input type manager
+	 * @param {Manager} manager
+	 * @param {Function} callback
+	 * @returns {Input}
+	 * @constructor
+	 */
+	function Input(manager, callback) {
+	    var self = this;
+	    this.manager = manager;
+	    this.callback = callback;
+	    this.element = manager.element;
+	    this.target = manager.options.inputTarget;
+	
+	    // smaller wrapper around the handler, for the scope and the enabled state of the manager,
+	    // so when disabled the input events are completely bypassed.
+	    this.domHandler = function(ev) {
+	        if (boolOrFn(manager.options.enable, [manager])) {
+	            self.handler(ev);
+	        }
+	    };
+	
+	    this.init();
+	
+	}
+	
+	Input.prototype = {
+	    /**
+	     * should handle the inputEvent data and trigger the callback
+	     * @virtual
+	     */
+	    handler: function() { },
+	
+	    /**
+	     * bind the events
+	     */
+	    init: function() {
+	        this.evEl && addEventListeners(this.element, this.evEl, this.domHandler);
+	        this.evTarget && addEventListeners(this.target, this.evTarget, this.domHandler);
+	        this.evWin && addEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	    },
+	
+	    /**
+	     * unbind the events
+	     */
+	    destroy: function() {
+	        this.evEl && removeEventListeners(this.element, this.evEl, this.domHandler);
+	        this.evTarget && removeEventListeners(this.target, this.evTarget, this.domHandler);
+	        this.evWin && removeEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+	    }
+	};
+	
+	/**
+	 * create new input type manager
+	 * called by the Manager constructor
+	 * @param {Hammer} manager
+	 * @returns {Input}
+	 */
+	function createInputInstance(manager) {
+	    var Type;
+	    var inputClass = manager.options.inputClass;
+	
+	    if (inputClass) {
+	        Type = inputClass;
+	    } else if (SUPPORT_POINTER_EVENTS) {
+	        Type = PointerEventInput;
+	    } else if (SUPPORT_ONLY_TOUCH) {
+	        Type = TouchInput;
+	    } else if (!SUPPORT_TOUCH) {
+	        Type = MouseInput;
+	    } else {
+	        Type = TouchMouseInput;
+	    }
+	    return new (Type)(manager, inputHandler);
+	}
+	
+	/**
+	 * handle input events
+	 * @param {Manager} manager
+	 * @param {String} eventType
+	 * @param {Object} input
+	 */
+	function inputHandler(manager, eventType, input) {
+	    var pointersLen = input.pointers.length;
+	    var changedPointersLen = input.changedPointers.length;
+	    var isFirst = (eventType & INPUT_START && (pointersLen - changedPointersLen === 0));
+	    var isFinal = (eventType & (INPUT_END | INPUT_CANCEL) && (pointersLen - changedPointersLen === 0));
+	
+	    input.isFirst = !!isFirst;
+	    input.isFinal = !!isFinal;
+	
+	    if (isFirst) {
+	        manager.session = {};
+	    }
+	
+	    // source event is the normalized value of the domEvents
+	    // like 'touchstart, mouseup, pointerdown'
+	    input.eventType = eventType;
+	
+	    // compute scale, rotation etc
+	    computeInputData(manager, input);
+	
+	    // emit secret event
+	    manager.emit('hammer.input', input);
+	
+	    manager.recognize(input);
+	    manager.session.prevInput = input;
+	}
+	
+	/**
+	 * extend the data with some usable properties like scale, rotate, velocity etc
+	 * @param {Object} manager
+	 * @param {Object} input
+	 */
+	function computeInputData(manager, input) {
+	    var session = manager.session;
+	    var pointers = input.pointers;
+	    var pointersLength = pointers.length;
+	
+	    // store the first input to calculate the distance and direction
+	    if (!session.firstInput) {
+	        session.firstInput = simpleCloneInputData(input);
+	    }
+	
+	    // to compute scale and rotation we need to store the multiple touches
+	    if (pointersLength > 1 && !session.firstMultiple) {
+	        session.firstMultiple = simpleCloneInputData(input);
+	    } else if (pointersLength === 1) {
+	        session.firstMultiple = false;
+	    }
+	
+	    var firstInput = session.firstInput;
+	    var firstMultiple = session.firstMultiple;
+	    var offsetCenter = firstMultiple ? firstMultiple.center : firstInput.center;
+	
+	    var center = input.center = getCenter(pointers);
+	    input.timeStamp = now();
+	    input.deltaTime = input.timeStamp - firstInput.timeStamp;
+	
+	    input.angle = getAngle(offsetCenter, center);
+	    input.distance = getDistance(offsetCenter, center);
+	
+	    computeDeltaXY(session, input);
+	    input.offsetDirection = getDirection(input.deltaX, input.deltaY);
+	
+	    var overallVelocity = getVelocity(input.deltaTime, input.deltaX, input.deltaY);
+	    input.overallVelocityX = overallVelocity.x;
+	    input.overallVelocityY = overallVelocity.y;
+	    input.overallVelocity = (abs(overallVelocity.x) > abs(overallVelocity.y)) ? overallVelocity.x : overallVelocity.y;
+	
+	    input.scale = firstMultiple ? getScale(firstMultiple.pointers, pointers) : 1;
+	    input.rotation = firstMultiple ? getRotation(firstMultiple.pointers, pointers) : 0;
+	
+	    input.maxPointers = !session.prevInput ? input.pointers.length : ((input.pointers.length >
+	        session.prevInput.maxPointers) ? input.pointers.length : session.prevInput.maxPointers);
+	
+	    computeIntervalInputData(session, input);
+	
+	    // find the correct target
+	    var target = manager.element;
+	    if (hasParent(input.srcEvent.target, target)) {
+	        target = input.srcEvent.target;
+	    }
+	    input.target = target;
+	}
+	
+	function computeDeltaXY(session, input) {
+	    var center = input.center;
+	    var offset = session.offsetDelta || {};
+	    var prevDelta = session.prevDelta || {};
+	    var prevInput = session.prevInput || {};
+	
+	    if (input.eventType === INPUT_START || prevInput.eventType === INPUT_END) {
+	        prevDelta = session.prevDelta = {
+	            x: prevInput.deltaX || 0,
+	            y: prevInput.deltaY || 0
+	        };
+	
+	        offset = session.offsetDelta = {
+	            x: center.x,
+	            y: center.y
+	        };
+	    }
+	
+	    input.deltaX = prevDelta.x + (center.x - offset.x);
+	    input.deltaY = prevDelta.y + (center.y - offset.y);
+	}
+	
+	/**
+	 * velocity is calculated every x ms
+	 * @param {Object} session
+	 * @param {Object} input
+	 */
+	function computeIntervalInputData(session, input) {
+	    var last = session.lastInterval || input,
+	        deltaTime = input.timeStamp - last.timeStamp,
+	        velocity, velocityX, velocityY, direction;
+	
+	    if (input.eventType != INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
+	        var deltaX = input.deltaX - last.deltaX;
+	        var deltaY = input.deltaY - last.deltaY;
+	
+	        var v = getVelocity(deltaTime, deltaX, deltaY);
+	        velocityX = v.x;
+	        velocityY = v.y;
+	        velocity = (abs(v.x) > abs(v.y)) ? v.x : v.y;
+	        direction = getDirection(deltaX, deltaY);
+	
+	        session.lastInterval = input;
+	    } else {
+	        // use latest velocity info if it doesn't overtake a minimum period
+	        velocity = last.velocity;
+	        velocityX = last.velocityX;
+	        velocityY = last.velocityY;
+	        direction = last.direction;
+	    }
+	
+	    input.velocity = velocity;
+	    input.velocityX = velocityX;
+	    input.velocityY = velocityY;
+	    input.direction = direction;
+	}
+	
+	/**
+	 * create a simple clone from the input used for storage of firstInput and firstMultiple
+	 * @param {Object} input
+	 * @returns {Object} clonedInputData
+	 */
+	function simpleCloneInputData(input) {
+	    // make a simple copy of the pointers because we will get a reference if we don't
+	    // we only need clientXY for the calculations
+	    var pointers = [];
+	    var i = 0;
+	    while (i < input.pointers.length) {
+	        pointers[i] = {
+	            clientX: round(input.pointers[i].clientX),
+	            clientY: round(input.pointers[i].clientY)
+	        };
+	        i++;
+	    }
+	
+	    return {
+	        timeStamp: now(),
+	        pointers: pointers,
+	        center: getCenter(pointers),
+	        deltaX: input.deltaX,
+	        deltaY: input.deltaY
+	    };
+	}
+	
+	/**
+	 * get the center of all the pointers
+	 * @param {Array} pointers
+	 * @return {Object} center contains `x` and `y` properties
+	 */
+	function getCenter(pointers) {
+	    var pointersLength = pointers.length;
+	
+	    // no need to loop when only one touch
+	    if (pointersLength === 1) {
+	        return {
+	            x: round(pointers[0].clientX),
+	            y: round(pointers[0].clientY)
+	        };
+	    }
+	
+	    var x = 0, y = 0, i = 0;
+	    while (i < pointersLength) {
+	        x += pointers[i].clientX;
+	        y += pointers[i].clientY;
+	        i++;
+	    }
+	
+	    return {
+	        x: round(x / pointersLength),
+	        y: round(y / pointersLength)
+	    };
+	}
+	
+	/**
+	 * calculate the velocity between two points. unit is in px per ms.
+	 * @param {Number} deltaTime
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @return {Object} velocity `x` and `y`
+	 */
+	function getVelocity(deltaTime, x, y) {
+	    return {
+	        x: x / deltaTime || 0,
+	        y: y / deltaTime || 0
+	    };
+	}
+	
+	/**
+	 * get the direction between two points
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @return {Number} direction
+	 */
+	function getDirection(x, y) {
+	    if (x === y) {
+	        return DIRECTION_NONE;
+	    }
+	
+	    if (abs(x) >= abs(y)) {
+	        return x < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
+	    }
+	    return y < 0 ? DIRECTION_UP : DIRECTION_DOWN;
+	}
+	
+	/**
+	 * calculate the absolute distance between two points
+	 * @param {Object} p1 {x, y}
+	 * @param {Object} p2 {x, y}
+	 * @param {Array} [props] containing x and y keys
+	 * @return {Number} distance
+	 */
+	function getDistance(p1, p2, props) {
+	    if (!props) {
+	        props = PROPS_XY;
+	    }
+	    var x = p2[props[0]] - p1[props[0]],
+	        y = p2[props[1]] - p1[props[1]];
+	
+	    return Math.sqrt((x * x) + (y * y));
+	}
+	
+	/**
+	 * calculate the angle between two coordinates
+	 * @param {Object} p1
+	 * @param {Object} p2
+	 * @param {Array} [props] containing x and y keys
+	 * @return {Number} angle
+	 */
+	function getAngle(p1, p2, props) {
+	    if (!props) {
+	        props = PROPS_XY;
+	    }
+	    var x = p2[props[0]] - p1[props[0]],
+	        y = p2[props[1]] - p1[props[1]];
+	    return Math.atan2(y, x) * 180 / Math.PI;
+	}
+	
+	/**
+	 * calculate the rotation degrees between two pointersets
+	 * @param {Array} start array of pointers
+	 * @param {Array} end array of pointers
+	 * @return {Number} rotation
+	 */
+	function getRotation(start, end) {
+	    return getAngle(end[1], end[0], PROPS_CLIENT_XY) + getAngle(start[1], start[0], PROPS_CLIENT_XY);
+	}
+	
+	/**
+	 * calculate the scale factor between two pointersets
+	 * no scale is 1, and goes down to 0 when pinched together, and bigger when pinched out
+	 * @param {Array} start array of pointers
+	 * @param {Array} end array of pointers
+	 * @return {Number} scale
+	 */
+	function getScale(start, end) {
+	    return getDistance(end[0], end[1], PROPS_CLIENT_XY) / getDistance(start[0], start[1], PROPS_CLIENT_XY);
+	}
+	
+	var MOUSE_INPUT_MAP = {
+	    mousedown: INPUT_START,
+	    mousemove: INPUT_MOVE,
+	    mouseup: INPUT_END
+	};
+	
+	var MOUSE_ELEMENT_EVENTS = 'mousedown';
+	var MOUSE_WINDOW_EVENTS = 'mousemove mouseup';
+	
+	/**
+	 * Mouse events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function MouseInput() {
+	    this.evEl = MOUSE_ELEMENT_EVENTS;
+	    this.evWin = MOUSE_WINDOW_EVENTS;
+	
+	    this.allow = true; // used by Input.TouchMouse to disable mouse events
+	    this.pressed = false; // mousedown state
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(MouseInput, Input, {
+	    /**
+	     * handle mouse events
+	     * @param {Object} ev
+	     */
+	    handler: function MEhandler(ev) {
+	        var eventType = MOUSE_INPUT_MAP[ev.type];
+	
+	        // on start we want to have the left mouse button down
+	        if (eventType & INPUT_START && ev.button === 0) {
+	            this.pressed = true;
+	        }
+	
+	        if (eventType & INPUT_MOVE && ev.which !== 1) {
+	            eventType = INPUT_END;
+	        }
+	
+	        // mouse must be down, and mouse events are allowed (see the TouchMouse input)
+	        if (!this.pressed || !this.allow) {
+	            return;
+	        }
+	
+	        if (eventType & INPUT_END) {
+	            this.pressed = false;
+	        }
+	
+	        this.callback(this.manager, eventType, {
+	            pointers: [ev],
+	            changedPointers: [ev],
+	            pointerType: INPUT_TYPE_MOUSE,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	var POINTER_INPUT_MAP = {
+	    pointerdown: INPUT_START,
+	    pointermove: INPUT_MOVE,
+	    pointerup: INPUT_END,
+	    pointercancel: INPUT_CANCEL,
+	    pointerout: INPUT_CANCEL
+	};
+	
+	// in IE10 the pointer types is defined as an enum
+	var IE10_POINTER_TYPE_ENUM = {
+	    2: INPUT_TYPE_TOUCH,
+	    3: INPUT_TYPE_PEN,
+	    4: INPUT_TYPE_MOUSE,
+	    5: INPUT_TYPE_KINECT // see https://twitter.com/jacobrossi/status/480596438489890816
+	};
+	
+	var POINTER_ELEMENT_EVENTS = 'pointerdown';
+	var POINTER_WINDOW_EVENTS = 'pointermove pointerup pointercancel';
+	
+	// IE10 has prefixed support, and case-sensitive
+	if (window.MSPointerEvent && !window.PointerEvent) {
+	    POINTER_ELEMENT_EVENTS = 'MSPointerDown';
+	    POINTER_WINDOW_EVENTS = 'MSPointerMove MSPointerUp MSPointerCancel';
+	}
+	
+	/**
+	 * Pointer events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function PointerEventInput() {
+	    this.evEl = POINTER_ELEMENT_EVENTS;
+	    this.evWin = POINTER_WINDOW_EVENTS;
+	
+	    Input.apply(this, arguments);
+	
+	    this.store = (this.manager.session.pointerEvents = []);
+	}
+	
+	inherit(PointerEventInput, Input, {
+	    /**
+	     * handle mouse events
+	     * @param {Object} ev
+	     */
+	    handler: function PEhandler(ev) {
+	        var store = this.store;
+	        var removePointer = false;
+	
+	        var eventTypeNormalized = ev.type.toLowerCase().replace('ms', '');
+	        var eventType = POINTER_INPUT_MAP[eventTypeNormalized];
+	        var pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
+	
+	        var isTouch = (pointerType == INPUT_TYPE_TOUCH);
+	
+	        // get index of the event in the store
+	        var storeIndex = inArray(store, ev.pointerId, 'pointerId');
+	
+	        // start and mouse must be down
+	        if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
+	            if (storeIndex < 0) {
+	                store.push(ev);
+	                storeIndex = store.length - 1;
+	            }
+	        } else if (eventType & (INPUT_END | INPUT_CANCEL)) {
+	            removePointer = true;
+	        }
+	
+	        // it not found, so the pointer hasn't been down (so it's probably a hover)
+	        if (storeIndex < 0) {
+	            return;
+	        }
+	
+	        // update the event in the store
+	        store[storeIndex] = ev;
+	
+	        this.callback(this.manager, eventType, {
+	            pointers: store,
+	            changedPointers: [ev],
+	            pointerType: pointerType,
+	            srcEvent: ev
+	        });
+	
+	        if (removePointer) {
+	            // remove from the store
+	            store.splice(storeIndex, 1);
+	        }
+	    }
+	});
+	
+	var SINGLE_TOUCH_INPUT_MAP = {
+	    touchstart: INPUT_START,
+	    touchmove: INPUT_MOVE,
+	    touchend: INPUT_END,
+	    touchcancel: INPUT_CANCEL
+	};
+	
+	var SINGLE_TOUCH_TARGET_EVENTS = 'touchstart';
+	var SINGLE_TOUCH_WINDOW_EVENTS = 'touchstart touchmove touchend touchcancel';
+	
+	/**
+	 * Touch events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function SingleTouchInput() {
+	    this.evTarget = SINGLE_TOUCH_TARGET_EVENTS;
+	    this.evWin = SINGLE_TOUCH_WINDOW_EVENTS;
+	    this.started = false;
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(SingleTouchInput, Input, {
+	    handler: function TEhandler(ev) {
+	        var type = SINGLE_TOUCH_INPUT_MAP[ev.type];
+	
+	        // should we handle the touch events?
+	        if (type === INPUT_START) {
+	            this.started = true;
+	        }
+	
+	        if (!this.started) {
+	            return;
+	        }
+	
+	        var touches = normalizeSingleTouches.call(this, ev, type);
+	
+	        // when done, reset the started state
+	        if (type & (INPUT_END | INPUT_CANCEL) && touches[0].length - touches[1].length === 0) {
+	            this.started = false;
+	        }
+	
+	        this.callback(this.manager, type, {
+	            pointers: touches[0],
+	            changedPointers: touches[1],
+	            pointerType: INPUT_TYPE_TOUCH,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	/**
+	 * @this {TouchInput}
+	 * @param {Object} ev
+	 * @param {Number} type flag
+	 * @returns {undefined|Array} [all, changed]
+	 */
+	function normalizeSingleTouches(ev, type) {
+	    var all = toArray(ev.touches);
+	    var changed = toArray(ev.changedTouches);
+	
+	    if (type & (INPUT_END | INPUT_CANCEL)) {
+	        all = uniqueArray(all.concat(changed), 'identifier', true);
+	    }
+	
+	    return [all, changed];
+	}
+	
+	var TOUCH_INPUT_MAP = {
+	    touchstart: INPUT_START,
+	    touchmove: INPUT_MOVE,
+	    touchend: INPUT_END,
+	    touchcancel: INPUT_CANCEL
+	};
+	
+	var TOUCH_TARGET_EVENTS = 'touchstart touchmove touchend touchcancel';
+	
+	/**
+	 * Multi-user touch events input
+	 * @constructor
+	 * @extends Input
+	 */
+	function TouchInput() {
+	    this.evTarget = TOUCH_TARGET_EVENTS;
+	    this.targetIds = {};
+	
+	    Input.apply(this, arguments);
+	}
+	
+	inherit(TouchInput, Input, {
+	    handler: function MTEhandler(ev) {
+	        var type = TOUCH_INPUT_MAP[ev.type];
+	        var touches = getTouches.call(this, ev, type);
+	        if (!touches) {
+	            return;
+	        }
+	
+	        this.callback(this.manager, type, {
+	            pointers: touches[0],
+	            changedPointers: touches[1],
+	            pointerType: INPUT_TYPE_TOUCH,
+	            srcEvent: ev
+	        });
+	    }
+	});
+	
+	/**
+	 * @this {TouchInput}
+	 * @param {Object} ev
+	 * @param {Number} type flag
+	 * @returns {undefined|Array} [all, changed]
+	 */
+	function getTouches(ev, type) {
+	    var allTouches = toArray(ev.touches);
+	    var targetIds = this.targetIds;
+	
+	    // when there is only one touch, the process can be simplified
+	    if (type & (INPUT_START | INPUT_MOVE) && allTouches.length === 1) {
+	        targetIds[allTouches[0].identifier] = true;
+	        return [allTouches, allTouches];
+	    }
+	
+	    var i,
+	        targetTouches,
+	        changedTouches = toArray(ev.changedTouches),
+	        changedTargetTouches = [],
+	        target = this.target;
+	
+	    // get target touches from touches
+	    targetTouches = allTouches.filter(function(touch) {
+	        return hasParent(touch.target, target);
+	    });
+	
+	    // collect touches
+	    if (type === INPUT_START) {
+	        i = 0;
+	        while (i < targetTouches.length) {
+	            targetIds[targetTouches[i].identifier] = true;
+	            i++;
+	        }
+	    }
+	
+	    // filter changed touches to only contain touches that exist in the collected target ids
+	    i = 0;
+	    while (i < changedTouches.length) {
+	        if (targetIds[changedTouches[i].identifier]) {
+	            changedTargetTouches.push(changedTouches[i]);
+	        }
+	
+	        // cleanup removed touches
+	        if (type & (INPUT_END | INPUT_CANCEL)) {
+	            delete targetIds[changedTouches[i].identifier];
+	        }
+	        i++;
+	    }
+	
+	    if (!changedTargetTouches.length) {
+	        return;
+	    }
+	
+	    return [
+	        // merge targetTouches with changedTargetTouches so it contains ALL touches, including 'end' and 'cancel'
+	        uniqueArray(targetTouches.concat(changedTargetTouches), 'identifier', true),
+	        changedTargetTouches
+	    ];
+	}
+	
+	/**
+	 * Combined touch and mouse input
+	 *
+	 * Touch has a higher priority then mouse, and while touching no mouse events are allowed.
+	 * This because touch devices also emit mouse events while doing a touch.
+	 *
+	 * @constructor
+	 * @extends Input
+	 */
+	function TouchMouseInput() {
+	    Input.apply(this, arguments);
+	
+	    var handler = bindFn(this.handler, this);
+	    this.touch = new TouchInput(this.manager, handler);
+	    this.mouse = new MouseInput(this.manager, handler);
+	}
+	
+	inherit(TouchMouseInput, Input, {
+	    /**
+	     * handle mouse and touch events
+	     * @param {Hammer} manager
+	     * @param {String} inputEvent
+	     * @param {Object} inputData
+	     */
+	    handler: function TMEhandler(manager, inputEvent, inputData) {
+	        var isTouch = (inputData.pointerType == INPUT_TYPE_TOUCH),
+	            isMouse = (inputData.pointerType == INPUT_TYPE_MOUSE);
+	
+	        // when we're in a touch event, so  block all upcoming mouse events
+	        // most mobile browser also emit mouseevents, right after touchstart
+	        if (isTouch) {
+	            this.mouse.allow = false;
+	        } else if (isMouse && !this.mouse.allow) {
+	            return;
+	        }
+	
+	        // reset the allowMouse when we're done
+	        if (inputEvent & (INPUT_END | INPUT_CANCEL)) {
+	            this.mouse.allow = true;
+	        }
+	
+	        this.callback(manager, inputEvent, inputData);
+	    },
+	
+	    /**
+	     * remove the event listeners
+	     */
+	    destroy: function destroy() {
+	        this.touch.destroy();
+	        this.mouse.destroy();
+	    }
+	});
+	
+	var PREFIXED_TOUCH_ACTION = prefixed(TEST_ELEMENT.style, 'touchAction');
+	var NATIVE_TOUCH_ACTION = PREFIXED_TOUCH_ACTION !== undefined;
+	
+	// magical touchAction value
+	var TOUCH_ACTION_COMPUTE = 'compute';
+	var TOUCH_ACTION_AUTO = 'auto';
+	var TOUCH_ACTION_MANIPULATION = 'manipulation'; // not implemented
+	var TOUCH_ACTION_NONE = 'none';
+	var TOUCH_ACTION_PAN_X = 'pan-x';
+	var TOUCH_ACTION_PAN_Y = 'pan-y';
+	
+	/**
+	 * Touch Action
+	 * sets the touchAction property or uses the js alternative
+	 * @param {Manager} manager
+	 * @param {String} value
+	 * @constructor
+	 */
+	function TouchAction(manager, value) {
+	    this.manager = manager;
+	    this.set(value);
+	}
+	
+	TouchAction.prototype = {
+	    /**
+	     * set the touchAction value on the element or enable the polyfill
+	     * @param {String} value
+	     */
+	    set: function(value) {
+	        // find out the touch-action by the event handlers
+	        if (value == TOUCH_ACTION_COMPUTE) {
+	            value = this.compute();
+	        }
+	
+	        if (NATIVE_TOUCH_ACTION && this.manager.element.style) {
+	            this.manager.element.style[PREFIXED_TOUCH_ACTION] = value;
+	        }
+	        this.actions = value.toLowerCase().trim();
+	    },
+	
+	    /**
+	     * just re-set the touchAction value
+	     */
+	    update: function() {
+	        this.set(this.manager.options.touchAction);
+	    },
+	
+	    /**
+	     * compute the value for the touchAction property based on the recognizer's settings
+	     * @returns {String} value
+	     */
+	    compute: function() {
+	        var actions = [];
+	        each(this.manager.recognizers, function(recognizer) {
+	            if (boolOrFn(recognizer.options.enable, [recognizer])) {
+	                actions = actions.concat(recognizer.getTouchAction());
+	            }
+	        });
+	        return cleanTouchActions(actions.join(' '));
+	    },
+	
+	    /**
+	     * this method is called on each input cycle and provides the preventing of the browser behavior
+	     * @param {Object} input
+	     */
+	    preventDefaults: function(input) {
+	        // not needed with native support for the touchAction property
+	        if (NATIVE_TOUCH_ACTION) {
+	            return;
+	        }
+	
+	        var srcEvent = input.srcEvent;
+	        var direction = input.offsetDirection;
+	
+	        // if the touch action did prevented once this session
+	        if (this.manager.session.prevented) {
+	            srcEvent.preventDefault();
+	            return;
+	        }
+	
+	        var actions = this.actions;
+	        var hasNone = inStr(actions, TOUCH_ACTION_NONE);
+	        var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+	        var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+	
+	        if (hasNone) {
+	            //do not prevent defaults if this is a tap gesture
+	
+	            var isTapPointer = input.pointers.length === 1;
+	            var isTapMovement = input.distance < 2;
+	            var isTapTouchTime = input.deltaTime < 250;
+	
+	            if (isTapPointer && isTapMovement && isTapTouchTime) {
+	                return;
+	            }
+	        }
+	
+	        if (hasPanX && hasPanY) {
+	            // `pan-x pan-y` means browser handles all scrolling/panning, do not prevent
+	            return;
+	        }
+	
+	        if (hasNone ||
+	            (hasPanY && direction & DIRECTION_HORIZONTAL) ||
+	            (hasPanX && direction & DIRECTION_VERTICAL)) {
+	            return this.preventSrc(srcEvent);
+	        }
+	    },
+	
+	    /**
+	     * call preventDefault to prevent the browser's default behavior (scrolling in most cases)
+	     * @param {Object} srcEvent
+	     */
+	    preventSrc: function(srcEvent) {
+	        this.manager.session.prevented = true;
+	        srcEvent.preventDefault();
+	    }
+	};
+	
+	/**
+	 * when the touchActions are collected they are not a valid value, so we need to clean things up. *
+	 * @param {String} actions
+	 * @returns {*}
+	 */
+	function cleanTouchActions(actions) {
+	    // none
+	    if (inStr(actions, TOUCH_ACTION_NONE)) {
+	        return TOUCH_ACTION_NONE;
+	    }
+	
+	    var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+	    var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+	
+	    // if both pan-x and pan-y are set (different recognizers
+	    // for different directions, e.g. horizontal pan but vertical swipe?)
+	    // we need none (as otherwise with pan-x pan-y combined none of these
+	    // recognizers will work, since the browser would handle all panning
+	    if (hasPanX && hasPanY) {
+	        return TOUCH_ACTION_NONE;
+	    }
+	
+	    // pan-x OR pan-y
+	    if (hasPanX || hasPanY) {
+	        return hasPanX ? TOUCH_ACTION_PAN_X : TOUCH_ACTION_PAN_Y;
+	    }
+	
+	    // manipulation
+	    if (inStr(actions, TOUCH_ACTION_MANIPULATION)) {
+	        return TOUCH_ACTION_MANIPULATION;
+	    }
+	
+	    return TOUCH_ACTION_AUTO;
+	}
+	
+	/**
+	 * Recognizer flow explained; *
+	 * All recognizers have the initial state of POSSIBLE when a input session starts.
+	 * The definition of a input session is from the first input until the last input, with all it's movement in it. *
+	 * Example session for mouse-input: mousedown -> mousemove -> mouseup
+	 *
+	 * On each recognizing cycle (see Manager.recognize) the .recognize() method is executed
+	 * which determines with state it should be.
+	 *
+	 * If the recognizer has the state FAILED, CANCELLED or RECOGNIZED (equals ENDED), it is reset to
+	 * POSSIBLE to give it another change on the next cycle.
+	 *
+	 *               Possible
+	 *                  |
+	 *            +-----+---------------+
+	 *            |                     |
+	 *      +-----+-----+               |
+	 *      |           |               |
+	 *   Failed      Cancelled          |
+	 *                          +-------+------+
+	 *                          |              |
+	 *                      Recognized       Began
+	 *                                         |
+	 *                                      Changed
+	 *                                         |
+	 *                                  Ended/Recognized
+	 */
+	var STATE_POSSIBLE = 1;
+	var STATE_BEGAN = 2;
+	var STATE_CHANGED = 4;
+	var STATE_ENDED = 8;
+	var STATE_RECOGNIZED = STATE_ENDED;
+	var STATE_CANCELLED = 16;
+	var STATE_FAILED = 32;
+	
+	/**
+	 * Recognizer
+	 * Every recognizer needs to extend from this class.
+	 * @constructor
+	 * @param {Object} options
+	 */
+	function Recognizer(options) {
+	    this.options = assign({}, this.defaults, options || {});
+	
+	    this.id = uniqueId();
+	
+	    this.manager = null;
+	
+	    // default is enable true
+	    this.options.enable = ifUndefined(this.options.enable, true);
+	
+	    this.state = STATE_POSSIBLE;
+	
+	    this.simultaneous = {};
+	    this.requireFail = [];
+	}
+	
+	Recognizer.prototype = {
+	    /**
+	     * @virtual
+	     * @type {Object}
+	     */
+	    defaults: {},
+	
+	    /**
+	     * set options
+	     * @param {Object} options
+	     * @return {Recognizer}
+	     */
+	    set: function(options) {
+	        assign(this.options, options);
+	
+	        // also update the touchAction, in case something changed about the directions/enabled state
+	        this.manager && this.manager.touchAction.update();
+	        return this;
+	    },
+	
+	    /**
+	     * recognize simultaneous with an other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    recognizeWith: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'recognizeWith', this)) {
+	            return this;
+	        }
+	
+	        var simultaneous = this.simultaneous;
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        if (!simultaneous[otherRecognizer.id]) {
+	            simultaneous[otherRecognizer.id] = otherRecognizer;
+	            otherRecognizer.recognizeWith(this);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * drop the simultaneous link. it doesnt remove the link on the other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    dropRecognizeWith: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'dropRecognizeWith', this)) {
+	            return this;
+	        }
+	
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        delete this.simultaneous[otherRecognizer.id];
+	        return this;
+	    },
+	
+	    /**
+	     * recognizer can only run when an other is failing
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    requireFailure: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'requireFailure', this)) {
+	            return this;
+	        }
+	
+	        var requireFail = this.requireFail;
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        if (inArray(requireFail, otherRecognizer) === -1) {
+	            requireFail.push(otherRecognizer);
+	            otherRecognizer.requireFailure(this);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * drop the requireFailure link. it does not remove the link on the other recognizer.
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Recognizer} this
+	     */
+	    dropRequireFailure: function(otherRecognizer) {
+	        if (invokeArrayArg(otherRecognizer, 'dropRequireFailure', this)) {
+	            return this;
+	        }
+	
+	        otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+	        var index = inArray(this.requireFail, otherRecognizer);
+	        if (index > -1) {
+	            this.requireFail.splice(index, 1);
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * has require failures boolean
+	     * @returns {boolean}
+	     */
+	    hasRequireFailures: function() {
+	        return this.requireFail.length > 0;
+	    },
+	
+	    /**
+	     * if the recognizer can recognize simultaneous with an other recognizer
+	     * @param {Recognizer} otherRecognizer
+	     * @returns {Boolean}
+	     */
+	    canRecognizeWith: function(otherRecognizer) {
+	        return !!this.simultaneous[otherRecognizer.id];
+	    },
+	
+	    /**
+	     * You should use `tryEmit` instead of `emit` directly to check
+	     * that all the needed recognizers has failed before emitting.
+	     * @param {Object} input
+	     */
+	    emit: function(input) {
+	        var self = this;
+	        var state = this.state;
+	
+	        function emit(event) {
+	            self.manager.emit(event, input);
+	        }
+	
+	        // 'panstart' and 'panmove'
+	        if (state < STATE_ENDED) {
+	            emit(self.options.event + stateStr(state));
+	        }
+	
+	        emit(self.options.event); // simple 'eventName' events
+	
+	        if (input.additionalEvent) { // additional event(panleft, panright, pinchin, pinchout...)
+	            emit(input.additionalEvent);
+	        }
+	
+	        // panend and pancancel
+	        if (state >= STATE_ENDED) {
+	            emit(self.options.event + stateStr(state));
+	        }
+	    },
+	
+	    /**
+	     * Check that all the require failure recognizers has failed,
+	     * if true, it emits a gesture event,
+	     * otherwise, setup the state to FAILED.
+	     * @param {Object} input
+	     */
+	    tryEmit: function(input) {
+	        if (this.canEmit()) {
+	            return this.emit(input);
+	        }
+	        // it's failing anyway
+	        this.state = STATE_FAILED;
+	    },
+	
+	    /**
+	     * can we emit?
+	     * @returns {boolean}
+	     */
+	    canEmit: function() {
+	        var i = 0;
+	        while (i < this.requireFail.length) {
+	            if (!(this.requireFail[i].state & (STATE_FAILED | STATE_POSSIBLE))) {
+	                return false;
+	            }
+	            i++;
+	        }
+	        return true;
+	    },
+	
+	    /**
+	     * update the recognizer
+	     * @param {Object} inputData
+	     */
+	    recognize: function(inputData) {
+	        // make a new copy of the inputData
+	        // so we can change the inputData without messing up the other recognizers
+	        var inputDataClone = assign({}, inputData);
+	
+	        // is is enabled and allow recognizing?
+	        if (!boolOrFn(this.options.enable, [this, inputDataClone])) {
+	            this.reset();
+	            this.state = STATE_FAILED;
+	            return;
+	        }
+	
+	        // reset when we've reached the end
+	        if (this.state & (STATE_RECOGNIZED | STATE_CANCELLED | STATE_FAILED)) {
+	            this.state = STATE_POSSIBLE;
+	        }
+	
+	        this.state = this.process(inputDataClone);
+	
+	        // the recognizer has recognized a gesture
+	        // so trigger an event
+	        if (this.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED | STATE_CANCELLED)) {
+	            this.tryEmit(inputDataClone);
+	        }
+	    },
+	
+	    /**
+	     * return the state of the recognizer
+	     * the actual recognizing happens in this method
+	     * @virtual
+	     * @param {Object} inputData
+	     * @returns {Const} STATE
+	     */
+	    process: function(inputData) { }, // jshint ignore:line
+	
+	    /**
+	     * return the preferred touch-action
+	     * @virtual
+	     * @returns {Array}
+	     */
+	    getTouchAction: function() { },
+	
+	    /**
+	     * called when the gesture isn't allowed to recognize
+	     * like when another is being recognized or it is disabled
+	     * @virtual
+	     */
+	    reset: function() { }
+	};
+	
+	/**
+	 * get a usable string, used as event postfix
+	 * @param {Const} state
+	 * @returns {String} state
+	 */
+	function stateStr(state) {
+	    if (state & STATE_CANCELLED) {
+	        return 'cancel';
+	    } else if (state & STATE_ENDED) {
+	        return 'end';
+	    } else if (state & STATE_CHANGED) {
+	        return 'move';
+	    } else if (state & STATE_BEGAN) {
+	        return 'start';
+	    }
+	    return '';
+	}
+	
+	/**
+	 * direction cons to string
+	 * @param {Const} direction
+	 * @returns {String}
+	 */
+	function directionStr(direction) {
+	    if (direction == DIRECTION_DOWN) {
+	        return 'down';
+	    } else if (direction == DIRECTION_UP) {
+	        return 'up';
+	    } else if (direction == DIRECTION_LEFT) {
+	        return 'left';
+	    } else if (direction == DIRECTION_RIGHT) {
+	        return 'right';
+	    }
+	    return '';
+	}
+	
+	/**
+	 * get a recognizer by name if it is bound to a manager
+	 * @param {Recognizer|String} otherRecognizer
+	 * @param {Recognizer} recognizer
+	 * @returns {Recognizer}
+	 */
+	function getRecognizerByNameIfManager(otherRecognizer, recognizer) {
+	    var manager = recognizer.manager;
+	    if (manager) {
+	        return manager.get(otherRecognizer);
+	    }
+	    return otherRecognizer;
+	}
+	
+	/**
+	 * This recognizer is just used as a base for the simple attribute recognizers.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function AttrRecognizer() {
+	    Recognizer.apply(this, arguments);
+	}
+	
+	inherit(AttrRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof AttrRecognizer
+	     */
+	    defaults: {
+	        /**
+	         * @type {Number}
+	         * @default 1
+	         */
+	        pointers: 1
+	    },
+	
+	    /**
+	     * Used to check if it the recognizer receives valid input, like input.distance > 10.
+	     * @memberof AttrRecognizer
+	     * @param {Object} input
+	     * @returns {Boolean} recognized
+	     */
+	    attrTest: function(input) {
+	        var optionPointers = this.options.pointers;
+	        return optionPointers === 0 || input.pointers.length === optionPointers;
+	    },
+	
+	    /**
+	     * Process the input and return the state for the recognizer
+	     * @memberof AttrRecognizer
+	     * @param {Object} input
+	     * @returns {*} State
+	     */
+	    process: function(input) {
+	        var state = this.state;
+	        var eventType = input.eventType;
+	
+	        var isRecognized = state & (STATE_BEGAN | STATE_CHANGED);
+	        var isValid = this.attrTest(input);
+	
+	        // on cancel input and we've recognized before, return STATE_CANCELLED
+	        if (isRecognized && (eventType & INPUT_CANCEL || !isValid)) {
+	            return state | STATE_CANCELLED;
+	        } else if (isRecognized || isValid) {
+	            if (eventType & INPUT_END) {
+	                return state | STATE_ENDED;
+	            } else if (!(state & STATE_BEGAN)) {
+	                return STATE_BEGAN;
+	            }
+	            return state | STATE_CHANGED;
+	        }
+	        return STATE_FAILED;
+	    }
+	});
+	
+	/**
+	 * Pan
+	 * Recognized when the pointer is down and moved in the allowed direction.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function PanRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	
+	    this.pX = null;
+	    this.pY = null;
+	}
+	
+	inherit(PanRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PanRecognizer
+	     */
+	    defaults: {
+	        event: 'pan',
+	        threshold: 10,
+	        pointers: 1,
+	        direction: DIRECTION_ALL
+	    },
+	
+	    getTouchAction: function() {
+	        var direction = this.options.direction;
+	        var actions = [];
+	        if (direction & DIRECTION_HORIZONTAL) {
+	            actions.push(TOUCH_ACTION_PAN_Y);
+	        }
+	        if (direction & DIRECTION_VERTICAL) {
+	            actions.push(TOUCH_ACTION_PAN_X);
+	        }
+	        return actions;
+	    },
+	
+	    directionTest: function(input) {
+	        var options = this.options;
+	        var hasMoved = true;
+	        var distance = input.distance;
+	        var direction = input.direction;
+	        var x = input.deltaX;
+	        var y = input.deltaY;
+	
+	        // lock to axis?
+	        if (!(direction & options.direction)) {
+	            if (options.direction & DIRECTION_HORIZONTAL) {
+	                direction = (x === 0) ? DIRECTION_NONE : (x < 0) ? DIRECTION_LEFT : DIRECTION_RIGHT;
+	                hasMoved = x != this.pX;
+	                distance = Math.abs(input.deltaX);
+	            } else {
+	                direction = (y === 0) ? DIRECTION_NONE : (y < 0) ? DIRECTION_UP : DIRECTION_DOWN;
+	                hasMoved = y != this.pY;
+	                distance = Math.abs(input.deltaY);
+	            }
+	        }
+	        input.direction = direction;
+	        return hasMoved && distance > options.threshold && direction & options.direction;
+	    },
+	
+	    attrTest: function(input) {
+	        return AttrRecognizer.prototype.attrTest.call(this, input) &&
+	            (this.state & STATE_BEGAN || (!(this.state & STATE_BEGAN) && this.directionTest(input)));
+	    },
+	
+	    emit: function(input) {
+	
+	        this.pX = input.deltaX;
+	        this.pY = input.deltaY;
+	
+	        var direction = directionStr(input.direction);
+	
+	        if (direction) {
+	            input.additionalEvent = this.options.event + direction;
+	        }
+	        this._super.emit.call(this, input);
+	    }
+	});
+	
+	/**
+	 * Pinch
+	 * Recognized when two or more pointers are moving toward (zoom-in) or away from each other (zoom-out).
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function PinchRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(PinchRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PinchRecognizer
+	     */
+	    defaults: {
+	        event: 'pinch',
+	        threshold: 0,
+	        pointers: 2
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_NONE];
+	    },
+	
+	    attrTest: function(input) {
+	        return this._super.attrTest.call(this, input) &&
+	            (Math.abs(input.scale - 1) > this.options.threshold || this.state & STATE_BEGAN);
+	    },
+	
+	    emit: function(input) {
+	        if (input.scale !== 1) {
+	            var inOut = input.scale < 1 ? 'in' : 'out';
+	            input.additionalEvent = this.options.event + inOut;
+	        }
+	        this._super.emit.call(this, input);
+	    }
+	});
+	
+	/**
+	 * Press
+	 * Recognized when the pointer is down for x ms without any movement.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function PressRecognizer() {
+	    Recognizer.apply(this, arguments);
+	
+	    this._timer = null;
+	    this._input = null;
+	}
+	
+	inherit(PressRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PressRecognizer
+	     */
+	    defaults: {
+	        event: 'press',
+	        pointers: 1,
+	        time: 251, // minimal time of the pointer to be pressed
+	        threshold: 9 // a minimal movement is ok, but keep it low
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_AUTO];
+	    },
+	
+	    process: function(input) {
+	        var options = this.options;
+	        var validPointers = input.pointers.length === options.pointers;
+	        var validMovement = input.distance < options.threshold;
+	        var validTime = input.deltaTime > options.time;
+	
+	        this._input = input;
+	
+	        // we only allow little movement
+	        // and we've reached an end event, so a tap is possible
+	        if (!validMovement || !validPointers || (input.eventType & (INPUT_END | INPUT_CANCEL) && !validTime)) {
+	            this.reset();
+	        } else if (input.eventType & INPUT_START) {
+	            this.reset();
+	            this._timer = setTimeoutContext(function() {
+	                this.state = STATE_RECOGNIZED;
+	                this.tryEmit();
+	            }, options.time, this);
+	        } else if (input.eventType & INPUT_END) {
+	            return STATE_RECOGNIZED;
+	        }
+	        return STATE_FAILED;
+	    },
+	
+	    reset: function() {
+	        clearTimeout(this._timer);
+	    },
+	
+	    emit: function(input) {
+	        if (this.state !== STATE_RECOGNIZED) {
+	            return;
+	        }
+	
+	        if (input && (input.eventType & INPUT_END)) {
+	            this.manager.emit(this.options.event + 'up', input);
+	        } else {
+	            this._input.timeStamp = now();
+	            this.manager.emit(this.options.event, this._input);
+	        }
+	    }
+	});
+	
+	/**
+	 * Rotate
+	 * Recognized when two or more pointer are moving in a circular motion.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function RotateRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(RotateRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof RotateRecognizer
+	     */
+	    defaults: {
+	        event: 'rotate',
+	        threshold: 0,
+	        pointers: 2
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_NONE];
+	    },
+	
+	    attrTest: function(input) {
+	        return this._super.attrTest.call(this, input) &&
+	            (Math.abs(input.rotation) > this.options.threshold || this.state & STATE_BEGAN);
+	    }
+	});
+	
+	/**
+	 * Swipe
+	 * Recognized when the pointer is moving fast (velocity), with enough distance in the allowed direction.
+	 * @constructor
+	 * @extends AttrRecognizer
+	 */
+	function SwipeRecognizer() {
+	    AttrRecognizer.apply(this, arguments);
+	}
+	
+	inherit(SwipeRecognizer, AttrRecognizer, {
+	    /**
+	     * @namespace
+	     * @memberof SwipeRecognizer
+	     */
+	    defaults: {
+	        event: 'swipe',
+	        threshold: 10,
+	        velocity: 0.3,
+	        direction: DIRECTION_HORIZONTAL | DIRECTION_VERTICAL,
+	        pointers: 1
+	    },
+	
+	    getTouchAction: function() {
+	        return PanRecognizer.prototype.getTouchAction.call(this);
+	    },
+	
+	    attrTest: function(input) {
+	        var direction = this.options.direction;
+	        var velocity;
+	
+	        if (direction & (DIRECTION_HORIZONTAL | DIRECTION_VERTICAL)) {
+	            velocity = input.overallVelocity;
+	        } else if (direction & DIRECTION_HORIZONTAL) {
+	            velocity = input.overallVelocityX;
+	        } else if (direction & DIRECTION_VERTICAL) {
+	            velocity = input.overallVelocityY;
+	        }
+	
+	        return this._super.attrTest.call(this, input) &&
+	            direction & input.offsetDirection &&
+	            input.distance > this.options.threshold &&
+	            input.maxPointers == this.options.pointers &&
+	            abs(velocity) > this.options.velocity && input.eventType & INPUT_END;
+	    },
+	
+	    emit: function(input) {
+	        var direction = directionStr(input.offsetDirection);
+	        if (direction) {
+	            this.manager.emit(this.options.event + direction, input);
+	        }
+	
+	        this.manager.emit(this.options.event, input);
+	    }
+	});
+	
+	/**
+	 * A tap is ecognized when the pointer is doing a small tap/click. Multiple taps are recognized if they occur
+	 * between the given interval and position. The delay option can be used to recognize multi-taps without firing
+	 * a single tap.
+	 *
+	 * The eventData from the emitted event contains the property `tapCount`, which contains the amount of
+	 * multi-taps being recognized.
+	 * @constructor
+	 * @extends Recognizer
+	 */
+	function TapRecognizer() {
+	    Recognizer.apply(this, arguments);
+	
+	    // previous time and center,
+	    // used for tap counting
+	    this.pTime = false;
+	    this.pCenter = false;
+	
+	    this._timer = null;
+	    this._input = null;
+	    this.count = 0;
+	}
+	
+	inherit(TapRecognizer, Recognizer, {
+	    /**
+	     * @namespace
+	     * @memberof PinchRecognizer
+	     */
+	    defaults: {
+	        event: 'tap',
+	        pointers: 1,
+	        taps: 1,
+	        interval: 300, // max time between the multi-tap taps
+	        time: 250, // max time of the pointer to be down (like finger on the screen)
+	        threshold: 9, // a minimal movement is ok, but keep it low
+	        posThreshold: 10 // a multi-tap can be a bit off the initial position
+	    },
+	
+	    getTouchAction: function() {
+	        return [TOUCH_ACTION_MANIPULATION];
+	    },
+	
+	    process: function(input) {
+	        var options = this.options;
+	
+	        var validPointers = input.pointers.length === options.pointers;
+	        var validMovement = input.distance < options.threshold;
+	        var validTouchTime = input.deltaTime < options.time;
+	
+	        this.reset();
+	
+	        if ((input.eventType & INPUT_START) && (this.count === 0)) {
+	            return this.failTimeout();
+	        }
+	
+	        // we only allow little movement
+	        // and we've reached an end event, so a tap is possible
+	        if (validMovement && validTouchTime && validPointers) {
+	            if (input.eventType != INPUT_END) {
+	                return this.failTimeout();
+	            }
+	
+	            var validInterval = this.pTime ? (input.timeStamp - this.pTime < options.interval) : true;
+	            var validMultiTap = !this.pCenter || getDistance(this.pCenter, input.center) < options.posThreshold;
+	
+	            this.pTime = input.timeStamp;
+	            this.pCenter = input.center;
+	
+	            if (!validMultiTap || !validInterval) {
+	                this.count = 1;
+	            } else {
+	                this.count += 1;
+	            }
+	
+	            this._input = input;
+	
+	            // if tap count matches we have recognized it,
+	            // else it has began recognizing...
+	            var tapCount = this.count % options.taps;
+	            if (tapCount === 0) {
+	                // no failing requirements, immediately trigger the tap event
+	                // or wait as long as the multitap interval to trigger
+	                if (!this.hasRequireFailures()) {
+	                    return STATE_RECOGNIZED;
+	                } else {
+	                    this._timer = setTimeoutContext(function() {
+	                        this.state = STATE_RECOGNIZED;
+	                        this.tryEmit();
+	                    }, options.interval, this);
+	                    return STATE_BEGAN;
+	                }
+	            }
+	        }
+	        return STATE_FAILED;
+	    },
+	
+	    failTimeout: function() {
+	        this._timer = setTimeoutContext(function() {
+	            this.state = STATE_FAILED;
+	        }, this.options.interval, this);
+	        return STATE_FAILED;
+	    },
+	
+	    reset: function() {
+	        clearTimeout(this._timer);
+	    },
+	
+	    emit: function() {
+	        if (this.state == STATE_RECOGNIZED) {
+	            this._input.tapCount = this.count;
+	            this.manager.emit(this.options.event, this._input);
+	        }
+	    }
+	});
+	
+	/**
+	 * Simple way to create a manager with a default set of recognizers.
+	 * @param {HTMLElement} element
+	 * @param {Object} [options]
+	 * @constructor
+	 */
+	function Hammer(element, options) {
+	    options = options || {};
+	    options.recognizers = ifUndefined(options.recognizers, Hammer.defaults.preset);
+	    return new Manager(element, options);
+	}
+	
+	/**
+	 * @const {string}
+	 */
+	Hammer.VERSION = '2.0.6';
+	
+	/**
+	 * default settings
+	 * @namespace
+	 */
+	Hammer.defaults = {
+	    /**
+	     * set if DOM events are being triggered.
+	     * But this is slower and unused by simple implementations, so disabled by default.
+	     * @type {Boolean}
+	     * @default false
+	     */
+	    domEvents: false,
+	
+	    /**
+	     * The value for the touchAction property/fallback.
+	     * When set to `compute` it will magically set the correct value based on the added recognizers.
+	     * @type {String}
+	     * @default compute
+	     */
+	    touchAction: TOUCH_ACTION_COMPUTE,
+	
+	    /**
+	     * @type {Boolean}
+	     * @default true
+	     */
+	    enable: true,
+	
+	    /**
+	     * EXPERIMENTAL FEATURE -- can be removed/changed
+	     * Change the parent input target element.
+	     * If Null, then it is being set the to main element.
+	     * @type {Null|EventTarget}
+	     * @default null
+	     */
+	    inputTarget: null,
+	
+	    /**
+	     * force an input class
+	     * @type {Null|Function}
+	     * @default null
+	     */
+	    inputClass: null,
+	
+	    /**
+	     * Default recognizer setup when calling `Hammer()`
+	     * When creating a new Manager these will be skipped.
+	     * @type {Array}
+	     */
+	    preset: [
+	        // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
+	        [RotateRecognizer, {enable: false}],
+	        [PinchRecognizer, {enable: false}, ['rotate']],
+	        [SwipeRecognizer, {direction: DIRECTION_HORIZONTAL}],
+	        [PanRecognizer, {direction: DIRECTION_HORIZONTAL}, ['swipe']],
+	        [TapRecognizer],
+	        [TapRecognizer, {event: 'doubletap', taps: 2}, ['tap']],
+	        [PressRecognizer]
+	    ],
+	
+	    /**
+	     * Some CSS properties can be used to improve the working of Hammer.
+	     * Add them to this method and they will be set when creating a new Manager.
+	     * @namespace
+	     */
+	    cssProps: {
+	        /**
+	         * Disables text selection to improve the dragging gesture. Mainly for desktop browsers.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        userSelect: 'none',
+	
+	        /**
+	         * Disable the Windows Phone grippers when pressing an element.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        touchSelect: 'none',
+	
+	        /**
+	         * Disables the default callout shown when you touch and hold a touch target.
+	         * On iOS, when you touch and hold a touch target such as a link, Safari displays
+	         * a callout containing information about the link. This property allows you to disable that callout.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        touchCallout: 'none',
+	
+	        /**
+	         * Specifies whether zooming is enabled. Used by IE10>
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        contentZooming: 'none',
+	
+	        /**
+	         * Specifies that an entire element should be draggable instead of its contents. Mainly for desktop browsers.
+	         * @type {String}
+	         * @default 'none'
+	         */
+	        userDrag: 'none',
+	
+	        /**
+	         * Overrides the highlight color shown when the user taps a link or a JavaScript
+	         * clickable element in iOS. This property obeys the alpha value, if specified.
+	         * @type {String}
+	         * @default 'rgba(0,0,0,0)'
+	         */
+	        tapHighlightColor: 'rgba(0,0,0,0)'
+	    }
+	};
+	
+	var STOP = 1;
+	var FORCED_STOP = 2;
+	
+	/**
+	 * Manager
+	 * @param {HTMLElement} element
+	 * @param {Object} [options]
+	 * @constructor
+	 */
+	function Manager(element, options) {
+	    this.options = assign({}, Hammer.defaults, options || {});
+	
+	    this.options.inputTarget = this.options.inputTarget || element;
+	
+	    this.handlers = {};
+	    this.session = {};
+	    this.recognizers = [];
+	
+	    this.element = element;
+	    this.input = createInputInstance(this);
+	    this.touchAction = new TouchAction(this, this.options.touchAction);
+	
+	    toggleCssProps(this, true);
+	
+	    each(this.options.recognizers, function(item) {
+	        var recognizer = this.add(new (item[0])(item[1]));
+	        item[2] && recognizer.recognizeWith(item[2]);
+	        item[3] && recognizer.requireFailure(item[3]);
+	    }, this);
+	}
+	
+	Manager.prototype = {
+	    /**
+	     * set options
+	     * @param {Object} options
+	     * @returns {Manager}
+	     */
+	    set: function(options) {
+	        assign(this.options, options);
+	
+	        // Options that need a little more setup
+	        if (options.touchAction) {
+	            this.touchAction.update();
+	        }
+	        if (options.inputTarget) {
+	            // Clean up existing event listeners and reinitialize
+	            this.input.destroy();
+	            this.input.target = options.inputTarget;
+	            this.input.init();
+	        }
+	        return this;
+	    },
+	
+	    /**
+	     * stop recognizing for this session.
+	     * This session will be discarded, when a new [input]start event is fired.
+	     * When forced, the recognizer cycle is stopped immediately.
+	     * @param {Boolean} [force]
+	     */
+	    stop: function(force) {
+	        this.session.stopped = force ? FORCED_STOP : STOP;
+	    },
+	
+	    /**
+	     * run the recognizers!
+	     * called by the inputHandler function on every movement of the pointers (touches)
+	     * it walks through all the recognizers and tries to detect the gesture that is being made
+	     * @param {Object} inputData
+	     */
+	    recognize: function(inputData) {
+	        var session = this.session;
+	        if (session.stopped) {
+	            return;
+	        }
+	
+	        // run the touch-action polyfill
+	        this.touchAction.preventDefaults(inputData);
+	
+	        var recognizer;
+	        var recognizers = this.recognizers;
+	
+	        // this holds the recognizer that is being recognized.
+	        // so the recognizer's state needs to be BEGAN, CHANGED, ENDED or RECOGNIZED
+	        // if no recognizer is detecting a thing, it is set to `null`
+	        var curRecognizer = session.curRecognizer;
+	
+	        // reset when the last recognizer is recognized
+	        // or when we're in a new session
+	        if (!curRecognizer || (curRecognizer && curRecognizer.state & STATE_RECOGNIZED)) {
+	            curRecognizer = session.curRecognizer = null;
+	        }
+	
+	        var i = 0;
+	        while (i < recognizers.length) {
+	            recognizer = recognizers[i];
+	
+	            // find out if we are allowed try to recognize the input for this one.
+	            // 1.   allow if the session is NOT forced stopped (see the .stop() method)
+	            // 2.   allow if we still haven't recognized a gesture in this session, or the this recognizer is the one
+	            //      that is being recognized.
+	            // 3.   allow if the recognizer is allowed to run simultaneous with the current recognized recognizer.
+	            //      this can be setup with the `recognizeWith()` method on the recognizer.
+	            if (session.stopped !== FORCED_STOP && ( // 1
+	                    !curRecognizer || recognizer == curRecognizer || // 2
+	                    recognizer.canRecognizeWith(curRecognizer))) { // 3
+	                recognizer.recognize(inputData);
+	            } else {
+	                recognizer.reset();
+	            }
+	
+	            // if the recognizer has been recognizing the input as a valid gesture, we want to store this one as the
+	            // current active recognizer. but only if we don't already have an active recognizer
+	            if (!curRecognizer && recognizer.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED)) {
+	                curRecognizer = session.curRecognizer = recognizer;
+	            }
+	            i++;
+	        }
+	    },
+	
+	    /**
+	     * get a recognizer by its event name.
+	     * @param {Recognizer|String} recognizer
+	     * @returns {Recognizer|Null}
+	     */
+	    get: function(recognizer) {
+	        if (recognizer instanceof Recognizer) {
+	            return recognizer;
+	        }
+	
+	        var recognizers = this.recognizers;
+	        for (var i = 0; i < recognizers.length; i++) {
+	            if (recognizers[i].options.event == recognizer) {
+	                return recognizers[i];
+	            }
+	        }
+	        return null;
+	    },
+	
+	    /**
+	     * add a recognizer to the manager
+	     * existing recognizers with the same event name will be removed
+	     * @param {Recognizer} recognizer
+	     * @returns {Recognizer|Manager}
+	     */
+	    add: function(recognizer) {
+	        if (invokeArrayArg(recognizer, 'add', this)) {
+	            return this;
+	        }
+	
+	        // remove existing
+	        var existing = this.get(recognizer.options.event);
+	        if (existing) {
+	            this.remove(existing);
+	        }
+	
+	        this.recognizers.push(recognizer);
+	        recognizer.manager = this;
+	
+	        this.touchAction.update();
+	        return recognizer;
+	    },
+	
+	    /**
+	     * remove a recognizer by name or instance
+	     * @param {Recognizer|String} recognizer
+	     * @returns {Manager}
+	     */
+	    remove: function(recognizer) {
+	        if (invokeArrayArg(recognizer, 'remove', this)) {
+	            return this;
+	        }
+	
+	        recognizer = this.get(recognizer);
+	
+	        // let's make sure this recognizer exists
+	        if (recognizer) {
+	            var recognizers = this.recognizers;
+	            var index = inArray(recognizers, recognizer);
+	
+	            if (index !== -1) {
+	                recognizers.splice(index, 1);
+	                this.touchAction.update();
+	            }
+	        }
+	
+	        return this;
+	    },
+	
+	    /**
+	     * bind event
+	     * @param {String} events
+	     * @param {Function} handler
+	     * @returns {EventEmitter} this
+	     */
+	    on: function(events, handler) {
+	        var handlers = this.handlers;
+	        each(splitStr(events), function(event) {
+	            handlers[event] = handlers[event] || [];
+	            handlers[event].push(handler);
+	        });
+	        return this;
+	    },
+	
+	    /**
+	     * unbind event, leave emit blank to remove all handlers
+	     * @param {String} events
+	     * @param {Function} [handler]
+	     * @returns {EventEmitter} this
+	     */
+	    off: function(events, handler) {
+	        var handlers = this.handlers;
+	        each(splitStr(events), function(event) {
+	            if (!handler) {
+	                delete handlers[event];
+	            } else {
+	                handlers[event] && handlers[event].splice(inArray(handlers[event], handler), 1);
+	            }
+	        });
+	        return this;
+	    },
+	
+	    /**
+	     * emit event to the listeners
+	     * @param {String} event
+	     * @param {Object} data
+	     */
+	    emit: function(event, data) {
+	        // we also want to trigger dom events
+	        if (this.options.domEvents) {
+	            triggerDomEvent(event, data);
+	        }
+	
+	        // no handlers, so skip it all
+	        var handlers = this.handlers[event] && this.handlers[event].slice();
+	        if (!handlers || !handlers.length) {
+	            return;
+	        }
+	
+	        data.type = event;
+	        data.preventDefault = function() {
+	            data.srcEvent.preventDefault();
+	        };
+	
+	        var i = 0;
+	        while (i < handlers.length) {
+	            handlers[i](data);
+	            i++;
+	        }
+	    },
+	
+	    /**
+	     * destroy the manager and unbinds all events
+	     * it doesn't unbind dom events, that is the user own responsibility
+	     */
+	    destroy: function() {
+	        this.element && toggleCssProps(this, false);
+	
+	        this.handlers = {};
+	        this.session = {};
+	        this.input.destroy();
+	        this.element = null;
+	    }
+	};
+	
+	/**
+	 * add/remove the css properties as defined in manager.options.cssProps
+	 * @param {Manager} manager
+	 * @param {Boolean} add
+	 */
+	function toggleCssProps(manager, add) {
+	    var element = manager.element;
+	    if (!element.style) {
+	        return;
+	    }
+	    each(manager.options.cssProps, function(value, name) {
+	        element.style[prefixed(element.style, name)] = add ? value : '';
+	    });
+	}
+	
+	/**
+	 * trigger dom event
+	 * @param {String} event
+	 * @param {Object} data
+	 */
+	function triggerDomEvent(event, data) {
+	    var gestureEvent = document.createEvent('Event');
+	    gestureEvent.initEvent(event, true, true);
+	    gestureEvent.gesture = data;
+	    data.target.dispatchEvent(gestureEvent);
+	}
+	
+	assign(Hammer, {
+	    INPUT_START: INPUT_START,
+	    INPUT_MOVE: INPUT_MOVE,
+	    INPUT_END: INPUT_END,
+	    INPUT_CANCEL: INPUT_CANCEL,
+	
+	    STATE_POSSIBLE: STATE_POSSIBLE,
+	    STATE_BEGAN: STATE_BEGAN,
+	    STATE_CHANGED: STATE_CHANGED,
+	    STATE_ENDED: STATE_ENDED,
+	    STATE_RECOGNIZED: STATE_RECOGNIZED,
+	    STATE_CANCELLED: STATE_CANCELLED,
+	    STATE_FAILED: STATE_FAILED,
+	
+	    DIRECTION_NONE: DIRECTION_NONE,
+	    DIRECTION_LEFT: DIRECTION_LEFT,
+	    DIRECTION_RIGHT: DIRECTION_RIGHT,
+	    DIRECTION_UP: DIRECTION_UP,
+	    DIRECTION_DOWN: DIRECTION_DOWN,
+	    DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
+	    DIRECTION_VERTICAL: DIRECTION_VERTICAL,
+	    DIRECTION_ALL: DIRECTION_ALL,
+	
+	    Manager: Manager,
+	    Input: Input,
+	    TouchAction: TouchAction,
+	
+	    TouchInput: TouchInput,
+	    MouseInput: MouseInput,
+	    PointerEventInput: PointerEventInput,
+	    TouchMouseInput: TouchMouseInput,
+	    SingleTouchInput: SingleTouchInput,
+	
+	    Recognizer: Recognizer,
+	    AttrRecognizer: AttrRecognizer,
+	    Tap: TapRecognizer,
+	    Pan: PanRecognizer,
+	    Swipe: SwipeRecognizer,
+	    Pinch: PinchRecognizer,
+	    Rotate: RotateRecognizer,
+	    Press: PressRecognizer,
+	
+	    on: addEventListeners,
+	    off: removeEventListeners,
+	    each: each,
+	    merge: merge,
+	    extend: extend,
+	    assign: assign,
+	    inherit: inherit,
+	    bindFn: bindFn,
+	    prefixed: prefixed
+	});
+	
+	// this prevents errors when Hammer is loaded in the presence of an AMD
+	//  style loader but by script tag, not by the loader.
+	var freeGlobal = (typeof window !== 'undefined' ? window : (typeof self !== 'undefined' ? self : {})); // jshint ignore:line
+	freeGlobal.Hammer = Hammer;
+	
+	if (true) {
+	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	        return Hammer;
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof module != 'undefined' && module.exports) {
+	    module.exports = Hammer;
+	} else {
+	    window[exportName] = Hammer;
+	}
+	
+	})(window, document, 'Hammer');
+
+
+/***/ },
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Layer,
@@ -20693,7 +23110,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Layer,
@@ -20735,7 +23152,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var AnimationGroup, EventEmitter, _,
@@ -20796,7 +23213,7 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, CanvasClass, Events,
@@ -20848,28 +23265,6 @@
 	    }
 	  });
 	
-	  CanvasClass.define("backgroundColor", {
-	    importable: false,
-	    exportable: false,
-	    get: function() {
-	      return Framer.Device.background.backgroundColor;
-	    },
-	    set: function(value) {
-	      return Framer.Device.background.backgroundColor = value;
-	    }
-	  });
-	
-	  CanvasClass.define("image", {
-	    importable: false,
-	    exportable: false,
-	    get: function() {
-	      return Framer.Device.background.image;
-	    },
-	    set: function(value) {
-	      return Framer.Device.background.image = value;
-	    }
-	  });
-	
 	  CanvasClass.prototype.addListener = function(eventName, listener) {
 	    if (eventName === "resize") {
 	      Events.wrap(window).addEventListener("resize", (function(_this) {
@@ -20895,7 +23290,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Context, Utils, printContext, printLayer,
@@ -20903,7 +23298,7 @@
 	
 	Utils = __webpack_require__(4);
 	
-	Context = __webpack_require__(40).Context;
+	Context = __webpack_require__(41).Context;
 	
 	"\nTodo:\n- Better looks\n- Resizable\n- Live in own space on top of all Framer stuff\n";
 	
@@ -20961,7 +23356,7 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var BaseClass, Config, DOMEventManager, Defaults, Utils, _,
@@ -20975,11 +23370,11 @@
 	
 	Config = __webpack_require__(14).Config;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	BaseClass = __webpack_require__(6).BaseClass;
 	
-	DOMEventManager = __webpack_require__(41).DOMEventManager;
+	DOMEventManager = __webpack_require__(42).DOMEventManager;
 	
 	
 	/*
@@ -21291,22 +23686,13 @@
 	
 	  Context.define("size", {
 	    get: function() {
-	      return _.pick(this.frame, ["width", "height"]);
+	      return _.pluck(this.frame, ["x", "y"]);
 	    }
 	  });
 	
 	  Context.define("point", {
 	    get: function() {
-	      return _.pick(this.frame, ["x", "y"]);
-	    }
-	  });
-	
-	  Context.define("canvasFrame", {
-	    get: function() {
-	      if (!parent) {
-	        return this.frame;
-	      }
-	      return this.parent.canvasFrame;
+	      return _.pluck(this.frame, ["width", "height"]);
 	    }
 	  });
 	
@@ -21377,10 +23763,10 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var DOMEventManagerElement, EventEmitter, EventManagerIdCounter, Utils, _,
+	var DOMEventManagerElement, EventEmitter, EventManagerIdCounter, GestureManagerElement, Utils, _,
 	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
 	  hasProp = {}.hasOwnProperty,
 	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -21388,6 +23774,8 @@
 	_ = __webpack_require__(1)._;
 	
 	EventEmitter = __webpack_require__(7).EventEmitter;
+	
+	GestureManagerElement = __webpack_require__(34).GestureManagerElement;
 	
 	Utils = __webpack_require__(4);
 	
@@ -21454,7 +23842,7 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var EventMappers, Events, Layer, Utils, _, wrapComponent,
@@ -21496,11 +23884,11 @@
 	
 	EventMappers[Events.ScrollEnd] = Events.DragEnd;
 	
-	EventMappers[Events.ScrollAnimationDidStart] = Events.DragAnimationStart;
+	EventMappers[Events.ScrollAnimationDidStart] = Events.DragAnimationDidStart;
 	
-	EventMappers[Events.ScrollAnimationDidEnd] = Events.DragAnimationEnd;
+	EventMappers[Events.ScrollAnimationDidEnd] = Events.DragAnimationDidEnd;
 	
-	EventMappers[Events.DirectionLockStart] = Events.DirectionLockStart;
+	EventMappers[Events.DirectionLockDidStart] = Events.DirectionLockDidStart;
 	
 	exports.ScrollComponent = (function(superClass) {
 	  extend(ScrollComponent, superClass);
@@ -22068,7 +24456,7 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Events, ScrollComponent,
@@ -22079,7 +24467,7 @@
 	
 	Events = __webpack_require__(15).Events;
 	
-	ScrollComponent = __webpack_require__(42).ScrollComponent;
+	ScrollComponent = __webpack_require__(43).ScrollComponent;
 	
 	"PageComponent\n\noriginX <number>\noriginY <number>\n\nvelocityThreshold <number>\nanimationOptions <animationOptions={}>\ncurrentPage <Layer>\nclosestPage(<originX:n, originY:n>) <Layer>\n\nnextPage(direction=\"\", currentPage)\nsnapToNextPage(direction=\"\", animate, animationOptions={})\n";
 	
@@ -22345,7 +24733,7 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Events, Knob, Layer, Utils,
@@ -22387,9 +24775,7 @@
 	    this._updateFrame = bind(this._updateFrame, this);
 	    this._updateKnob = bind(this._updateKnob, this);
 	    this._updateFill = bind(this._updateFill, this);
-	    this._touchEnd = bind(this._touchEnd, this);
-	    this._touchMove = bind(this._touchMove, this);
-	    this._touchStart = bind(this._touchStart, this);
+	    this._touchDown = bind(this._touchDown, this);
 	    if (options.backgroundColor == null) {
 	      options.backgroundColor = "#ccc";
 	    }
@@ -22453,6 +24839,7 @@
 	      tolerance: 0.25
 	    };
 	    this.knob.draggable.bounce = false;
+	    this.knob.draggable.propagateEvents = false;
 	    this.knob.borderRadius = this.knobSize / 2;
 	    this.knobOverlay.borderRadius = (this.knob.borderRadius * 2) + (this.hitArea / 4);
 	    if (!this.hitArea) {
@@ -22479,14 +24866,14 @@
 	        return _this._updateValue();
 	      };
 	    })(this));
-	    this.on(Events.TapStart, this._touchStart);
-	    this.on(Events.Pan, this._touchMove);
-	    this.on(Events.TapEnd, this._touchEnd);
+	    this.on(Events.TouchStart, this._touchDown);
+	    this.sliderOverlay.on(Events.TouchStart, this._touchDown);
 	  }
 	
-	  SliderComponent.prototype._touchStart = function(event) {
+	  SliderComponent.prototype._touchDown = function(event) {
 	    var offsetX, offsetY;
 	    event.preventDefault();
+	    event.stopPropagation();
 	    offsetX = (this.min / this.canvasScaleX()) - this.min;
 	    offsetY = (this.min / this.canvasScaleY()) - this.min;
 	    if (this.width > this.height) {
@@ -22496,18 +24883,6 @@
 	    }
 	    this.knob.draggable._touchStart(event);
 	    return this._updateValue();
-	  };
-	
-	  SliderComponent.prototype._touchMove = function(event) {
-	    if (event.target === this._element) {
-	      return this.knob.draggable._touchMove(event);
-	    }
-	  };
-	
-	  SliderComponent.prototype._touchEnd = function(event) {
-	    if (event.target === this._element) {
-	      return this.knob.draggable._touchEnd(event);
-	    }
 	  };
 	
 	  SliderComponent.prototype._updateFill = function() {
@@ -22694,7 +25069,7 @@
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var AppleWatch38Device, AppleWatch42Device, BaseClass, BuiltInDevices, Defaults, DeviceComponentDefaultDevice, Devices, Events, Layer, Nexus5BaseDevice, Nexus5BaseDeviceHand, Nexus9BaseDevice, Utils, _, iPadAirBaseDevice, iPadAirBaseDeviceHand, iPadMiniBaseDevice, iPadMiniBaseDeviceHand, iPhone5BaseDevice, iPhone5BaseDeviceHand, iPhone5CBaseDevice, iPhone5CBaseDeviceHand, iPhone6BaseDevice, iPhone6BaseDeviceHand, iPhone6PlusBaseDevice, iPhone6PlusBaseDeviceHand,
@@ -22713,7 +25088,7 @@
 	
 	Layer = __webpack_require__(13).Layer;
 	
-	Defaults = __webpack_require__(17).Defaults;
+	Defaults = __webpack_require__(16).Defaults;
 	
 	Events = __webpack_require__(15).Events;
 	
@@ -23584,7 +25959,7 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Config, EventEmitter, Utils, _, getTime,
@@ -23655,7 +26030,7 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ChromeAlert, Utils, _, getScaleFromName, resizeFrame, startsWithNumber;
@@ -23890,294 +26265,81 @@
 
 
 /***/ },
-/* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports.TouchEmulator = __webpack_require__(49);
-	
-	exports.MobileScrollFix = __webpack_require__(50);
-	
-	exports.OmitNew = __webpack_require__(51);
-
-
-/***/ },
 /* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var BaseClass, TouchEmulator, Utils, cancelEvent, createTouch, dispatchTouchEvent, touchEmulator,
-	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-	  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-	  hasProp = {}.hasOwnProperty;
+	var Context, Utils, _errorContext, _errorShown, errorWarning;
 	
 	Utils = __webpack_require__(4);
 	
-	BaseClass = __webpack_require__(6).BaseClass;
+	Context = __webpack_require__(41).Context;
 	
-	createTouch = function(event, identifier, offset) {
-	  var touch;
-	  if (offset == null) {
-	    offset = {
-	      x: 0,
-	      y: 0
-	    };
-	  }
-	  return touch = {
-	    identifier: identifier,
-	    target: event.target,
-	    pageX: event.pageX - offset.x,
-	    pageY: event.pageY - offset.y,
-	    clientX: event.clientX - offset.x,
-	    clientY: event.clientY - offset.y,
-	    screenX: event.screenX - offset.x,
-	    screenY: event.screenY - offset.y
-	  };
-	};
+	_errorContext = null;
 	
-	dispatchTouchEvent = function(type, target, event, offset) {
-	  var touchEvent, touches;
-	  if (target == null) {
-	    target = event.target;
-	  }
-	  touchEvent = document.createEvent("MouseEvent");
-	  touchEvent.initMouseEvent(type, true, true, window, event.detail, event.screenX, event.screenY, event.clientX, event.clientY, event.ctrlKey, event.shiftKey, event.altKey, event.metaKey, event.button, event.relatedTarget);
-	  touches = [];
-	  touches.push(createTouch(event, 1));
-	  if (offset) {
-	    touches.push(createTouch(event, 2, offset));
-	  }
-	  touchEvent.touches = touchEvent.changedTouches = touchEvent.targetTouches = touches;
-	  return target.dispatchEvent(touchEvent);
-	};
+	_errorShown = false;
 	
-	cancelEvent = function(event) {
-	  event.preventDefault();
-	  return event.stopPropagation();
-	};
-	
-	TouchEmulator = (function(superClass) {
-	  extend(TouchEmulator, superClass);
-	
-	  function TouchEmulator() {
-	    this.mousemovePosition = bind(this.mousemovePosition, this);
-	    this.mouseout = bind(this.mouseout, this);
-	    this.mouseup = bind(this.mouseup, this);
-	    this.mousemove = bind(this.mousemove, this);
-	    this.mousedown = bind(this.mousedown, this);
-	    this.keyup = bind(this.keyup, this);
-	    this.keydown = bind(this.keydown, this);
-	    var touchPointerInitialOffset;
-	    this.touchPointerImage = "framer/images/cursor@2x.png";
-	    this.touchPointerImageActive = "framer/images/cursor-active@2x.png";
-	    this.touchPointerImageSize = 64;
-	    this.touchPointerInitialOffset = {
-	      x: 0,
-	      y: 0
-	    };
-	    this.keyPinchCode = 18;
-	    this.keyPanCode = 91;
-	    this.context = new Framer.Context({
-	      name: "TouchEmulator"
+	errorWarning = function(event) {
+	  var _errorWarningLayer, layer;
+	  if (!_errorContext) {
+	    _errorContext = new Context({
+	      name: "Error"
 	    });
-	    this.context._element.style.zIndex = 10000;
-	    this.wrap = this.context.domEventManager.wrap;
-	    this.wrap(document).addEventListener("mousedown", this.mousedown, true);
-	    this.wrap(document).addEventListener("mousemove", this.mousemove, true);
-	    this.wrap(document).addEventListener("mouseup", this.mouseup, true);
-	    this.wrap(document).addEventListener("keydown", this.keydown, true);
-	    this.wrap(document).addEventListener("keyup", this.keyup, true);
-	    this.wrap(document).addEventListener("mouseout", this.mouseout, true);
-	    this.isMouseDown = false;
-	    this.isPinchKeyDown = false;
-	    this.isPanKeyDown = false;
-	    touchPointerInitialOffset = this.touchPointerInitialOffset;
-	    this.context.run((function(_this) {
-	      return function() {
-	        return _this.touchPointLayer = new Layer({
-	          width: _this.touchPointerImageSize,
-	          height: _this.touchPointerImageSize,
-	          image: _this.touchPointerImage,
-	          opacity: 0
-	        });
-	      };
-	    })(this));
 	  }
-	
-	  TouchEmulator.prototype.destroy = function() {
-	    this.context.reset();
-	    return this.context = null;
-	  };
-	
-	  TouchEmulator.prototype.keydown = function(event) {
-	    if (event.keyCode === this.keyPinchCode) {
-	      this.isPinchKeyDown = true;
-	      this.startPoint = this.centerPoint = null;
-	      this.showTouchCursor();
-	      this.touchPointLayer.midX = this.point.x;
-	      this.touchPointLayer.midY = this.point.y;
-	    }
-	    if (event.keyCode === this.keyPanCode) {
-	      this.isPanKeyDown = true;
-	      return cancelEvent(event);
-	    }
-	  };
-	
-	  TouchEmulator.prototype.keyup = function(event) {
-	    if (event.keyCode === this.keyPinchCode) {
-	      cancelEvent(event);
-	      this.isPinchKeyDown = false;
-	      this.hideTouchCursor();
-	    }
-	    if (event.keyCode === this.keyPanCode) {
-	      cancelEvent(event);
-	      if (this.touchPoint && this.point) {
-	        this.centerPoint = Utils.pointCenter(this.touchPoint, this.point);
-	        return this.isPanKeyDown = false;
-	      }
-	    }
-	  };
-	
-	  TouchEmulator.prototype.mousedown = function(event) {
-	    cancelEvent(event);
-	    this.isMouseDown = true;
-	    this.target = event.target;
-	    if (this.isPinchKeyDown) {
-	      dispatchTouchEvent("touchstart", this.target, event, this.touchPointDelta);
-	    } else {
-	      dispatchTouchEvent("touchstart", this.target, event);
-	    }
-	    return this.touchPointLayer.image = this.touchPointerImageActive;
-	  };
-	
-	  TouchEmulator.prototype.mousemove = function(event) {
-	    this.point = {
-	      x: event.pageX,
-	      y: event.pageY
-	    };
-	    cancelEvent(event);
-	    if (this.startPoint == null) {
-	      this.startPoint = this.point;
-	    }
-	    if (this.centerPoint == null) {
-	      this.centerPoint = this.point;
-	    }
-	    if (this.isPinchKeyDown && !this.isPanKeyDown) {
-	      if (this.touchPointerInitialOffset && this.centerPoint) {
-	        this.touchPoint = Utils.pointAdd(this.touchPointerInitialOffset, this.pinchPoint(this.point, this.centerPoint));
-	        this.touchPointDelta = Utils.pointSubtract(this.point, this.touchPoint);
-	      }
-	    }
-	    if (this.isPinchKeyDown && this.isPanKeyDown) {
-	      if (this.touchPoint && this.touchPointDelta) {
-	        this.touchPoint = this.panPoint(this.point, this.touchPointDelta);
-	      }
-	    }
-	    if (this.isPinchKeyDown || this.isPanKeyDown) {
-	      if (this.touchPoint) {
-	        this.touchPointLayer.visible = true;
-	        this.touchPointLayer.midX = this.touchPoint.x;
-	        this.touchPointLayer.midY = this.touchPoint.y;
-	      }
-	    }
-	    if (this.isMouseDown) {
-	      if ((this.isPinchKeyDown || this.isPanKeyDown) && this.touchPointDelta) {
-	        return dispatchTouchEvent("touchmove", this.target, event, this.touchPointDelta);
-	      } else {
-	        return dispatchTouchEvent("touchmove", this.target, event);
-	      }
-	    }
-	  };
-	
-	  TouchEmulator.prototype.mouseup = function(event) {
-	    cancelEvent(event);
-	    if (this.isPinchKeyDown || this.isPanKeyDown) {
-	      dispatchTouchEvent("touchend", this.target, event, this.touchPointDelta);
-	    } else {
-	      dispatchTouchEvent("touchend", this.target, event);
-	    }
-	    return this.endMultiTouch();
-	  };
-	
-	  TouchEmulator.prototype.mouseout = function(event) {
-	    var fromElement;
-	    if (this.isMouseDown) {
-	      return;
-	    }
-	    fromElement = event.relatedTarget || event.toElement;
-	    if (!fromElement || fromElement.nodeName === "HTML") {
-	      return this.endMultiTouch();
-	    }
-	  };
-	
-	  TouchEmulator.prototype.showTouchCursor = function() {
-	    this.touchPointLayer.animateStop();
-	    this.touchPointLayer.midX = this.point.x;
-	    this.touchPointLayer.midY = this.point.y;
-	    this.touchPointLayer.scale = 1.8;
-	    return this.touchPointLayer.animate({
-	      properties: {
-	        opacity: 1,
-	        scale: 1
-	      },
-	      time: 0.1,
-	      curve: "ease-out"
-	    });
-	  };
-	
-	  TouchEmulator.prototype.hideTouchCursor = function() {
-	    this.touchPointLayer.animateStop();
-	    return this.touchPointLayer.animate({
-	      properties: {
-	        opacity: 0,
-	        scale: 1.2
-	      },
-	      time: 0.08
-	    });
-	  };
-	
-	  TouchEmulator.prototype.mousemovePosition = function(event) {
-	    return this.point = {
-	      x: event.pageX,
-	      y: event.pageY
-	    };
-	  };
-	
-	  TouchEmulator.prototype.endMultiTouch = function() {
-	    this.isMouseDown = false;
-	    this.touchPointLayer.image = this.touchPointerImage;
-	    return this.hideTouchCursor();
-	  };
-	
-	  TouchEmulator.prototype.pinchPoint = function(point, centerPoint) {
-	    return Utils.pointSubtract(centerPoint, Utils.pointSubtract(point, centerPoint));
-	  };
-	
-	  TouchEmulator.prototype.panPoint = function(point, offsetPoint) {
-	    return Utils.pointSubtract(point, offsetPoint);
-	  };
-	
-	  return TouchEmulator;
-	
-	})(BaseClass);
-	
-	touchEmulator = null;
-	
-	exports.enable = function() {
-	  if (Utils.isTouch()) {
+	  if (_errorShown) {
 	    return;
 	  }
-	  return touchEmulator != null ? touchEmulator : touchEmulator = new TouchEmulator();
+	  _errorShown = true;
+	  layer = new Layer({
+	    x: 20,
+	    y: -50,
+	    width: 300,
+	    height: 40
+	  });
+	  layer.states.add({
+	    visible: {
+	      x: 20,
+	      y: 20,
+	      width: 300,
+	      height: 40
+	    }
+	  });
+	  layer.html = "Javascript Error, see the console";
+	  layer.style = {
+	    font: "12px/1.35em Menlo",
+	    color: "white",
+	    textAlign: "center",
+	    lineHeight: layer.height + "px",
+	    borderRadius: "5px",
+	    backgroundColor: "rgba(255,0,0,.8)"
+	  };
+	  layer.states.animationOptions = {
+	    curve: "spring",
+	    curveOptions: {
+	      tension: 1000,
+	      friction: 30
+	    }
+	  };
+	  layer.states["switch"]("visible");
+	  layer.on(Events.Click, function() {
+	    return this.states["switch"]("default");
+	  });
+	  return _errorWarningLayer = layer;
 	};
 	
-	exports.disable = function() {
-	  if (!touchEmulator) {
-	    return;
-	  }
-	  return touchEmulator.destroy();
-	};
+	window.error = errorWarning;
 
 
 /***/ },
 /* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports.MobileScrollFix = __webpack_require__(51);
+	
+	exports.OmitNew = __webpack_require__(52);
+
+
+/***/ },
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Utils,
@@ -24238,7 +26400,7 @@
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	var slice = [].slice;
@@ -24268,672 +26430,16 @@
 
 
 /***/ },
-/* 52 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var DOMEventManager, GestureInputDoubleTapTime, GestureInputEdgeSwipeDistance, GestureInputForceTapDesktop, GestureInputForceTapMobile, GestureInputForceTapMobilePollTime, GestureInputLongPressTime, GestureInputMinimumFingerDistance, GestureInputSwipeThreshold, GestureInputVelocityTime, Utils,
-	  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-	
-	Utils = __webpack_require__(4);
-	
-	GestureInputLongPressTime = 0.5;
-	
-	GestureInputDoubleTapTime = 0.25;
-	
-	GestureInputSwipeThreshold = 30;
-	
-	GestureInputEdgeSwipeDistance = 30;
-	
-	GestureInputVelocityTime = 0.1;
-	
-	GestureInputForceTapDesktop = MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN;
-	
-	GestureInputForceTapMobile = 0.7;
-	
-	GestureInputForceTapMobilePollTime = 1 / 30;
-	
-	GestureInputMinimumFingerDistance = 30;
-	
-	DOMEventManager = __webpack_require__(41).DOMEventManager;
-	
-	Utils.sanitizeRotation = function() {
-	  var previous, sanitize;
-	  previous = null;
-	  return sanitize = function(value) {
-	    if (previous == null) {
-	      previous = value;
-	    }
-	    return value;
-	  };
-	};
-	
-	exports.GestureInputRecognizer = (function() {
-	  function GestureInputRecognizer() {
-	    this._process = bind(this._process, this);
-	    this.edgeswipedirectionend = bind(this.edgeswipedirectionend, this);
-	    this.edgeswipedirectionstart = bind(this.edgeswipedirectionstart, this);
-	    this.edgeswipedirection = bind(this.edgeswipedirection, this);
-	    this.swipedirectionend = bind(this.swipedirectionend, this);
-	    this.swipedirection = bind(this.swipedirection, this);
-	    this.swipedirectionstart = bind(this.swipedirectionstart, this);
-	    this.swipeend = bind(this.swipeend, this);
-	    this.swipe = bind(this.swipe, this);
-	    this.swipestart = bind(this.swipestart, this);
-	    this.rotateend = bind(this.rotateend, this);
-	    this.rotate = bind(this.rotate, this);
-	    this.rotatestart = bind(this.rotatestart, this);
-	    this.scaleend = bind(this.scaleend, this);
-	    this.scale = bind(this.scale, this);
-	    this.scalestart = bind(this.scalestart, this);
-	    this.pinchend = bind(this.pinchend, this);
-	    this.pinch = bind(this.pinch, this);
-	    this.pinchstart = bind(this.pinchstart, this);
-	    this.panright = bind(this.panright, this);
-	    this.panleft = bind(this.panleft, this);
-	    this.pandown = bind(this.pandown, this);
-	    this.panup = bind(this.panup, this);
-	    this.panend = bind(this.panend, this);
-	    this.pan = bind(this.pan, this);
-	    this.panstart = bind(this.panstart, this);
-	    this.forcetapend = bind(this.forcetapend, this);
-	    this.forcetapstart = bind(this.forcetapstart, this);
-	    this.forcetapchange = bind(this.forcetapchange, this);
-	    this._updateMacForce = bind(this._updateMacForce, this);
-	    this._updateTouchForce = bind(this._updateTouchForce, this);
-	    this.longpressend = bind(this.longpressend, this);
-	    this.longpressstart = bind(this.longpressstart, this);
-	    this.doubletap = bind(this.doubletap, this);
-	    this.tapend = bind(this.tapend, this);
-	    this.tapstart = bind(this.tapstart, this);
-	    this.tap = bind(this.tap, this);
-	    this.touchend = bind(this.touchend, this);
-	    this.touchmove = bind(this.touchmove, this);
-	    this.touchstart = bind(this.touchstart, this);
-	    this.em = new DOMEventManager();
-	    this.em.wrap(window).addEventListener("touchstart", this.touchstart);
-	  }
-	
-	  GestureInputRecognizer.prototype.destroy = function() {
-	    return this.em.removeAllListeners();
-	  };
-	
-	  GestureInputRecognizer.prototype.cancel = function() {
-	    window.clearTimeout(this.session.pressTimer);
-	    return this.session = null;
-	  };
-	
-	  GestureInputRecognizer.prototype.touchstart = function(event) {
-	    if (this.session) {
-	      return;
-	    }
-	    this.em.wrap(window).addEventListener("touchmove", this.touchmove);
-	    this.em.wrap(window).addEventListener("touchend", this.touchend);
-	    this.em.wrap(window).addEventListener("webkitmouseforcechanged", this._updateMacForce);
-	    this.session = {
-	      startEvent: this._getGestureEvent(event),
-	      lastEvent: null,
-	      startMultiEvent: null,
-	      startTime: Date.now(),
-	      pressTimer: window.setTimeout(this.longpressstart, GestureInputLongPressTime * 1000),
-	      started: {},
-	      events: [],
-	      sanitizeRotation: Utils.sanitizeRotation()
-	    };
-	    event = this._getGestureEvent(event);
-	    this.tapstart(event);
-	    if (Date.now() - this.doubleTapTime < (GestureInputDoubleTapTime * 1000)) {
-	      this.doubletap(event);
-	    } else {
-	      this.doubleTapTime = Date.now();
-	    }
-	    this._process(event);
-	    if (Utils.isTouch()) {
-	      return this._updateTouchForce();
-	    }
-	  };
-	
-	  GestureInputRecognizer.prototype.touchmove = function(event) {
-	    return this._process(this._getGestureEvent(event));
-	  };
-	
-	  GestureInputRecognizer.prototype.touchend = function(event) {
-	    var eventName, ref, value;
-	    if (Utils.isTouch()) {
-	      if (!(event.touches.length === 0)) {
-	        return;
-	      }
-	    } else {
-	      if (!(event.touches.length === event.changedTouches.length)) {
-	        return;
-	      }
-	    }
-	    this.em.wrap(window).removeEventListener("touchmove", this.touchmove);
-	    this.em.wrap(window).removeEventListener("touchend", this.touchend);
-	    this.em.wrap(window).removeEventListener("webkitmouseforcechanged", this._updateMacForce);
-	    event = this._getGestureEvent(event);
-	    ref = this.session.started;
-	    for (eventName in ref) {
-	      value = ref[eventName];
-	      if (value) {
-	        this[eventName + "end"](event);
-	      }
-	    }
-	    this.tap(event);
-	    this.tapend(event);
-	    return this.cancel();
-	  };
-	
-	  GestureInputRecognizer.prototype.tap = function(event) {
-	    return this._dispatchEvent("tap", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.tapstart = function(event) {
-	    return this._dispatchEvent("tapstart", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.tapend = function(event) {
-	    return this._dispatchEvent("tapend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.doubletap = function(event) {
-	    return this._dispatchEvent("doubletap", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.longpressstart = function() {
-	    var event;
-	    if (!this.session) {
-	      return;
-	    }
-	    if (this.session.started.longpress) {
-	      return;
-	    }
-	    event = this._getGestureEvent(this.session.startEvent);
-	    this.session.started.longpress = event;
-	    this._dispatchEvent("longpressstart", event);
-	    return this._dispatchEvent("longpress", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.longpressend = function(event) {
-	    return this._dispatchEvent("longpressend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype._updateTouchForce = function() {
-	    var event, ref, ref1;
-	    if (!((ref = this.session) != null ? (ref1 = ref.lastEvent) != null ? ref1.touches.length : void 0 : void 0)) {
-	      return;
-	    }
-	    this.session.force = this.session.lastEvent.touches[0].force || 0;
-	    event = this._getGestureEvent(this.session.lastEvent);
-	    this.forcetapchange(event);
-	    if (this.session.force >= GestureInputForceTapMobile) {
-	      this.forcetapstart(event);
-	    } else {
-	      this.forcetapend(event);
-	    }
-	    return setTimeout(this._updateTouchForce, GestureInputForceTapMobilePollTime);
-	  };
-	
-	  GestureInputRecognizer.prototype._updateMacForce = function(event) {
-	    if (!this.session) {
-	      return;
-	    }
-	    this.session.force = Utils.modulate(event.webkitForce, [0, 3], [0, 1]);
-	    this.forcetapchange(this._getGestureEvent(event));
-	    if (event.webkitForce >= GestureInputForceTapDesktop) {
-	      return this.forcetapstart(event);
-	    } else {
-	      return this.forcetapend(event);
-	    }
-	  };
-	
-	  GestureInputRecognizer.prototype.forcetapchange = function(event) {
-	    return this._dispatchEvent("forcetapchange", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.forcetapstart = function(event) {
-	    if (!this.session) {
-	      return;
-	    }
-	    if (this.session.started.forcetap) {
-	      return;
-	    }
-	    this.session.started.forcetap = event;
-	    this._dispatchEvent("forcetapstart", event);
-	    return this._dispatchEvent("forcetap", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.forcetapend = function(event) {
-	    if (!this.session) {
-	      return;
-	    }
-	    if (!this.session.started.forcetap) {
-	      return;
-	    }
-	    this.session.started.forcetap = null;
-	    return this._dispatchEvent("forcetapend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.panstart = function(event) {
-	    this.session.started.pan = event;
-	    return this._dispatchEvent("panstart", event, this.session.started.pan.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.pan = function(event) {
-	    var direction;
-	    this._dispatchEvent("pan", event, this.session.started.pan.target);
-	    direction = this._getDirection(event.delta);
-	    if (direction) {
-	      return this["pan" + direction](event);
-	    }
-	  };
-	
-	  GestureInputRecognizer.prototype.panend = function(event) {
-	    this._dispatchEvent("panend", event, this.session.started.pan.target);
-	    return this.session.started.pan = null;
-	  };
-	
-	  GestureInputRecognizer.prototype.panup = function(event) {
-	    return this._dispatchEvent("panup", event, this.session.started.pan.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.pandown = function(event) {
-	    return this._dispatchEvent("pandown", event, this.session.started.pan.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.panleft = function(event) {
-	    return this._dispatchEvent("panleft", event, this.session.started.pan.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.panright = function(event) {
-	    return this._dispatchEvent("panright", event, this.session.started.pan.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.pinchstart = function(event) {
-	    this.session.started.pinch = event;
-	    this.scalestart(event, this.session.started.pinch.target);
-	    this.rotatestart(event, this.session.started.pinch.target);
-	    return this._dispatchEvent("pinchstart", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.pinch = function(event) {
-	    this._dispatchEvent("pinch", event);
-	    this.scale(event, this.session.started.pinch.target);
-	    return this.rotate(event, this.session.started.pinch.target);
-	  };
-	
-	  GestureInputRecognizer.prototype.pinchend = function(event) {
-	    this._dispatchEvent("pinchend", event);
-	    this.scaleend(event, this.session.started.pinch.target);
-	    this.rotateend(event, this.session.started.pinch.target);
-	    return this.session.started.pinch = null;
-	  };
-	
-	  GestureInputRecognizer.prototype.scalestart = function(event) {
-	    return this._dispatchEvent("scalestart", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.scale = function(event) {
-	    return this._dispatchEvent("scale", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.scaleend = function(event) {
-	    return this._dispatchEvent("scaleend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.rotatestart = function(event) {
-	    return this._dispatchEvent("rotatestart", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.rotate = function(event) {
-	    return this._dispatchEvent("rotate", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.rotateend = function(event) {
-	    return this._dispatchEvent("rotateend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.swipestart = function(event) {
-	    this._dispatchEvent("swipestart", event);
-	    this.session.started.swipe = event;
-	    return this.swipedirectionstart(event);
-	  };
-	
-	  GestureInputRecognizer.prototype.swipe = function(event) {
-	    this._dispatchEvent("swipe", event);
-	    return this.swipedirection(event);
-	  };
-	
-	  GestureInputRecognizer.prototype.swipeend = function(event) {
-	    return this._dispatchEvent("swipeend", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.swipedirectionstart = function(event) {
-	    var direction, maxX, maxY, ref, ref1, ref2, ref3, swipeEdge;
-	    if (!event.offsetDirection) {
-	      return;
-	    }
-	    if (this.session.started.swipedirection) {
-	      return;
-	    }
-	    this.session.started.swipedirection = event;
-	    direction = this.session.started.swipedirection.offsetDirection;
-	    this._dispatchEvent("swipe" + direction + "start", event);
-	    swipeEdge = this._edgeForSwipeDirection(direction);
-	    maxX = Utils.frameGetMaxX(Screen.canvasFrame);
-	    maxY = Utils.frameGetMaxY(Screen.canvasFrame);
-	    if (swipeEdge === "top" && (0 < (ref = event.start.y - Screen.canvasFrame.y) && ref < GestureInputEdgeSwipeDistance)) {
-	      this.edgeswipedirectionstart(event);
-	    }
-	    if (swipeEdge === "right" && (maxX - GestureInputEdgeSwipeDistance < (ref1 = event.start.x) && ref1 < maxX)) {
-	      this.edgeswipedirectionstart(event);
-	    }
-	    if (swipeEdge === "bottom" && (maxY - GestureInputEdgeSwipeDistance < (ref2 = event.start.y) && ref2 < maxY)) {
-	      this.edgeswipedirectionstart(event);
-	    }
-	    if (swipeEdge === "left" && (0 < (ref3 = event.start.x - Screen.canvasFrame.x) && ref3 < GestureInputEdgeSwipeDistance)) {
-	      return this.edgeswipedirectionstart(event);
-	    }
-	  };
-	
-	  GestureInputRecognizer.prototype.swipedirection = function(event) {
-	    var direction;
-	    if (!this.session.started.swipedirection) {
-	      return;
-	    }
-	    direction = this.session.started.swipedirection.offsetDirection;
-	    this._dispatchEvent("swipe" + direction, event);
-	    if (this.session.started.edgeswipedirection) {
-	      return this.edgeswipedirection(event);
-	    }
-	  };
-	
-	  GestureInputRecognizer.prototype.swipedirectionend = function(event) {
-	    var direction;
-	    if (!this.session.started.swipedirection) {
-	      return;
-	    }
-	    direction = this.session.started.swipedirection.offsetDirection;
-	    return this._dispatchEvent("swipe" + direction + "end", event);
-	  };
-	
-	  GestureInputRecognizer.prototype.edgeswipedirection = function(event) {
-	    var swipeEdge;
-	    swipeEdge = this._edgeForSwipeDirection(this.session.started.edgeswipedirection.offsetDirection);
-	    Screen.emit("edgeswipe", this._createEvent("edgeswipe", event));
-	    return Screen.emit("edgeswipe" + swipeEdge, this._createEvent("edgeswipe" + swipeEdge, event));
-	  };
-	
-	  GestureInputRecognizer.prototype.edgeswipedirectionstart = function(event) {
-	    var swipeEdge;
-	    if (this.session.started.edgeswipedirection) {
-	      return;
-	    }
-	    this.session.started.edgeswipedirection = event;
-	    swipeEdge = this._edgeForSwipeDirection(this.session.started.edgeswipedirection.offsetDirection);
-	    Screen.emit("edgeswipestart", this._createEvent("edgeswipestart", event));
-	    return Screen.emit("edgeswipe" + swipeEdge + "start", this._createEvent("edgeswipe" + swipeEdge + "start", event));
-	  };
-	
-	  GestureInputRecognizer.prototype.edgeswipedirectionend = function(event) {
-	    var swipeEdge;
-	    swipeEdge = this._edgeForSwipeDirection(this.session.started.edgeswipedirection.offsetDirection);
-	    Screen.emit("edgeswipeend", this._createEvent("edgeswipeend", event));
-	    return Screen.emit("edgeswipe" + swipeEdge + "end", this._createEvent("edgeswipe" + swipeEdge + "end", event));
-	  };
-	
-	  GestureInputRecognizer.prototype._process = function(event) {
-	    if (!this.session) {
-	      return;
-	    }
-	    this.session.events.push(event);
-	    if (Math.abs(event.delta.x) > 0 || Math.abs(event.delta.y) > 0) {
-	      if (!this.session.started.pan) {
-	        this.panstart(event);
-	      } else {
-	        this.pan(event);
-	      }
-	    }
-	    if (this.session.started.pinch && event.fingers === 1) {
-	      this.pinchend(event);
-	    } else if (!this.session.started.pinch && event.fingers === 2) {
-	      this.pinchstart(event);
-	    } else if (this.session.started.pinch) {
-	      this.pinch(event);
-	    }
-	    if (!this.session.started.swipe && (Math.abs(event.offset.x) > GestureInputSwipeThreshold || Math.abs(event.offset.y) > GestureInputSwipeThreshold)) {
-	      this.swipestart(event);
-	    } else if (this.session.started.swipe) {
-	      this.swipe(event);
-	    }
-	    return this.session.lastEvent = event;
-	  };
-	
-	  GestureInputRecognizer.prototype._getEventPoint = function(event) {
-	    var ref;
-	    if ((ref = event.touches) != null ? ref.length : void 0) {
-	      return this._getTouchPoint(event, 0);
-	    }
-	    return {
-	      x: event.pageX,
-	      y: event.pageY
-	    };
-	  };
-	
-	  GestureInputRecognizer.prototype._getGestureEvent = function(event) {
-	    var events, i, len, pointKey, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, touchPointA, touchPointB;
-	    _.extend(event, {
-	      time: Date.now(),
-	      point: this._getEventPoint(event),
-	      start: this._getEventPoint(event),
-	      previous: this._getEventPoint(event),
-	      offset: {
-	        x: 0,
-	        y: 0
-	      },
-	      offsetTime: 0,
-	      offsetAngle: 0,
-	      offsetDirection: null,
-	      delta: {
-	        x: 0,
-	        y: 0
-	      },
-	      deltaTime: 0,
-	      deltaAngle: 0,
-	      deltaDirection: null,
-	      force: 0,
-	      velocity: {
-	        x: 0,
-	        y: 0
-	      },
-	      fingers: ((ref = event.touches) != null ? ref.length : void 0) || 0,
-	      touchCenter: this._getEventPoint(event),
-	      touchOffset: {
-	        x: 0,
-	        y: 0
-	      },
-	      touchDistance: 0,
-	      scale: 1,
-	      scaleDirection: null,
-	      rotation: 0
-	    });
-	    if ((ref1 = this.session) != null ? ref1.startEvent : void 0) {
-	      event.start = this.session.startEvent.point;
-	      event.offset = Utils.pointSubtract(event.point, event.start);
-	      event.offsetTime = event.time - this.session.startEvent.time;
-	      event.offsetAngle = Utils.pointAngle(this.session.startEvent.point, event.point);
-	      event.offsetDirection = this._getDirection(event.offset);
-	      event.touchCenterStart = this.session.startEvent.touchCenter;
-	    }
-	    if ((ref2 = this.session) != null ? ref2.lastEvent : void 0) {
-	      event.previous = this.session.lastEvent.point;
-	      event.deltaTime = event.time - this.session.lastEvent.time;
-	      event.delta = Utils.pointSubtract(event.point, this.session.lastEvent.point);
-	      event.deltaAngle = Utils.pointAngle(event.point, this.session.lastEvent.point);
-	      event.deltaDirection = this._getDirection(event.delta);
-	    }
-	    if (event.fingers > 1) {
-	      touchPointA = this._getTouchPoint(event, 0);
-	      touchPointB = this._getTouchPoint(event, 1);
-	      event.touchCenter = Utils.pointCenter(touchPointB, touchPointA);
-	      event.touchOffset = Utils.pointSubtract(touchPointB, touchPointA);
-	      event.touchDistance = _.max([GestureInputMinimumFingerDistance, Utils.pointDistance(touchPointA, touchPointB)]);
-	      event.rotation = Utils.pointAngle(touchPointA, touchPointB);
-	    }
-	    if ((ref3 = this.session) != null ? ref3.events : void 0) {
-	      events = _.filter(this.session.events, function(e) {
-	        return e.time > (event.time - (GestureInputVelocityTime * 1000));
-	      });
-	      event.velocity = this._getVelocity(events);
-	    }
-	    if ((ref4 = this.session) != null ? ref4.started.pinch : void 0) {
-	      event.scale = event.touchDistance / this.session.started.pinch.touchDistance;
-	      event.scaleDirection = this._getScaleDirection(event.scale - this.session.lastEvent.scale);
-	      if (!event.scaleDirection && ((ref5 = this.session) != null ? ref5.lastEvent : void 0)) {
-	        event.scaleDirection = this.session.lastEvent.scaleDirection;
-	      }
-	    }
-	    if ((ref6 = this.session) != null ? ref6.lastEvent : void 0) {
-	      if ((event.fingers !== (ref7 = this.session.lastEvent.fingers) && ref7 === 2)) {
-	        event.delta = {
-	          x: 0,
-	          y: 0
-	        };
-	      }
-	      if (event.fingers === 2 && this.session.lastEvent.fingers === 2) {
-	        event.delta = Utils.pointSubtract(event.touchCenter, this.session.lastEvent.touchCenter);
-	      }
-	    }
-	    if ((ref8 = this.session) != null ? ref8.lastEvent : void 0) {
-	      if (this.session.force) {
-	        event.force = this.session.force;
-	      }
-	    }
-	    ref9 = ["point", "start", "previous", "offset", "delta", "velocity", "touchCenter", "touchOffset"];
-	    for (i = 0, len = ref9.length; i < len; i++) {
-	      pointKey = ref9[i];
-	      event[pointKey + "X"] = event[pointKey].x;
-	      event[pointKey + "Y"] = event[pointKey].y;
-	    }
-	    return event;
-	  };
-	
-	  GestureInputRecognizer.prototype._getTouchPoint = function(event, index) {
-	    var point;
-	    return point = {
-	      x: event.touches[index].pageX,
-	      y: event.touches[index].pageY
-	    };
-	  };
-	
-	  GestureInputRecognizer.prototype._getDirection = function(offset) {
-	    if (Math.abs(offset.x) > Math.abs(offset.y)) {
-	      if (offset.x > 0) {
-	        return "right";
-	      }
-	      if (offset.x < 0) {
-	        return "left";
-	      }
-	    }
-	    if (Math.abs(offset.x) < Math.abs(offset.y)) {
-	      if (offset.y < 0) {
-	        return "up";
-	      }
-	      if (offset.y > 0) {
-	        return "down";
-	      }
-	    }
-	    return null;
-	  };
-	
-	  GestureInputRecognizer.prototype._edgeForSwipeDirection = function(direction) {
-	    if (direction === "down") {
-	      return "top";
-	    }
-	    if (direction === "left") {
-	      return "right";
-	    }
-	    if (direction === "up") {
-	      return "bottom";
-	    }
-	    if (direction === "right") {
-	      return "left";
-	    }
-	    return null;
-	  };
-	
-	  GestureInputRecognizer.prototype._getScaleDirection = function(offset) {
-	    if (offset > 0) {
-	      return "up";
-	    }
-	    if (offset < 0) {
-	      return "down";
-	    }
-	    return null;
-	  };
-	
-	  GestureInputRecognizer.prototype._createEvent = function(type, event) {
-	    var k, touchEvent, v;
-	    touchEvent = document.createEvent("MouseEvent");
-	    touchEvent.initMouseEvent(type, true, true, window, event.detail, event.screenX, event.screenY, event.clientX, event.clientY, event.ctrlKey, event.shiftKey, event.altKey, event.metaKey, event.button, event.relatedTarget);
-	    touchEvent.touches = event.touches;
-	    touchEvent.changedTouches = event.touches;
-	    touchEvent.targetTouches = event.touches;
-	    for (k in event) {
-	      v = event[k];
-	      touchEvent[k] = v;
-	    }
-	    return touchEvent;
-	  };
-	
-	  GestureInputRecognizer.prototype._dispatchEvent = function(type, event, target) {
-	    var touchEvent;
-	    touchEvent = this._createEvent(type, event);
-	    if (target == null) {
-	      target = event.target;
-	    }
-	    return target.dispatchEvent(touchEvent);
-	  };
-	
-	  GestureInputRecognizer.prototype._getVelocity = function(events) {
-	    var current, first, time, velocity;
-	    if (events.length < 2) {
-	      return {
-	        x: 0,
-	        y: 0
-	      };
-	    }
-	    current = events[events.length - 1];
-	    first = events[0];
-	    time = current.time - first.time;
-	    velocity = {
-	      x: (current.point.x - first.point.x) / time,
-	      y: (current.point.y - first.point.y) / time
-	    };
-	    if (velocity.x === Infinity) {
-	      velocity.x = 0;
-	    }
-	    if (velocity.y === Infinity) {
-	      velocity.y = 0;
-	    }
-	    return velocity;
-	  };
-	
-	  return GestureInputRecognizer;
-
-	})();
-
-
-/***/ },
 /* 53 */
 /***/ function(module, exports) {
 
-	exports.date = 1454588447;
+	exports.date = 1453119007;
 	
 	exports.branch = "master";
 	
-	exports.hash = "e57ec36";
+	exports.hash = "325775b";
 	
-	exports.build = 1432;
+	exports.build = 1331;
 	
 	exports.version = exports.branch + "/" + exports.hash;
 

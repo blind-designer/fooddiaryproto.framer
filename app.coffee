@@ -507,27 +507,32 @@ sk.recscroll.superLayer = recipesScroller.content
 
 recipesPager = new PageComponent
 	y: 280
-	height: 445
+	height: 545
 	width: Screen.width
 	superLayer: recipesScroller.content
 	scrollVertical: false
 	contentInset:
-		right: 90
+		right: 300
 #recipesPager.content.backgroundColor = noColor
 #sk.recpager.superLayer = recipesPager.content
-recipesPager.addPage(sk.recpager)
 sk.recpager.y = 0
+recipesPager.addPage(sk.recpager)
+#sk.recpager.y = 0
 #sk.recpagertwo = sk.recpager.copy()
 #sk.recpagertwo.superLayer = recipesPager.content
+sk.recpagertwo.y = 0
+#sk.recpagertwo.x = sk.recpagertwo.width + 80
+#sk.recpagertwo.y = sk.recpager.y
 recipesPager.addPage(sk.recpagertwo)
-sk.recpagertwo.x = sk.recpagertwo.width + 80
-sk.recpagertwo.y = sk.recpager.y
+sk.recpagertwo.x += 60
 
 sk.recpagerthree = sk.recpager.copy()
+sk.recpagerthree.y = 0
 #sk.recpagerthree.superLayer = recipesPager.content
-recipesPager.addPage(sk.recpagerthree)
-sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
 
+#sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
+recipesPager.addPage(sk.recpagerthree)
+sk.recpagerthree.x += 60
 # RATION SCREEN
 
 rationScroller = new ScrollComponent
