@@ -270,6 +270,7 @@ for button in sk.shbuttons.subLayers
 	button.originalFrame = button.frame
 	button.shown = false
 	
+	
 shButtonsIn = () ->
 	for i,button of sk.shbuttons.subLayers
 		if !button.shown
@@ -282,6 +283,8 @@ shButtonsIn = () ->
 				curve: "spring(300,20,0)"
 				delay: i * 0.05
 			button.shown = true
+			if button == sk.shaddweight
+				button.on Events.Click, addweightOnClick
 		else
 			button.animate
 				properties: 
@@ -290,6 +293,10 @@ shButtonsIn = () ->
 				delay: i * 0.05
 				curve: "spring(300,20,0)"
 			button.shown = false
+			if button == sk.shaddweight
+				button.off Events.Click, addweightOnClick
+			
+
 
 dumbShit = new Layer
 	superLayer: navWrapper
@@ -303,12 +310,14 @@ dumbShit.on Events.Click, ->
 	sk.shortcuts.states.next()
 	shButtonsIn()
 
-sk.shaddweight.on Events.Click, ->
+addweightOnClick = () ->
 	showAddWeight()
 	sk.bigplusbutton.states.next()
 	sk.tabNav.states.next()
 	sk.shortcuts.states.next()
 	shButtonsIn()
+
+
 
 # CALENDAR
 calbgr = new Layer
