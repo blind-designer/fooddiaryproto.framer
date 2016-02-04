@@ -4032,6 +4032,151 @@ window.__imported__["fooddiary-protomore/layers.json.js"] = [
       "height" : 1820
     },
     "name" : "infoscreen"
+  },
+  {
+    "maskFrame" : null,
+    "id" : "32AA6614-5B7C-49B7-A143-A44B9FB05A2F",
+    "visible" : false,
+    "children" : [
+      {
+        "maskFrame" : null,
+        "id" : "0633FCB4-E08E-4A16-A47C-D3D6E8E3CFC1",
+        "visible" : true,
+        "children" : [
+          {
+            "maskFrame" : null,
+            "id" : "533B47CB-FEA8-4503-A223-C2C42B14ED01",
+            "visible" : true,
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/Layer-addwOk-533B47CB-FEA8-4503-A223-C2C42B14ED01.png",
+              "frame" : {
+                "y" : 1182,
+                "x" : 40,
+                "width" : 668,
+                "height" : 108
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 1182,
+              "x" : 40,
+              "width" : 668,
+              "height" : 108
+            },
+            "name" : "addwOk"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "C2AAC36F-7AC6-4162-8396-FF3B85250EB7",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-addweightNav-C2AAC36F-7AC6-4162-8396-FF3B85250EB7.png",
+              "frame" : {
+                "y" : 44,
+                "x" : 40,
+                "width" : 668,
+                "height" : 112
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 44,
+              "x" : 40,
+              "width" : 668,
+              "height" : 112
+            },
+            "name" : "addweightNav"
+          },
+          {
+            "maskFrame" : null,
+            "id" : "0B01AB4F-7C27-485E-B111-9193D3B25D13",
+            "visible" : true,
+            "image" : {
+              "path" : "images\/Layer-addweightbox-0B01AB4F-7C27-485E-B111-9193D3B25D13.png",
+              "frame" : {
+                "y" : 46,
+                "x" : 36,
+                "width" : 676,
+                "height" : 1244
+              }
+            },
+            "imageType" : "png",
+            "kind" : "group",
+            "metadata" : {
+              "opacity" : 1
+            },
+            "layerFrame" : {
+              "y" : 46,
+              "x" : 36,
+              "width" : 676,
+              "height" : 1244
+            },
+            "name" : "addweightbox"
+          }
+        ],
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 44,
+          "x" : 36,
+          "width" : 676,
+          "height" : 1246
+        },
+        "name" : "addweightcontent"
+      },
+      {
+        "maskFrame" : null,
+        "id" : "B4471871-0315-4E85-985E-ED533E73E872",
+        "visible" : true,
+        "image" : {
+          "path" : "images\/Layer-addweightbgr-B4471871-0315-4E85-985E-ED533E73E872.png",
+          "frame" : {
+            "y" : 0,
+            "x" : 0,
+            "width" : 750,
+            "height" : 1334
+          }
+        },
+        "imageType" : "png",
+        "kind" : "group",
+        "metadata" : {
+          "opacity" : 1
+        },
+        "layerFrame" : {
+          "y" : 0,
+          "x" : 0,
+          "width" : 750,
+          "height" : 1334
+        },
+        "name" : "addweightbgr"
+      }
+    ],
+    "imageType" : "png",
+    "kind" : "artboard",
+    "metadata" : {
+
+    },
+    "layerFrame" : {
+      "y" : -192,
+      "x" : 7446,
+      "width" : 750,
+      "height" : 1334
+    },
+    "name" : "addweightscreen"
   }
 ]
 window.__imported__ = window.__imported__ || {};

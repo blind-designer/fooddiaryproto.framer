@@ -250,7 +250,7 @@ hidebar = () ->
 		achievementsBar.states.switch("ach")
 	
 
-# ADD SCREEN ANIMATION
+# SHORTCUTS SCREEN 
 
 sk.bigplusbutton.superLayer = navWrapper
 sk.bigplusbutton.center()
@@ -303,6 +303,12 @@ dumbShit.on Events.Click, ->
 	sk.shortcuts.states.next()
 	shButtonsIn()
 
+sk.shaddweight.on Events.Click, ->
+	showAddWeight()
+	sk.bigplusbutton.states.next()
+	sk.tabNav.states.next()
+	sk.shortcuts.states.next()
+	shButtonsIn()
 
 # CALENDAR
 calbgr = new Layer
@@ -538,6 +544,8 @@ sk.recpagerthree.y = 0
 #sk.recpagerthree.x = (sk.recpagerthree.width + 63)*2
 recipesPager.addPage(sk.recpagerthree)
 sk.recpagerthree.x += 60
+
+
 # RATION SCREEN
 
 rationScroller = new ScrollComponent
@@ -563,3 +571,49 @@ infoScroller.content.backgroundColor = noColor
 infoScroller.sendToBack()
 
 sk.infoscroll.superLayer = infoScroller.content
+
+
+# ADD WEIGHT SCREEN
+sk.addweightscreen.x = 0
+sk.addweightscreen.y = 0
+sk.addweightcontent.cornerRadius = 14
+sk.addweightcontent.clip = true
+sk.addweightscreen.bringToFront()
+sk.addweightscreen.visible = false
+
+addweightVisible = false
+
+showAddWeight = () ->
+	addweightVisible = true
+	sk.addweightscreen.visible = true
+	sk.addweightbgr.opacity = 0
+	sk.addweightbgr.animate
+		properties:
+			opacity: 1
+			
+	sk.addweightcontent.scale = 0.7
+	sk.addweightcontent.opacity = 0
+	sk.addweightcontent.animate
+		properties:
+			opacity: 1
+			scale: 1
+		curve: "spring(450,20,0)"
+		
+hideAddWeight = () ->
+	addweightVisible = false
+	sk.addweightbgr.animate
+		properties:
+			opacity: 0
+			
+	sk.addweightcontent.animate
+		properties:
+			opacity: 0
+			scale: 0.7
+		curve: "spring(450,20,0)"
+
+sk.addweightbgr.on Events.AnimationEnd, ->
+	if !addweightVisible 
+		sk.addweightscreen.visible = false
+		
+sk.addweightbgr.on Events.Click, ->
+	hideAddWeight()
